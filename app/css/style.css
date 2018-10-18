@@ -3,6 +3,7 @@
     padding: 0;
     border-spacing: 0;
 }
+
 .accent-text {
     color: #d6001f;
 }
@@ -26,18 +27,21 @@
 .cell {
     display: inline-block;
     width: 20%;
-    padding: 15px 30px;
+    padding: 15px 0;
 }
 
 .cell.span2 {
     width: 40%;
 }
+
 .cell.span3 {
     width: 60%;
 }
+
 .cell.span4 {
     width: 80%;
 }
+
 .cell.span5 {
     display: block;
 }
@@ -62,6 +66,7 @@ header {
     border-bottom: solid thin #d6001f;
     height: 40pt;
     position: fixed;
+    z-index: 1;
 }
 
 header .logo img {
@@ -97,48 +102,81 @@ main #subtext {
 main #wizard {
     background-color: #f2f2f2;
     box-shadow: 5px 5px 10px #30303080;
-    height: 1200px;
-    padding: 50px;
+    padding: 20px 50px;
     display: table;
     width: 100%;
 }
+
 main .nav .table .cell {
     width: 20%;
 }
 
 .step {
-    padding: 30px 0;
-    border-top: dashed thin grey;
-    border-bottom: dashed thin grey;
-    display: table;
     width: 100%;
 }
 
 .step .legend {
     display: inline-block;
-    margin-left: -50px;
-    padding-left: 80px;
-    margin-top: 40px;
+    float: left;
+    margin-left: -70px;
+    padding-left: 70px;
+    margin-top: 20px;
     margin-bottom: 20px;
     padding-bottom: 10px;
     color: grey;
     border-bottom: solid thin grey;
 }
 
+table,
+tbody,
+tr {
+    border-width: 0;
+    position: relative;
+}
+
+td,
+th {
+    text-align: center;
+    vertical-align: center;
+    padding: 5px 20px;
+    width: 20%;
+}
+
+.label-accent {
+    width: 100%;
+    border-radius: 5px;
+    padding: 15px 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-align: center;
+    overflow: hidden;
+    border-width: 0;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: smaller;
+    color: #d6001f;
+    box-shadow: 0px 0px 15px #30303030;
+}
+
 .btn-accent {
     width: 100%;
     border-radius: 5px;
     padding: 15px 2px;
-    line-height: 20px;
+    margin: 15px 0;
     text-transform: uppercase;
+    white-space: nowrap;
+    text-align: center;
+    overflow: hidden;
     border-width: 0;
     cursor: pointer;
-    background-color: white;
+    background-color: transparent;
     font-size: smaller;
     color: grey;
-    box-shadow: 5px 5px 10px #30303020;
+    box-shadow: 0px 0px 15px #30303030;
 }
 
+.btn-accent:active,
+.btn-accent:focus,
 .btn-accent.selected {
     color: white;
     background-color: #d6001f;
@@ -149,4 +187,58 @@ main .nav .table .cell {
     color: white;
     background-color: #1c1f2b;
     box-shadow: 8px 8px 16px #30303060;
+}
+
+.btn-accent.flat {
+    color: grey;
+    background-color: transparent;
+    box-shadow: 0 0 0 transparent;
+}
+
+.btn-accent.flat .btn-logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin: 0 auto;
+    padding: 5px;
+    background-color: transparent;
+    box-shadow: 0px 0px 15px #30303030;
+}
+
+.btn-accent.flat .btn-logo img {
+    filter: invert(0);
+    width: 80px;
+    height: 80px;
+}
+
+.btn-accent.flat .btn-caption {
+    margin-top: 10px;
+    padding-top: 5px;
+    border-top: solid thin grey;
+    font-size: larger;
+    font-weight: 400;
+}
+
+.btn-accent.flat.selected {
+    color: #d6001f;
+}
+
+.btn-accent.flat.selected .btn-logo {
+    background-color: #d6001f;
+    box-shadow: 4px 4px 12px #30303060;
+}
+
+.btn-accent.flat.selected .btn-logo img {
+    filter: invert(0);
+}
+
+.btn-accent.flat.selected .btn-caption {
+    border-top: solid thin #d6001f;
+}
+
+#region_image {
+    background-image: url('../images/maps/2_1.png');
+    background-position: 20px;
+    background-size: calc(100% - 40px) calc(100% - 40px);
+    background-repeat: no-repeat;
 }
