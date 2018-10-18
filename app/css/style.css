@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    border-spacing: 0;
+}
+.accent-text {
+    color: #d6001f;
+}
+
+.accent {
+    background-color: #d6001f;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.thin {
+    font-weight: 100;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.cell {
+    display: inline-block;
+    width: 20%;
+    padding: 15px 30px;
+}
+
+.cell.span2 {
+    width: 40%;
+}
+.cell.span3 {
+    width: 60%;
+}
+.cell.span4 {
+    width: 80%;
+}
+.cell.span5 {
+    display: block;
+}
+
+.bg-body {
+    width: 100%;
+    height: 350pt;
+    background-image: url("../images/4K-Wallpaper-Full-HD-For-Computer-Screens.jpg");
+    box-shadow: 0 5px 10px #30303080;
+    background-size: cover;
+    background-origin: 50% 50%;
+    background-repeat: no-repeat;
+    filter: brightness(.37) grayscale(1);
+    position: absolute;
+    z-index: -1;
+}
+
+header {
+    width: 100%;
+    padding: 10pt 80pt;
+    background-color: black;
+    border-bottom: solid thin #d6001f;
+    height: 40pt;
+    position: fixed;
+}
+
+header .logo img {
+    height: 20pt;
+}
+
+header .logo a {
+    font-size: 20pt;
+    line-height: 20pt;
+}
+
+main {
+    padding: 90pt 80pt;
+}
+
+main #slogan {
+    font-size: 20pt;
+    line-height: 30pt;
+    /* transform-origin: 0 0; */
+    /* transform: scale(2); */
+}
+
+main #subtext {
+    font-size: 15pt;
+    line-height: 30pt;
+    border-top: solid thin white;
+    margin: 50pt 0;
+    width: 390pt;
+    /* transform-origin: 0 0; */
+    /* transform: scale(2); */
+}
+
+main #wizard {
+    background-color: #f2f2f2;
+    box-shadow: 5px 5px 10px #30303080;
+    height: 1200px;
+    padding: 50px;
+    display: table;
+    width: 100%;
+}
+main .nav .table .cell {
+    width: 20%;
+}
+
+.step {
+    padding: 30px 0;
+    border-top: dashed thin grey;
+    border-bottom: dashed thin grey;
+    display: table;
+    width: 100%;
+}
+
+.step .legend {
+    display: inline-block;
+    margin-left: -50px;
+    padding-left: 80px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    color: grey;
+    border-bottom: solid thin grey;
+}
+
+.btn-accent {
+    width: 100%;
+    border-radius: 5px;
+    padding: 15px 2px;
+    line-height: 20px;
+    text-transform: uppercase;
+    border-width: 0;
+    cursor: pointer;
+    background-color: white;
+    font-size: smaller;
+    color: grey;
+    box-shadow: 5px 5px 10px #30303020;
+}
+
+.btn-accent.selected {
+    color: white;
+    background-color: #d6001f;
+    box-shadow: 8px 8px 16px #30303060;
+}
+
+.btn-accent.primary {
+    color: white;
+    background-color: #1c1f2b;
+    box-shadow: 8px 8px 16px #30303060;
+}
