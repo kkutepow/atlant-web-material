@@ -1,4 +1,23 @@
+@font-face {
+    font-family: Lato;
+    src: url(../fonts/Lato-Light.ttf);
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: Lato;
+    src: url(../fonts/Lato-Regular.ttf);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Lato;
+    src: url(../fonts/Lato-Black.ttf);
+    font-weight: 600;
+}
+
 * {
+    font-family: Lato !important;
     margin: 0;
     padding: 0;
     border-spacing: 0;
@@ -123,8 +142,8 @@ main .nav .table .cell {
     margin-top: 20px;
     margin-bottom: 10px;
     padding-bottom: 10px;
-    color: grey;
-    border-bottom: solid thin grey;
+    color: #1c1f2b;
+    border-bottom: solid thin #1c1f2b;
 }
 
 table, tbody, tr {
@@ -134,7 +153,7 @@ table, tbody, tr {
 
 td, th {
     text-align: center;
-    vertical-align: center;
+    vertical-align: top;
     padding: 10px;
     width: 20%;
 }
@@ -154,7 +173,7 @@ td, th {
     font-weight: 400;
     background-color: transparent;
     color: #d6001f;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
 .btn-accent {
@@ -172,20 +191,20 @@ td, th {
     background-color: white;
     font-size: smaller;
     color: #1c1f2b;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
 .btn-accent:active, .btn-accent:focus, .btn-accent.selected {
     color: white;
     background-color: #d6001f;
-    box-shadow: 5px 5px 10px 0 rgba(0,0,0,0.2);
+    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .btn-accent.primary {
     margin-bottom: 0;
     color: white;
     background-color: #1c1f2b;
-    box-shadow: 5px 5px 10px 0 rgba(0,0,0,0.2);
+    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .btn-accent.flat {
@@ -222,7 +241,7 @@ td, th {
     margin: 0 auto;
     padding: 5px;
     background-color: transparent;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
 .btn-accent.flat .btn-logo img {
@@ -251,6 +270,7 @@ td, th {
 .btn-accent.flat.selected .btn-logo img {
     filter: invert(1);
 }
+
 th:first-child .btn-accent.flat.selected .btn-logo img {
     filter: invert(0);
 }
@@ -261,24 +281,50 @@ th:first-child .btn-accent.flat.selected .btn-logo img {
 
 .region_image {
     background-image: url('../images/maps/2_1.png');
-    background-position: 15px 15px;
-    background-size: calc(100% - 30px) calc(100% - 30px);
+    background-position: center center;
+    /* background-position: 15px 15px; */
+    /* background-size: calc(100% - 30px) calc(100% - 30px); */
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
-.dropdown-trigger.btn {
-    width: 100%;
+.select-wrapper {
     color: #1c1f2b !important;
-    background-color: white;
-    height: 40px;
-    line-height: 40px;
+    background-color: white !important;
+    height: 40px !important;
+    line-height: 40px !important;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+input.select-dropdown {
+    width: calc(100% - 40px) !important;
+    padding:  0 25px 0 15px !important;
+    height: 40px !important;
+    line-height: 40px !important;
+    border-bottom-width: 0 !important;
     text-align: left;
 }
 
-.dropdown-content a {
+.dropdown-content li>span {
+    padding: 0 15px;
+    height: 40px;
+    line-height: 40px;
+    white-space: nowrap;
+    overflow: hidden;
     color: #1c1f2b !important;
 }
+.dropdown-content li {
+    min-height: 40px;
+    line-height: 40px;
+}
 
+.input-field {
+    margin: 0;
+}
+.input-field * {
+    text-transform: uppercase;
+    font-size: small !important;
+}
 .section {
     padding: 10px 30px;
 }
