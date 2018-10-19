@@ -118,81 +118,101 @@ main .nav .table .cell {
 .step .legend {
     display: inline-block;
     float: left;
-    margin-left: -70px;
-    padding-left: 70px;
+    margin-left: -60px;
+    padding-left: 60px;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding-bottom: 10px;
     color: grey;
     border-bottom: solid thin grey;
 }
 
-table,
-tbody,
-tr {
+table, tbody, tr {
     border-width: 0;
     position: relative;
 }
 
-td,
-th {
+td, th {
     text-align: center;
     vertical-align: center;
-    padding: 5px 20px;
+    padding: 10px;
     width: 20%;
 }
 
 .label-accent {
     width: 100%;
-    border-radius: 5px;
+    border-radius: 2px;
+    height: 40px;
+    line-height: 1em;
     padding: 15px 2px;
     text-transform: uppercase;
     white-space: nowrap;
     text-align: center;
     overflow: hidden;
     border-width: 0;
-    cursor: pointer;
-    background-color: transparent;
     font-size: smaller;
+    font-weight: 400;
+    background-color: transparent;
     color: #d6001f;
-    box-shadow: 0px 0px 15px #30303030;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
 }
 
 .btn-accent {
     width: 100%;
-    border-radius: 5px;
+    border-radius: 2px;
     padding: 15px 2px;
-    margin: 15px 0;
+    line-height: 1em;
+    /* margin: 15px 0; */
     text-transform: uppercase;
     white-space: nowrap;
     text-align: center;
     overflow: hidden;
     border-width: 0;
     cursor: pointer;
-    background-color: transparent;
+    background-color: white;
     font-size: smaller;
-    color: grey;
-    box-shadow: 0px 0px 15px #30303030;
+    color: #1c1f2b;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
 }
 
-.btn-accent:active,
-.btn-accent:focus,
-.btn-accent.selected {
+.btn-accent:active, .btn-accent:focus, .btn-accent.selected {
     color: white;
     background-color: #d6001f;
-    box-shadow: 8px 8px 16px #30303060;
+    box-shadow: 5px 5px 10px 0 rgba(0,0,0,0.2);
 }
 
 .btn-accent.primary {
+    margin-bottom: 0;
     color: white;
     background-color: #1c1f2b;
-    box-shadow: 8px 8px 16px #30303060;
+    box-shadow: 5px 5px 10px 0 rgba(0,0,0,0.2);
 }
 
 .btn-accent.flat {
-    color: grey;
+    cursor: default;
+    color: #1c1f2b;
     background-color: transparent;
     box-shadow: 0 0 0 transparent;
+}
+
+.btn-accent.half {
+    width: calc(50% - 10px);
+}
+
+.btn-accent.half:nth-child(1) {
+    float: left;
+}
+
+.btn-accent.half:nth-child(2) {
+    float: right;
+}
+
+.btn-accent.toggle {
+    text-align: left;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 15px;
 }
 
 .btn-accent.flat .btn-logo {
@@ -202,7 +222,7 @@ th {
     margin: 0 auto;
     padding: 5px;
     background-color: transparent;
-    box-shadow: 0px 0px 15px #30303030;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
 }
 
 .btn-accent.flat .btn-logo img {
@@ -214,7 +234,7 @@ th {
 .btn-accent.flat .btn-caption {
     margin-top: 10px;
     padding-top: 5px;
-    border-top: solid thin grey;
+    border-top: solid thin #1c1f2b;
     font-size: larger;
     font-weight: 400;
 }
@@ -229,6 +249,9 @@ th {
 }
 
 .btn-accent.flat.selected .btn-logo img {
+    filter: invert(1);
+}
+th:first-child .btn-accent.flat.selected .btn-logo img {
     filter: invert(0);
 }
 
@@ -236,9 +259,30 @@ th {
     border-top: solid thin #d6001f;
 }
 
-#region_image {
+.region_image {
     background-image: url('../images/maps/2_1.png');
-    background-position: 20px;
-    background-size: calc(100% - 40px) calc(100% - 40px);
+    background-position: 15px 15px;
+    background-size: calc(100% - 30px) calc(100% - 30px);
     background-repeat: no-repeat;
+}
+
+.dropdown-trigger.btn {
+    width: 100%;
+    color: #1c1f2b !important;
+    background-color: white;
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+}
+
+.dropdown-content a {
+    color: #1c1f2b !important;
+}
+
+.section {
+    padding: 10px 30px;
+}
+
+.section>* {
+    margin: 10px auto;
 }

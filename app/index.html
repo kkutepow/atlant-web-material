@@ -33,7 +33,7 @@
             <!-- 
             STEP ONE
  -->
-            <div class="step step1">
+            <div id="step1" class="step">
                 <table>
                     <thead>
                         <tr>
@@ -92,10 +92,10 @@
                     <tbody>
                         <tr>
                             <td>
-                                <button class="btn-accent thin">Участок есть</button>
+                                <button class="btn-accent thin" data-group="нужен участок">Участок есть</button>
                             </td>
                             <td>
-                                <button class="btn-accent selected thin">Нужен подбор</button>
+                                <button class="btn-accent selected thin" data-group="нужен участок">Нужен подбор</button>
                             </td>
                             <td></td>
                             <td>
@@ -123,14 +123,20 @@
                         </tr>
                         <tr>
                             <td>
-                                <button class="btn-accent thin">Прикубанский округ</button>
-                                <button class="btn-accent thin">Западный округ</button>
+                                <button class="btn-accent thin" data-group="тип участка">Прикубанский округ</button>
                             </td>
                             <td>
-                                <button class="btn-accent selected thin">Центральный округ</button>
-                                <button class="btn-accent thin">Карасунский округ</button>
+                                <button class="btn-accent selected thin" data-group="тип участка">Центральный округ</button>
                             </td>
-                            <td colspan="3" rowspan="5" id="region_image">
+                            <td colspan="3" rowspan="7" class="region_image">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn-accent thin" data-group="тип участка">Западный округ</button>
+                            </td>
+                            <td>
+                                <button class="btn-accent thin" data-group="тип участка">Карасунский округ</button>
                             </td>
                         </tr>
                         <tr>
@@ -140,17 +146,23 @@
                         </tr>
                         <tr>
                             <td>
-                                <button class="btn-accent thin">0-15 км</button>
-                                <button class="btn-accent thin">35-100 км</button>
+                                <button class="btn-accent thin" data-group="тип участка">0-15 км</button>
                             </td>
                             <td>
-                                <button class="btn-accent thin">15-35 км</button>
-                                <button class="btn-accent thin">Побережье черного моря</button>
+                                <button class="btn-accent thin" data-group="тип участка">15-35 км</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn-accent thin" data-group="тип участка">35-100 км</button>
+                            </td>
+                            <td>
+                                <button class="btn-accent thin" data-group="тип участка">Побережье черного моря</button>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <button class="btn-accent primary thin">Перейти к следующему разделу</button>
+                                <button class="btn-accent primary thin nextpage">Перейти к следующему разделу</button>
                             </td>
                         </tr>
                     </tbody>
@@ -161,78 +173,797 @@
             STEP TWO
  -->
 
+            <div id="step2" class="step">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                <button class="btn-accent flat selected accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-01.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Выбор участка
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="btn-accent flat selected accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-02.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Проектирование
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="btn-accent flat accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-03.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Строительство
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="btn-accent flat accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-04.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Документация
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="btn-accent flat accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-05.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Результат
+                                    </div>
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5">
+                                <div class="legend thin uppercase">У вас уже есть проект</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn-accent thin" data-group="нужен проект">Проект есть</button>
+                            </td>
+                            <td>
+                                <button class="btn-accent selected thin" data-group="нужен проект">Требуется разработка</button>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <div class="uppercase thin">
+                                    Стоимость проектирования
+                                </div>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="legend thin uppercase">Вид проекта:</div>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <div class="label-accent thin uppercase">50 000 рублей</div>                                
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn-accent thin" data-group="тип проекта">Типовой проект</button>
+                            </td>
+                            <td>
+                                <button class="btn-accent thin selected" data-group="тип проекта">Индивидуальный проект</button>
+                            </td>
+                            <td colspan="3" rowspan="3" class="region_image">
+                            </td>
+                        </tr>
+                        <tr height="270">
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button class="btn-accent primary thin nextpage">Перейти к следующему разделу</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <!-- STEP THREE -->
+            <div id="step3" class="step">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                <button class="btn-accent flat selected accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-01.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Выбор участка
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="btn-accent flat selected accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-02.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Проектирование
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="btn-accent flat selected accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-03.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Строительство
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="btn-accent flat accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-04.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Документация
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="btn-accent flat accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-05.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Результат
+                                    </div>
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5">
+                                <div class="legend thin uppercase">Выберите параметры вашего будущего дома:</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div class="legend thin uppercase">Комплектация</div>
+                            </td>
+                            <td>
+                                <div class="uppercase thin">
+                                    Средняя стоимость строительства
+                                </div>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn-accent selected thin" data-group="комплектация">Коробка</button>
+                            </td>
+                            <td>
+                                <button class="btn-accent thin" data-group="комплектация">Предчистовая отделка</button>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <div class="label-accent thin uppercase">от 750 000 рублей</div>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn-accent thin" data-group="комплектация">Дом с ремонтом</button>
+                            </td>
+                            <td>
+                            </td>
+                            <td colspan="3" rowspan="9" class="region_image">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="legend thin uppercase">Площадь</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn-accent half selected thin" data-group="площадь">100-150М2</button>
+                                <button class="btn-accent half thin" data-group="площадь">150-200М2</button>
+                            </td>
+                            <td>
+                                <button class="btn-accent half thin" data-group="площадь">200-250М2</button>
+                                <button class="btn-accent half thin" data-group="площадь">>250М2</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="legend thin uppercase">Этажность</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn-accent half thin" data-group="этажность">1 этаж</button>
+                                <button class="btn-accent half selected thin" data-group="этажность">2 этажа</button>
+                            </td>
+                            <td>
+                                <button class="btn-accent half thin" data-group="этажность">3 этажа</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="legend thin uppercase">Дополнительные опции</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn-accent selected thin" data-group="дополнительные опции">Цокольный этаж</button>
+                            </td>
+                            <td>
+                                <button class="btn-accent thin" data-group="дополнительные опции">Монсарда</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn-accent thin" data-group="дополнительные опции">Гараж</button>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button class="btn-accent primary thin nextpage">Перейти к следующему разделу</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <!-- STEP FOUR -->
+            <div id="step4" class="step">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                <button class="btn-accent flat selected accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-01.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Выбор участка
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="btn-accent flat selected accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-02.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Проектирование
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="btn-accent flat selected accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-03.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Строительство
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="btn-accent flat selected accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-04.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Документация
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="btn-accent flat accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-05.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Результат
+                                    </div>
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5">
+                                <div class="legend thin uppercase">Мы можем оформить всю необходимую документацию</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="legend thin uppercase">Разрешение на строительство</div>
+                            </td>
+                            <td>
+                                <div class="uppercase thin">
+                                    Стоимость
+                                </div>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn-accent selected thin" data-group="разрешение на строительство">Сделаем сами</button>
+                            </td>
+                            <td>
+                                <button class="btn-accent thin" data-group="разрешение на строительство">Закажем у вас</button>
+                            </td>
+                            <td>
+                                <div class="label-accent thin uppercase"> </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="legend thin uppercase">Оформление подключения электроснабжения</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn-accent selected thin" data-group="подключение электричества">Сделаем сами</button>
+                            </td>
+                            <td>
+                                <button class="btn-accent thin" data-group="подключение электричества">Закажем у вас</button>
+                            </td>
+                            <td>
+                                <div class="label-accent thin uppercase"> </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="legend thin uppercase">Разрешение на ввод дома в эксплуатацию</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn-accent selected thin" data-group="разрешенние на эксплуатацию">Сделаем сами</button>
+                            </td>
+                            <td>
+                                <button class="btn-accent thin" data-group="разрешенние на эксплуатацию">Закажем у вас</button>
+                            </td>
+                            <td>
+                                <div class="label-accent thin uppercase"> </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="legend thin uppercase">Оформление подключения водоснабжения</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn-accent selected thin" data-group="подключение воды">Сделаем сами</button>
+                            </td>
+                            <td>
+                                <button class="btn-accent thin" data-group="подключение воды">Закажем у вас</button>
+                            </td>
+                            <td>
+                                <div class="label-accent thin uppercase"> </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="legend thin uppercase">Оформление подключения газа</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn-accent selected thin" data-group="подключение газа">Сделаем сами</button>
+                            </td>
+                            <td>
+                                <button class="btn-accent thin" data-group="подключение газа">Закажем у вас</button>
+                            </td>
+                            <td>
+                                <div class="label-accent thin uppercase"> </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button class="btn-accent primary thin nextpage">Перейти к следующему разделу</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+            <!-- SUMMARY -->
+            <div id="step5" class="step">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                <button class="btn-accent flat selected accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-01.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Выбор участка
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="btn-accent flat selected accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-02.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Проектирование
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="btn-accent flat selected accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-03.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Строительство
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="btn-accent flat selected accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-04.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Документация
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="btn-accent flat selected accent-text">
+                                    <div class="btn-logo">
+                                        <img src="images/Атлант-05.png" alt="">
+                                    </div>
+                                    <div class="btn-caption">
+                                        Результат
+                                    </div>
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5">
+                                <div class="legend thin uppercase">Ваш ориентировочный расчет готов. Вы можете прямо в формах изменить значение, чтобы получить
+                                    новую итоговую сумму</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <div class="row">
+                                    <div class="col s12 m6">
+                                        <div class="grey lighten-2 section">
+                                            <div class="thin uppercase">
+                                                земельный участок:
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12 m7">
+                                                    <!-- Dropdown Trigger -->
+                                                    <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop down <i class="material-icons right">keyboard_arrow_down</i></a>
+
+                                                    <!-- Dropdown Structure -->
+                                                    <ul id='dropdown1' class='dropdown-content'>
+                                                        <li>
+                                                            <a href="#!">one</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#!">two</a>
+                                                        </li>
+                                                        <li class="divider" tabindex="-1"></li>
+                                                        <li>
+                                                            <a href="#!">three</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#!">
+                                                                <i class="material-icons">view_module</i>four</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#!">
+                                                                <i class="material-icons">cloud</i>five</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col s12 m5">
+                                                    <div class="label-accent">от 50 000 руб</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m6">
+                                        <div class="grey lighten-2 section">
+                                            <div class="thin uppercase">
+                                                земельный участок:
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12 m7">
+                                                    <!-- Dropdown Trigger -->
+                                                    <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop down <i class="material-icons right">keyboard_arrow_down</i></a>
+
+                                                    <!-- Dropdown Structure -->
+                                                    <ul id='dropdown1' class='dropdown-content'>
+                                                        <li>
+                                                            <a href="#!">one</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#!">two</a>
+                                                        </li>
+                                                        <li class="divider" tabindex="-1"></li>
+                                                        <li>
+                                                            <a href="#!">three</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#!">
+                                                                <i class="material-icons">view_module</i>four</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#!">
+                                                                <i class="material-icons">cloud</i>five</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col s12 m5">
+                                                    <div class="label-accent">от 50 000 руб</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col s12 m6">
+                                        <div class="grey lighten-2 section">
+                                            <div class="thin uppercase">
+                                                земельный участок:
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12 m7">
+                                                    <!-- Dropdown Trigger -->
+                                                    <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop down <i class="material-icons right">keyboard_arrow_down</i></a>
+
+                                                    <!-- Dropdown Structure -->
+                                                    <ul id='dropdown1' class='dropdown-content'>
+                                                        <li>
+                                                            <a href="#!">one</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#!">two</a>
+                                                        </li>
+                                                        <li class="divider" tabindex="-1"></li>
+                                                        <li>
+                                                            <a href="#!">three</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#!">
+                                                                <i class="material-icons">view_module</i>four</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#!">
+                                                                <i class="material-icons">cloud</i>five</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col s12 m5">
+                                                    <div class="label-accent">от 50 000 руб</div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12 m7">
+                                                    <!-- Dropdown Trigger -->
+                                                    <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop down <i class="material-icons right">keyboard_arrow_down</i></a>
+
+                                                    <!-- Dropdown Structure -->
+                                                    <ul id='dropdown1' class='dropdown-content'>
+                                                        <li>
+                                                            <a href="#!">one</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#!">two</a>
+                                                        </li>
+                                                        <li class="divider" tabindex="-1"></li>
+                                                        <li>
+                                                            <a href="#!">three</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#!">
+                                                                <i class="material-icons">view_module</i>four</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#!">
+                                                                <i class="material-icons">cloud</i>five</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col s12 m5">
+                                                    <div class="label-accent">от 50 000 руб</div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12 m7">
+                                                    <!-- Dropdown Trigger -->
+                                                    <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop down <i class="material-icons right">keyboard_arrow_down</i></a>
+
+                                                    <!-- Dropdown Structure -->
+                                                    <ul id='dropdown1' class='dropdown-content'>
+                                                        <li>
+                                                            <a href="#!">one</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#!">two</a>
+                                                        </li>
+                                                        <li class="divider" tabindex="-1"></li>
+                                                        <li>
+                                                            <a href="#!">three</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#!">
+                                                                <i class="material-icons">view_module</i>four</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#!">
+                                                                <i class="material-icons">cloud</i>five</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col s12 m5">
+                                                    <div class="label-accent">от 50 000 руб</div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12 m7">
+                                                    <button class="btn btn-accent toggle">toggle <i class="material-icons accent-text right">radio_button_checked</i></button>                                                    
+                                                </div>
+                                                <div class="col s12 m5">
+                                                    <div class="label-accent">от 50 000 руб</div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12 m7">
+                                                    <button class="btn btn-accent toggle">toggle <i class="material-icons accent-text right">radio_button_checked</i></button>                                                    
+                                                </div>
+                                                <div class="col s12 m5">
+                                                    <div class="label-accent">от 50 000 руб</div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12 m7">
+                                                    <button class="btn btn-accent toggle">toggle <i class="material-icons accent-text right">radio_button_checked</i></button>
+                                                </div>
+                                                <div class="col s12 m5">
+                                                    <div class="label-accent">от 50 000 руб</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m6">
+                                        <div class="grey lighten-2 section">
+                                            <div class="thin uppercase">
+                                                земельный участок:
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12 m7">
+                                                    <button class="btn btn-accent toggle">toggle <i class="material-icons accent-text right">radio_button_checked</i></button>                                                    
+                                                </div>
+                                                <div class="col s12 m5">
+                                                    <div class="label-accent">от 50 000 руб</div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12 m7">
+                                                    <button class="btn btn-accent toggle">toggle <i class="material-icons accent-text right">radio_button_checked</i></button>                                                    
+                                                </div>
+                                                <div class="col s12 m5">
+                                                    <div class="label-accent">от 50 000 руб</div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12 m7">
+                                                    <button class="btn btn-accent toggle">toggle <i class="material-icons accent-text right">radio_button_checked</i></button>                                                    
+                                                </div>
+                                                <div class="col s12 m5">
+                                                    <div class="label-accent">от 50 000 руб</div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12 m7">
+                                                    <button class="btn btn-accent toggle">toggle <i class="material-icons accent-text right">radio_button_checked</i></button>                                                    
+                                                </div>
+                                                <div class="col s12 m5">
+                                                    <div class="label-accent">от 50 000 руб</div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12 m7">
+                                                    <button class="btn btn-accent toggle">toggle <i class="material-icons accent-text right">radio_button_checked</i></button>
+                                                </div>
+                                                <div class="col s12 m5">
+                                                    <div class="label-accent">от 50 000 руб</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col s12 m6">
+                                        <div class="grey lighten-2 section">
+                                            <div class="thin uppercase">
+                                                земельный участок:
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <div class="label-accent">4 000 000 рублей</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m6">
+                                        <div class="grey lighten-2 section">
+                                            <div class="thin uppercase">
+                                                земельный участок:
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <button class="btn-accent primary">Хочу!</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
         </div>
     </main>
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-<!-- 
-
-    
-                <div class="cell span2">
-                    <div class="row">
-                        <div class="col s12 m6">
-                        </div>
-                        <div class="col s12 m6">
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col s12">
-                        </div>
-                        <div class="col s12 m6">
-                        </div>
-                        <div class="col s12 m6">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col s12 m6">
-                        </div>
-                        <div class="col s12 m6">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col s12">
-                        </div>
-                        <div class="col s12 m6">
-                            <button class="btn-accent thin">5-15 км</button>
-                        </div>
-                        <div class="col s12 m6">
-                            <button class="btn-accent selected thin">15-35 км</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 m6">
-                            <button class="btn-accent thin">35-100 км</button>
-                        </div>
-                        <div class="col s12 m6">
-                            <button class="btn-accent thin">побережье черного моря</button>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col s12">
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="cell span3" style="padding-left: 80px;">
-                    <div class="row">
-                        <div class="col s12">
-                        </div>
-                    </div>
-                </div>
- -->
