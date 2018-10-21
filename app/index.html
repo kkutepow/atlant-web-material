@@ -7,12 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Atlant web</title>
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.min.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.1.62/jquery.inputmask.bundle.js"></script>
 </head>
 
 <body>
@@ -25,14 +26,251 @@
     <div class="bg-body">
     </div>
     <main>
-        <div id="slogan" class=" uppercase bold white-text">Узнайте сколько действительно
+        <div id="slogan" class="uppercase bold white-text">Узнайте сколько действительно
             <br /> стоит качественное строительство
             <br /> в краснодаре</div>
         <div id="subtext" class="thin white-text">с помощью нашего инновационного калькулятора</div>
-        <div id="wizard">
-            <!-- 
-            STEP ONE
- -->
+        <div id="wizard-mobile" class="hide-on-large-only">
+            <!-- SUMMARY -->
+            <div>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="section">
+                            <button class="btn-accent flat accent-text">
+                                <div class="btn-logo inversed">
+                                    <img src="images/Атлант-01.png" alt="">
+                                </div>
+                                <div class="btn-caption">
+                                    Выбор участка
+                                </div>
+                            </button>
+                            <div class="row">
+                                <div class="input-field col s7">
+                                    <select class="region-dropdown">
+                                        <option value="-1" selected>Участок есть</option>
+                                        <option value="0">Прикубанский округ</option>
+                                        <option value="1">Центральный округ</option>
+                                        <option value="2">Западный округ</option>
+                                        <option value="3">Карасунский округ</option>
+                                        <option value="4">0-15 км (за городом)</option>
+                                        <option value="5">15-35 км (за городом)</option>
+                                        <option value="6">35-100 км (за городом)</option>
+                                        <option value="7">Побережье Черного моря</option>
+                                    </select>
+                                </div>
+                                <div class="col s5">
+                                    <div class="label-accent price-regions"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="section">
+                            <button class="btn-accent flat accent-text">
+                                <div class="btn-logo">
+                                    <img src="images/Атлант-02.png" alt="">
+                                </div>
+                                <div class="btn-caption">
+                                    Проектирование
+                                </div>
+                            </button>
+                            <div class="row">
+                                <div class="input-field col s7">
+                                    <select class="project-dropdown">
+                                        <option value="-1" selected>Не выбрано</option>
+                                        <option value="0">Типовой проект</option>
+                                        <option value="1">Индивидуальный проект</option>
+                                    </select>
+                                </div>
+                                <div class="col s5">
+                                    <div class="label-accent price-projects"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12">
+                        <div class="section">
+                            <button class="btn-accent flat accent-text">
+                                <div class="btn-logo">
+                                    <img src="images/Атлант-03.png" alt="">
+                                </div>
+                                <div class="btn-caption">
+                                    Строительство
+                                </div>
+                            </button>
+                            <div class="row">
+                                <div class="input-field col s7">
+                                    <select class="building-dropdown">
+                                        <option value="0" selected>Коробка</option>
+                                        <option value="1">Предчистовая отделка</option>
+                                        <option value="2">Дом с ремонтом</option>
+                                    </select>
+                                </div>
+                                <div class="col s5">
+                                    <div class="label-accent price-building"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s7">
+                                    <select class="area-dropdown">
+                                        <option value="0" selected>100-150М2</option>
+                                        <option value="1">150-200М2</option>
+                                        <option value="2">200-250М2</option>
+                                        <option value="3">>250М2</option>
+                                    </select>
+                                </div>
+                                <div class="col s5">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s7">
+                                    <select class="floors-dropdown">
+                                        <option value="0" selected>1 этаж</option>
+                                        <option value="1">2 этажа</option>
+                                        <option value="2">3 этажа</option>
+                                    </select>
+                                </div>
+                                <div class="col s5">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s7">
+                                    <button class="btn btn-accent toggle" data-group="гараж"><span>гараж</span>
+                                        <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                    </button>
+                                </div>
+                                <div class="col s5">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s7">
+                                    <button class="btn btn-accent toggle" data-group="цокольный этаж"><span>цокольный
+                                            этаж</span>
+                                        <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                    </button>
+                                </div>
+                                <div class="col s5">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s7">
+                                    <button class="btn btn-accent toggle" data-group="монсарда"><span>монсарда</span>
+                                        <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                    </button>
+                                </div>
+                                <div class="col s5">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="section">
+                            <button class="btn-accent flat accent-text">
+                                <div class="btn-logo">
+                                    <img src="images/Атлант-04.png" alt="">
+                                </div>
+                                <div class="btn-caption">
+                                    Документация
+                                </div>
+                            </button>
+                            <div class="row">
+                                <div class="col s7">
+                                    <button class="btn btn-accent toggle" data-group="разрешение на строительство"><span>Разрешение
+                                            на строительство</span>
+                                        <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                    </button>
+                                </div>
+                                <div class="col s5">
+                                    <div class="label-accent price-permission"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s7">
+                                    <button class="btn btn-accent toggle" data-group="подключение электричества"><span>Оформление
+                                            электроснабжения</span>
+                                        <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                    </button>
+                                </div>
+                                <div class="col s5">
+                                    <div class="label-accent price-electro"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s7">
+                                    <button class="btn btn-accent toggle" data-group="подключение воды"><span>Оформление
+                                            водоснабжения</span>
+                                        <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                    </button>
+                                </div>
+                                <div class="col s5">
+                                    <div class="label-accent price-water"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s7">
+                                    <button class="btn btn-accent toggle" data-group="подключение газа"><span>Оформление
+                                            газа</span> <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                    </button>
+                                </div>
+                                <div class="col s5">
+                                    <div class="label-accent price-gas"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s7">
+                                    <button class="btn btn-accent toggle" data-group="разрешение на эксплуатацию"><span>Разрешение
+                                            на ввод дома в эксплуатацию</span> <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                    </button>
+                                </div>
+                                <div class="col s5">
+                                    <div class="label-accent price-usability"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12">
+                        <div class="section">
+
+                            <div class="row">
+                                <div class="col s7 uppercase">
+                                    <div class="right-align" style="width: 100%; line-height: 33pt; height: 40pt;">Итого</div>
+                                </div>
+                                <div class="col s5">
+                                    <div class="label-accent price-total bold"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <div class="section green lighten-2">
+                            <div class="row">
+                                <div class="col s7 uppercase valign-wrapper" style="max-height: 40pt">
+                                    <div class="right-align">хотите получить смету на строительство?</div>
+                                </div>
+                                <div class="col s5">
+                                    <button class="btn-accent primary confirm"> Хочу! </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div id="wizard" class="hide-on-med-and-down">
             <div id="step1" class="step">
                 <table>
                     <thead>
@@ -92,10 +330,12 @@
                     <tbody>
                         <tr>
                             <td>
-                                <button class="btn-accent thin" data-target="maps" data-index="-1" data-group="нужен участок" data-area-hide="regions">Участок есть</button>
+                                <button class="btn-accent thin" data-index="0" data-group="нужен участок"
+                                    data-area-hide="regions">Участок есть</button>
                             </td>
                             <td>
-                                <button class="btn-accent selected thin" data-target="maps" data-index="0" data-group="нужен участок" data-area-show="regions">Нужен подбор</button>
+                                <button class="btn-accent selected thin" data-index="1" data-group="нужен участок"
+                                    data-area-show="regions">Нужен подбор</button>
                             </td>
                             <td></td>
                             <td>
@@ -115,28 +355,39 @@
                             </td>
                             <td></td>
                             <td>
-                                <div id="maps-price" class="label-accent thin uppercase">от 1 000 000 рублей</div>
+                                <div class="label-accent price-regions thin uppercase"></div>
                             </td>
                             <td>
-                                <div id="jure-price" class="label-accent thin uppercase">10 000 рублей</div>
+                                <div class="label-accent thin uppercase">30 000 рублей</div>
                             </td>
                         </tr>
                         <tr class="regions">
                             <td>
-                                <button class="btn-accent thin" data-target="maps" data-index="0" data-group="тип участка">Прикубанский округ</button>
+                                <button class="btn-accent thin" data-target="maps" data-index="0" data-group="тип участка">Прикубанский
+                                    округ</button>
                             </td>
                             <td>
-                                <button class="btn-accent selected thin" data-target="maps" data-index="1" data-group="тип участка">Центральный округ</button>
+                                <button class="btn-accent thin" data-target="maps" data-index="1" data-group="тип участка">Центральный
+                                    округ</button>
                             </td>
-                            <td id="maps" colspan="3" rowspan="7" class="region_image">
+
+                            <td colspan="3" rowspan="7" style="position: relative">
+                                <div id="maps" class="region_image" style="
+                                    height: calc(100% - 20px);
+                                    position: absolute;
+                                    top: 10px;
+                                    width: calc(100% - 20px);">
+                                </div>
                             </td>
                         </tr>
                         <tr class="regions">
                             <td>
-                                <button class="btn-accent thin" data-target="maps" data-index="2" data-group="тип участка">Западный округ</button>
+                                <button class="btn-accent thin" data-target="maps" data-index="2" data-group="тип участка">Западный
+                                    округ</button>
                             </td>
                             <td>
-                                <button class="btn-accent thin" data-target="maps" data-index="3" data-group="тип участка">Карасунский округ</button>
+                                <button class="btn-accent thin" data-target="maps" data-index="3" data-group="тип участка">Карасунский
+                                    округ</button>
                             </td>
                         </tr>
                         <tr class="regions">
@@ -146,18 +397,22 @@
                         </tr>
                         <tr class="regions">
                             <td>
-                                <button class="btn-accent thin" data-target="maps" data-index="4" data-group="тип участка">0-15 км</button>
+                                <button class="btn-accent thin" data-target="maps" data-index="4" data-group="тип участка">0-15
+                                    км</button>
                             </td>
                             <td>
-                                <button class="btn-accent thin" data-target="maps" data-index="5" data-group="тип участка">15-35 км</button>
+                                <button class="btn-accent thin" data-target="maps" data-index="5" data-group="тип участка">15-35
+                                    км</button>
                             </td>
                         </tr class="regions">
                         <tr class="regions">
                             <td>
-                                <button class="btn-accent thin" data-target="maps" data-index="6" data-group="тип участка">35-100 км</button>
+                                <button class="btn-accent thin" data-target="maps" data-index="6" data-group="тип участка">35-100
+                                    км</button>
                             </td>
                             <td>
-                                <button class="btn-accent thin" data-target="maps" data-index="7" data-group="тип участка">Побережье черного моря</button>
+                                <button class="btn-accent thin" data-target="maps" data-index="7" data-group="тип участка">Побережье
+                                    черного моря</button>
                             </td>
                         </tr>
                         <tr>
@@ -169,9 +424,9 @@
                 </table>
             </div>
 
-            <!-- 
-            STEP TWO
- -->
+
+
+
 
             <div id="step2" class="step">
                 <table>
@@ -237,10 +492,12 @@
                         </tr>
                         <tr>
                             <td>
-                                <button class="btn-accent thin" data-group="нужен проект" data-target="projects" data-index="-1" data-area-hide="projs">Проект есть</button>
+                                <button class="btn-accent thin" data-group="нужен проект" data-target="projects"
+                                    data-index="0" data-area-hide="projs">Проект есть</button>
                             </td>
                             <td>
-                                <button class="btn-accent selected thin" data-group="нужен проект" data-target="projects" data-index="0" data-area-show="projs">Требуется разработка</button>
+                                <button class="btn-accent selected thin" data-group="нужен проект" data-target="projects"
+                                    data-index="1" data-area-show="projs">Требуется разработка</button>
                             </td>
                             <td>
                             </td>
@@ -259,19 +516,27 @@
                             <td>
                             </td>
                             <td>
-                                <div id="projects-price" class="label-accent thin uppercase">50 000 рублей</div>
+                                <div class="label-accent price-projects thin uppercase">50 000 рублей</div>
                             </td>
                             <td>
                             </td>
                         </tr>
                         <tr class="projs">
                             <td>
-                                <button class="btn-accent thin" data-target="projects" data-index="0" data-group="тип проекта">Типовой проект</button>
+                                <button class="btn-accent thin" data-target="projects" data-index="0" data-group="тип проекта">Типовой
+                                    проект</button>
                             </td>
                             <td>
-                                <button class="btn-accent thin selected" data-target="projects" data-index="1" data-group="тип проекта">Индивидуальный проект</button>
+                                <button class="btn-accent thin" data-target="projects" data-index="1" data-group="тип проекта">Индивидуальный
+                                    проект</button>
                             </td>
-                            <td id="projects" colspan="3" rowspan="3" class="region_image">
+                            <td colspan="3" rowspan="3" style="position: relative">
+                                <div id="projects" class="region_image" style="
+                                    height: calc(100% - 20px);
+                                    position: absolute;
+                                    top: 10px;
+                                    width: calc(100% - 20px);">
+                                </div>
                             </td>
                         </tr>
                         <tr class="projs" height="270">
@@ -288,7 +553,10 @@
             </div>
 
 
-            <!-- STEP THREE -->
+
+
+
+
             <div id="step3" class="step">
                 <table>
                     <thead>
@@ -365,26 +633,35 @@
                         </tr>
                         <tr>
                             <td>
-                                <button class="btn-accent selected thin" data-target="buildings" data-index="0" data-group="комплектация">Коробка</button>
+                                <button class="btn-accent selected thin" data-target="buildings" data-index="0"
+                                    data-group="комплектация">Коробка</button>
                             </td>
                             <td>
-                                <button class="btn-accent thin" data-target="buildings" data-index="1" data-group="комплектация">Предчистовая отделка</button>
+                                <button class="btn-accent thin" data-target="buildings" data-index="1" data-group="комплектация">Предчистовая
+                                    отделка</button>
                             </td>
                             <td>
                             </td>
                             <td>
-                                <div class="label-accent thin uppercase">от 750 000 рублей</div>
+                                <div class="label-accent price-building thin uppercase"></div>
                             </td>
                             <td>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <button class="btn-accent thin" data-target="buildings" data-index="2" data-group="комплектация">Дом с ремонтом</button>
+                                <button class="btn-accent thin" data-target="buildings" data-index="2" data-group="комплектация">Дом
+                                    с ремонтом</button>
                             </td>
                             <td>
                             </td>
-                            <td id="buildings" colspan="3" rowspan="9" class="region_image">
+                            <td colspan="3" rowspan="9" style="position: relative">
+                                <div id="buildings" class="region_image" style="
+                                height: calc(100% - 20px);
+                                position: absolute;
+                                top: 10px;
+                                width: calc(100% - 20px);">
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -394,7 +671,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <button class="btn-accent half selected thin" data-target="area" data-index="0" data-group="площадь">100-150М2</button>
+                                <button class="btn-accent half selected thin" data-target="area" data-index="0"
+                                    data-group="площадь">100-150М2</button>
                                 <button class="btn-accent half thin" data-target="area" data-index="1" data-group="площадь">150-200М2</button>
                             </td>
                             <td>
@@ -409,11 +687,15 @@
                         </tr>
                         <tr>
                             <td>
-                                <button class="btn-accent half thin" data-target="floors" data-index="0" data-group="этажность">1 этаж</button>
-                                <button class="btn-accent half selected thin" data-target="floors" data-index="1" data-group="этажность">2 этажа</button>
+                                <button class="btn-accent half selected thin" data-target="floors" data-index="0"
+                                    data-group="этажность">1
+                                    этаж</button>
+                                <button class="btn-accent half thin" data-target="floors" data-index="1" data-group="этажность">2
+                                    этажа</button>
                             </td>
                             <td>
-                                <button class="btn-accent half thin" data-target="floors" data-index="2" data-group="этажность">3 этажа</button>
+                                <button class="btn-accent half thin" data-target="floors" data-index="2" data-group="этажность">3
+                                    этажа</button>
                             </td>
                         </tr>
                         <tr>
@@ -423,15 +705,22 @@
                         </tr>
                         <tr>
                             <td>
-                                <button class="btn-accent selected thin" data-target="underground" data-index="0" data-group="цокольный">Цокольный этаж</button>
+                                <button class="btn btn-accent toggle" data-group="цокольный этаж"><span>цокольный этаж</span>
+                                    <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                </button>
                             </td>
                             <td>
-                                <button class="btn-accent thin" data-target="monsard" data-index="0" data-group="монсарда">Монсарда</button>
+                                <button class="btn btn-accent toggle" data-group="монсарда"><span>монсарда</span>
+                                    <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                </button>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <button class="btn-accent thin" data-target="garage" data-index="0" data-group="гараж">Гараж</button>
+
+                                <button class="btn btn-accent toggle" data-group="гараж"><span>гараж</span>
+                                    <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                </button>
                             </td>
                             <td>
                             </td>
@@ -446,7 +735,11 @@
             </div>
 
 
-            <!-- STEP FOUR -->
+
+
+
+
+
             <div id="step4" class="step">
                 <table>
                     <thead>
@@ -523,13 +816,15 @@
                         </tr>
                         <tr>
                             <td>
-                                <button class="btn-accent selected thin" data-target="agreement" data-index="0" data-group="разрешение на строительство">Сделаем сами</button>
+                                <button class="btn-accent selected thin" data-target="permission" data-index="0"
+                                    data-group="разрешение на строительство">Сделаем сами</button>
                             </td>
                             <td>
-                                <button class="btn-accent thin" data-target="agreement" data-index="1" data-group="разрешение на строительство">Закажем у вас</button>
+                                <button class="btn-accent thin" data-target="permission" data-index="1" data-group="разрешение на строительство">Закажем
+                                    у вас</button>
                             </td>
                             <td>
-                                <div id="agreement-price" class="label-accent thin uppercase"> </div>
+                                <div class="label-accent price-permission thin uppercase"> </div>
                             </td>
                         </tr>
                         <tr>
@@ -539,13 +834,15 @@
                         </tr>
                         <tr>
                             <td>
-                                <button class="btn-accent selected thin" data-target="electricity" data-index="0" data-group="подключение электричества">Сделаем сами</button>
+                                <button class="btn-accent selected thin" data-target="electro" data-index="0"
+                                    data-group="подключение электричества">Сделаем сами</button>
                             </td>
                             <td>
-                                <button class="btn-accent thin" data-target="electricity" data-index="1" data-group="подключение электричества">Закажем у вас</button>
+                                <button class="btn-accent thin" data-target="electro" data-index="1" data-group="подключение электричества">Закажем
+                                    у вас</button>
                             </td>
                             <td>
-                                <div id="electricity-price" class="label-accent thin uppercase"> </div>
+                                <div class="label-accent price-electro thin uppercase"> </div>
                             </td>
                         </tr>
                         <tr>
@@ -555,13 +852,15 @@
                         </tr>
                         <tr>
                             <td>
-                                <button class="btn-accent selected thin" data-target="usability" data-index="0" data-group="разрешенние на эксплуатацию">Сделаем сами</button>
+                                <button class="btn-accent selected thin" data-target="usability" data-index="0"
+                                    data-group="разрешение на эксплуатацию">Сделаем сами</button>
                             </td>
                             <td>
-                                <button class="btn-accent thin" data-target="usability" data-index="1" data-group="разрешенние на эксплуатацию">Закажем у вас</button>
+                                <button class="btn-accent thin" data-target="usability" data-index="1" data-group="разрешение на эксплуатацию">Закажем
+                                    у вас</button>
                             </td>
                             <td>
-                                <div id="usability-price" class="label-accent thin uppercase"> </div>
+                                <div class="label-accent price-usability thin uppercase"> </div>
                             </td>
                         </tr>
                         <tr>
@@ -571,13 +870,15 @@
                         </tr>
                         <tr>
                             <td>
-                                <button class="btn-accent selected thin" data-target="water" data-index="0" data-group="подключение воды">Сделаем сами</button>
+                                <button class="btn-accent selected thin" data-target="water" data-index="0" data-group="подключение воды">Сделаем
+                                    сами</button>
                             </td>
                             <td>
-                                <button class="btn-accent thin" data-target="water" data-index="1" data-group="подключение воды">Закажем у вас</button>
+                                <button class="btn-accent thin" data-target="water" data-index="1" data-group="подключение воды">Закажем
+                                    у вас</button>
                             </td>
                             <td>
-                                <div id="water-price" class="label-accent thin uppercase"> </div>
+                                <div class="label-accent price-water thin uppercase"> </div>
                             </td>
                         </tr>
                         <tr>
@@ -587,13 +888,15 @@
                         </tr>
                         <tr>
                             <td>
-                                <button class="btn-accent selected thin" data-target="gas" data-index="0" data-group="подключение газа">Сделаем сами</button>
+                                <button class="btn-accent selected thin" data-target="gas" data-index="0" data-group="подключение газа">Сделаем
+                                    сами</button>
                             </td>
                             <td>
-                                <button class="btn-accent thin" data-target="gas" data-index="1" data-group="подключение газа">Закажем у вас</button>
+                                <button class="btn-accent thin" data-target="gas" data-index="1" data-group="подключение газа">Закажем
+                                    у вас</button>
                             </td>
                             <td>
-                                <div id="gas-price" class="label-accent thin uppercase"> </div>
+                                <div class="label-accent price-gas thin uppercase"> </div>
                             </td>
                         </tr>
                         <tr>
@@ -607,7 +910,10 @@
 
 
 
-            <!-- SUMMARY -->
+
+
+
+
             <div id="step5" class="step">
                 <table>
                     <thead>
@@ -666,9 +972,9 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td colspan="5">
-                                <div class="legend thin uppercase">Ваш ориентировочный расчет готов. Вы можете прямо в формах изменить значение, чтобы получить
-                                    новую итоговую сумму</div>
+                            <td colspan="5" class="left-align">
+                                <div class="legend thin uppercase">Ваш ориентировочный расчет готов.
+                                    Вы&nbsp;можете&nbsp;прямо&nbsp;в&nbsp;формах&nbsp;изменить&nbsp;значение,&nbsp;чтобы&nbsp;получить&nbsp;новую&nbsp;итоговую&nbsp;сумму</div>
                             </td>
                         </tr>
                         <tr>
@@ -676,13 +982,13 @@
                                 <div class="row">
                                     <div class="col s12 m6">
                                         <div class="grey lighten-2 section">
-                                            <div class="thin uppercase">
-                                                земельный участок:
+                                            <div class="subheader thin uppercase">
+                                                земельный участок
                                             </div>
                                             <div class="row">
-                                                <div class="input-field col s12 m7">
-                                                    <select id="maps-summary">
-                                                        <option value="-1" selected>Не выбрано</option>
+                                                <div class="input-field col s7">
+                                                    <select class="region-dropdown">
+                                                        <option value="-1" selected>Участок есть</option>
                                                         <option value="0">Прикубанский округ</option>
                                                         <option value="1">Центральный округ</option>
                                                         <option value="2">Западный округ</option>
@@ -693,27 +999,27 @@
                                                         <option value="7">Побережье Черного моря</option>
                                                     </select>
                                                 </div>
-                                                <div class="col s12 m5">
-                                                    <div class="label-accent">от 50 000 руб</div>
+                                                <div class="col s5">
+                                                    <div class="label-accent price-regions"></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col s12 m6">
                                         <div class="grey lighten-2 section">
-                                            <div class="thin uppercase">
-                                                земельный участок:
+                                            <div class="subheader thin uppercase">
+                                                проектирование
                                             </div>
                                             <div class="row">
-                                                <div class="input-field col s12 m7">
-                                                    <select id="projects-summary">
+                                                <div class="input-field col s7">
+                                                    <select class="project-dropdown">
                                                         <option value="-1" selected>Не выбрано</option>
                                                         <option value="0">Типовой проект</option>
                                                         <option value="1">Индивидуальный проект</option>
                                                     </select>
                                                 </div>
-                                                <div class="col s12 m5">
-                                                    <div class="label-accent">от 50 000 руб</div>
+                                                <div class="col s5">
+                                                    <div class="label-accent price-projects"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -723,163 +1029,162 @@
                                 <div class="row">
                                     <div class="col s12 m6">
                                         <div class="grey lighten-2 section">
-                                            <div class="thin uppercase">
-                                                земельный участок:
+                                            <div class="subheader thin uppercase">
+                                                строительство
                                             </div>
                                             <div class="row">
-                                                <div class="input-field col s12 m7">
-                                                    <select id="buildings-summary">
-                                                        <option value="-1" selected>Не выбрано</option>
-                                                        <option value="0">Коробка</option>
+                                                <div class="input-field col s7">
+                                                    <select class="building-dropdown">
+                                                        <option value="0" selected>Коробка</option>
                                                         <option value="1">Предчистовая отделка</option>
                                                         <option value="2">Дом с ремонтом</option>
                                                     </select>
-
                                                 </div>
-                                                <div class="col s12 m5">
-                                                    <div class="label-accent">от 50 000 руб</div>
+                                                <div class="col s5">
+                                                    <div class="label-accent price-building"></div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="input-field col s12 m7">
-                                                    <select id="area-summary">
-                                                        <option value="-1" selected>Не выбрано</option>
-                                                        <option value="0">100-150М2</option>
+                                                <div class="input-field col s7">
+                                                    <select class="area-dropdown">
+                                                        <option value="0" selected>100-150М2</option>
                                                         <option value="1">150-200М2</option>
                                                         <option value="2">200-250М2</option>
                                                         <option value="3">>250М2</option>
                                                     </select>
                                                 </div>
-                                                <div class="col s12 m5">
-                                                    <div class="label-accent">от 50 000 руб</div>
+                                                <div class="col s5">
+                                                    <div class="label-accent"></div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="input-field col s12 m7">
-                                                    <select id="floors-summary">
-                                                        <option value="-1" selected>Не выбрано</option>
-                                                        <option value="0">1 этаж</option>
+                                                <div class="input-field col s7">
+                                                    <select class="floors-dropdown">
+                                                        <option value="0" selected>1 этаж</option>
                                                         <option value="1">2 этажа</option>
                                                         <option value="2">3 этажа</option>
                                                     </select>
                                                 </div>
-                                                <div class="col s12 m5">
-                                                    <div class="label-accent">от 50 000 руб</div>
+                                                <div class="col s5">
+                                                    <div class="label-accent"></div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col s12 m7">
-                                                    <button class="btn btn-accent toggle">toggle
-                                                        <i class="material-icons accent-text right">radio_button_checked</i>
+                                                <div class="col s7">
+                                                    <button class="btn btn-accent toggle" data-group="гараж"><span>гараж</span>
+                                                        <i class="material-icons accent-text right">radio_button_unchecked</i>
                                                     </button>
                                                 </div>
-                                                <div class="col s12 m5">
-                                                    <div class="label-accent">от 50 000 руб</div>
+                                                <div class="col s5">
+                                                    <div class="label-accent"></div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col s12 m7">
-                                                    <button class="btn btn-accent toggle">toggle
-                                                        <i class="material-icons accent-text right">radio_button_checked</i>
+                                                <div class="col s7">
+                                                    <button class="btn btn-accent toggle" data-group="цокольный этаж"><span>цокольный
+                                                            этаж</span>
+                                                        <i class="material-icons accent-text right">radio_button_unchecked</i>
                                                     </button>
                                                 </div>
-                                                <div class="col s12 m5">
-                                                    <div class="label-accent">от 50 000 руб</div>
+                                                <div class="col s5">
+                                                    <div class="label-accent"></div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col s12 m7">
-                                                    <button class="btn btn-accent toggle">toggle
-                                                        <i class="material-icons accent-text right">radio_button_checked</i>
+                                                <div class="col s7">
+                                                    <button class="btn btn-accent toggle" data-group="монсарда"><span>монсарда</span>
+                                                        <i class="material-icons accent-text right">radio_button_unchecked</i>
                                                     </button>
                                                 </div>
-                                                <div class="col s12 m5">
-                                                    <div class="label-accent">от 50 000 руб</div>
+                                                <div class="col s5">
+                                                    <div class="label-accent"></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col s12 m6">
                                         <div class="grey lighten-2 section">
-                                            <div class="thin uppercase">
-                                                земельный участок:
+                                            <div class="subheader thin uppercase">
+                                                документация
                                             </div>
                                             <div class="row">
-                                                <div class="col s12 m7">
-                                                    <button class="btn btn-accent toggle">toggle
-                                                        <i class="material-icons accent-text right">radio_button_checked</i>
+                                                <div class="col s7">
+                                                    <button class="btn btn-accent toggle" data-group="разрешение на строительство"><span>Разрешение
+                                                            на строительство</span>
+                                                        <i class="material-icons accent-text right">radio_button_unchecked</i>
                                                     </button>
                                                 </div>
-                                                <div class="col s12 m5">
-                                                    <div class="label-accent">от 50 000 руб</div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col s12 m7">
-                                                    <button class="btn btn-accent toggle">toggle
-                                                        <i class="material-icons accent-text right">radio_button_checked</i>
-                                                    </button>
-                                                </div>
-                                                <div class="col s12 m5">
-                                                    <div class="label-accent">от 50 000 руб</div>
+                                                <div class="col s5">
+                                                    <div class="label-accent price-permission"></div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col s12 m7">
-                                                    <button class="btn btn-accent toggle">toggle
-                                                        <i class="material-icons accent-text right">radio_button_checked</i>
+                                                <div class="col s7">
+                                                    <button class="btn btn-accent toggle" data-group="подключение электричества"><span>Оформление
+                                                            электроснабжения</span>
+                                                        <i class="material-icons accent-text right">radio_button_unchecked</i>
                                                     </button>
                                                 </div>
-                                                <div class="col s12 m5">
-                                                    <div class="label-accent">от 50 000 руб</div>
+                                                <div class="col s5">
+                                                    <div class="label-accent price-electro"></div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col s12 m7">
-                                                    <button class="btn btn-accent toggle">toggle
-                                                        <i class="material-icons accent-text right">radio_button_checked</i>
+                                                <div class="col s7">
+                                                    <button class="btn btn-accent toggle" data-group="подключение воды"><span>Оформление
+                                                            водоснабжения</span>
+                                                        <i class="material-icons accent-text right">radio_button_unchecked</i>
                                                     </button>
                                                 </div>
-                                                <div class="col s12 m5">
-                                                    <div class="label-accent">от 50 000 руб</div>
+                                                <div class="col s5">
+                                                    <div class="label-accent price-water"></div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col s12 m7">
-                                                    <button class="btn btn-accent toggle">toggle
-                                                        <i class="material-icons accent-text right">add_circle</i>
+                                                <div class="col s7">
+                                                    <button class="btn btn-accent toggle" data-group="подключение газа"><span>Оформление
+                                                            газа</span> <i class="material-icons accent-text right">radio_button_unchecked</i>
                                                     </button>
                                                 </div>
-                                                <div class="col s12 m5">
-                                                    <div class="label-accent">от 50 000 руб</div>
+                                                <div class="col s5">
+                                                    <div class="label-accent price-gas"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s7">
+                                                    <button class="btn btn-accent toggle" data-group="разрешение на эксплуатацию"><span>Разрешение
+                                                            на ввод дома в эксплуатацию</span> <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                                    </button>
+                                                </div>
+                                                <div class="col s5">
+                                                    <div class="label-accent price-usability"></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-
                                 <div class="row">
                                     <div class="col s12 m6">
                                         <div class="grey lighten-2 section">
-                                            <div class="thin uppercase">
-                                                земельный участок:
+                                            <div class="subheader centered thin uppercase">
+                                                итого
                                             </div>
                                             <div class="row">
                                                 <div class="col s12">
-                                                    <div class="label-accent">4 000 000 рублей</div>
+                                                    <div class="label-accent price-total">4 000 000 рублей</div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col s12 m6">
                                         <div class="section green lighten-2">
-                                            <div class="thin uppercase">
-                                                земельный участок:
+                                            <div class="subheader centered thin uppercase">
+                                                хотите получить смету на строительство?
                                             </div>
                                             <div class="row">
                                                 <div class="col s12">
-                                                    <button class="btn-accent primary">Хочу!</button>
+                                                    <button class="btn-accent primary confirm"> Хочу! </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -890,10 +1195,37 @@
                     </tbody>
                 </table>
             </div>
+        </div>
 
 
-
-
+        <div class="contact-form-wrapper">
+            <div class="grey lighten-2 section contacts" >
+                <div class="subheader centered thin uppercase">
+                    Заполните форму и получите смету на строительство
+                </div>
+                <div class="input-field">
+                    <input type="text" id="contact_name" placeholder="Олег" />
+                </div>
+                <div class="input-field">
+                    <input type="text" id="contact_email" placeholder="OLEG@pochta.Ru" />
+                </div>
+                <div class="input-field">
+                    <input type="text" id="contact_phone" placeholder="+7 (911) 299 22 11" />
+                </div>
+                <div class="input-field">
+                    <button class="btn-accent primary send">Получить</button>
+                </div>
+            </div> 
+            <div class="thanks" style="display: none;">
+                <div class="uppercase">
+                    <p class="center-align">
+                            Благодарим за оставленную заявку.
+                    </p>
+                    <p class="center-align">
+                        Скоро с вами свяжется наш консультант
+                    </p>
+                </div>
+            </div>
         </div>
     </main>
 </body>
