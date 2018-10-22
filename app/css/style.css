@@ -132,18 +132,17 @@ main #wizard {
 main .contact-form-wrapper {
     background-color: #f2f2f2;
     box-shadow: 5px 5px 10px #30303080;
-    padding: 20px 50px;
+    padding: 20px 0;
     width: 100%;
 }
 
 main .contact-form-wrapper .section {
-    margin: 20px 15%;
+    margin: 20px auto;
     width: 70%;
 }
 
 main .contact-form-wrapper .input-field {
     margin: 10px auto;
-    width: 250px !important;
 }
 
 main .contact-form-wrapper input[type="text"], main .contact-form-wrapper .input-field input[type="text"]:focus, main .contact-form-wrapper .input-field input[type="text"]:active {
@@ -154,7 +153,7 @@ main .contact-form-wrapper input[type="text"], main .contact-form-wrapper .input
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2) !important;
     height: 40px;
     line-height: 36px;
-    width: 220px !important;
+    width: calc(100% - 30px) !important;
 }
 
 main .nav .table .cell {
@@ -186,6 +185,11 @@ main .nav .table .cell {
     float: none;
 }
 
+.subheader.centered {
+    max-width: 500px;
+    text-align: center !important;
+}
+
 .section.relative .subheader.centered {
     position: relative;
     width: 100%;
@@ -194,7 +198,6 @@ main .nav .table .cell {
     margin-top: 20px;
     padding-left: 0;
     float: none;
-    text-align: center;
 }
 
 .section.lgreen.relative .subheader.centered {
@@ -404,12 +407,14 @@ th:first-child .btn-accent.flat.selected .btn-logo img {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
-input.select-dropdown {
-    width: calc(100% - 40px) !important;
+select, input.select-dropdown {
+    /* width: calc(100% - 40px) !important; */
+    width: 100% !important;
     padding: 0 25px 0 15px !important;
     height: 40px !important;
     line-height: 40px !important;
     border-bottom-width: 0 !important;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2) !important;
     text-align: left;
 }
 
@@ -497,15 +502,29 @@ svg.caret {
     filter: grayscale(0);
 }
 
+.contacts {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.contacts input {
+    width: 100% !important;
+}
+
 @media screen and (max-width: 992px) {
     .section>* {
         margin: 4px auto;
     }
     .total-mobile {
-        display: block !important;
+        display: none;
     }
     .total-tablet {
-        display: none;
+        display: block;
+    }
+    .thanks p {
+        margin: 25px 10px;
+        font-size: small;
     }
     header {
         width: 100%;
@@ -565,10 +584,16 @@ svg.caret {
     .btn-accent.flat .btn-logo.inversed {
         filter: invert(1);
     }
+    .contacts {
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+    }
     main .contact-form-wrapper .section .subheader.centered {
         position: relative;
         margin-bottom: 15px;
-        min-width: 250px;
+        padding-left: 0;
+        max-width: 250px;
         width: 100%;
         left: 0;
     }
@@ -592,9 +617,13 @@ svg.caret {
     }
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 500px) {
     .section>* {
         margin: 8px 0;
+    }
+    .thanks p {
+        margin: 25px 10px;
+        font-size: smaller;
     }
     header {
         width: 100%;
@@ -607,7 +636,7 @@ svg.caret {
         height: 7pt;
     }
     .col {
-        padding: 0;
+        padding: 0 4pt !important;
     }
     .col.s7 {
         width: 100% !important;
@@ -670,7 +699,8 @@ svg.caret {
     main .contact-form-wrapper .section .subheader.centered {
         position: relative;
         margin-bottom: 15px;
-        min-width: 250px;
+        padding-left: 0;
+        max-width: 250px;
         width: 100%;
         left: 0;
     }
@@ -680,6 +710,9 @@ svg.caret {
     }
     .total-tablet {
         display: none;
+    }
+    main #wizard-mobile {
+        padding: 0;
     }
     main .contact-form-wrapper .section {
         background-color: transparent !important;
@@ -718,6 +751,7 @@ svg.caret {
     }
     .finish-wrapper div {
         padding: 8pt;
+        font-size: xx-small !important;
     }
     .total-price-wrapper div {
         font-size: small !important;
@@ -726,26 +760,24 @@ svg.caret {
 }
 
 .material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Support for IE. */
-  font-feature-settings: 'liga';
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+    /* Support for IE. */
+    font-feature-settings: 'liga';
 }

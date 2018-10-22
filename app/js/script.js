@@ -1,7 +1,7 @@
 "use strict";
 
 $(document).ready(function () {
-    $('select').formSelect();
+    // $('select').formSelect();
 
     $(".step").hide();
     $(".contact-form-wrapper").hide();
@@ -93,9 +93,7 @@ function nextPage(event, sender) {
 function selectDropdownItem(event, sender) {
     var id = event.currentTarget.className.split('-')[0];
     var index = $(event.currentTarget).val();
-    var group = groups.find(function (x) {
-        return x.id === id;
-    }).name;
+    var group = groups.find(function (x) { return x.id === id }).name;
     var target = $('[data-index="' + index + '"][data-group="' + group + '"]').attr("data-target");
 
     if (index == -1) {
@@ -228,9 +226,6 @@ function getTotalPrice() {
     gr = gr.filter(function (x, i) {
         return gr.indexOf(x) === i;
     });
-    console.log(groups.find(function (x) {
-        return x.name === "тип участка";
-    }).selectedIndex > -1 ? 30000 : 0);
     return convertToString(gr.reduce(function (prev, c) {
         return prev + groups.filter(function (x) {
             return x.group === c;
@@ -446,3 +441,14 @@ if (!Array.prototype.find) {
 Number.isNaN = Number.isNaN || function(value) {
   return typeof value === 'number' && isNaN(value);
 }
+
+window.requestAnimationFrame = (function(){
+  return  window.requestAnimationFrame       || 
+          window.webkitRequestAnimationFrame || 
+          window.mozRequestAnimationFrame    || 
+          window.oRequestAnimationFrame      || 
+          window.msRequestAnimationFrame     || 
+          function(/* function */ callback, /* DOMElement */ element){
+              window.setTimeout(callback, 1000 / 60);
+          };
+})();
