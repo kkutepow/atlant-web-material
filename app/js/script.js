@@ -1,8 +1,38 @@
 "use strict";
 
-$(document).ready(function () {
-    // $('select').formSelect();
+var yaCounter47830858 = new Ya.Metrika({ id: 47830858, triggerEvent: true });
 
+function reach(goal, params = {}) {
+    yaCounter47830858.reachGoal(goal, params, function () {
+        console.log("YaCounter: the goal '" + goal + "' has been reached");
+    });
+}
+
+$(document).on('yacounter47830858inited', function () {
+    console.log('счетчик yaCounter47830858 можно использовать');
+});
+
+$(document).ready(function () {
+    $('select').formSelect();
+
+    var os = getMobileOperatingSystem();
+    switch (os) {
+        case "iOS": {
+            $(".toggles").show();
+            break;
+        }
+        case "Android": {
+            $(".switch").css("opacity", "1");
+            break;
+        }
+        default: {
+            $("i.material-icons").css("opacity", "1");
+            break;
+        }
+    }
+
+    $(".regions").css("opacity", 0);
+    $(".projs").css("opacity", 0);
     $(".step").hide();
     $(".contact-form-wrapper").hide();
     $("#step1").show();
@@ -14,48 +44,55 @@ $(document).ready(function () {
     $("[data-group]").click(selectButtonInGroup);
     $("select").change(selectDropdownItem);
     $("#contact_phone").keypress(phoneInput);
-    $("#step1 .nextpage, #step2 .nextpage, #step3 .nextpage").hide();
+    $("#step1 .nextpage, #step2 .nextpage, #step3 .nextpage").css("opacity", 0);
     $(".step button").click(function (event) {
-        $(event.currentTarget).closest(".step").find(".nextpage").show();
+        $(event.currentTarget).closest(".step").find(".nextpage").css("opacity", 1);
+    });
+
+    $("#wizard .nextpage, #wizard .confirm").click(function(event){
+        var goalName = $(event.currentTarget).closest(".step").attr("data-info") + "_Settings_Passed";
+        reach(goalName);        
     });
 
     $(".send").click(function () {
-
         M.Toast.dismissAll();
         var validerror = validContacts();
         if (validerror) {
-            M.toast({
-                html: validerror
-            });
+            $("#contact_phone").css("border", "inset thin red");
+            $(".valid-message").show();
             return;
         }
+        reach("Contacts_Passed");        
 
         var data = [];
+        data.push("---------------------");
         data.push("Информация о клиенте:");
+        data.push("---------------------");
         data.push("Имя: " + $("#contact_name").val());
         data.push("Почта: " + $("#contact_email").val());
         data.push("Телефон: " + $("#contact_phone").val());
         data.push("---------------------");
         data.push("Информация о заказе:");
+        data.push("---------------------");
         data = data.concat(groups.map(function (g) {
             return g.name + ": " + (g.selectedIndex != null ? g.selectedIndex === -1 ? "не выбрано" : g.items[g.selectedIndex] : g.selected ? "да" : "нет");
         }));
 
-        console.log($("#contact_name").val(), data);
+        //console.log($("#contact_name").val(), data);
         $.ajax({
             method: "post",
             url: "send.php",
             data: { data: data },
             error: function error(res) {
-                // M.toast({
-                //     html: 'Произошли технические неполадки. Попробуйте еще раз'
-                // });
-                $(".thanks").show();
-                $(".contacts").hide();
+                M.toast({
+                    html: 'Произошли технические неполадки. Попробуйте еще раз'
+                });
+                //console.log("Failed", res);
             },
             success: function success(res) {
                 $(".thanks").show();
                 $(".contacts").hide();
+                //console.log("OK", res);
             }
         });
     });
@@ -64,8 +101,10 @@ $(document).ready(function () {
         mask: phones,
         greedy: true,
         prefix: "+7 ",
-        definitions: { '8': { validator: "[0-7, 9]" },
-            '#': { validator: "[0-9]", cardinality: 1 } }
+        definitions: {
+            '8': { validator: "[0-7, 9]" },
+            '#': { validator: "[0-9]", cardinality: 1 }
+        }
     });
 
     var gr = groups.map(function (x) {
@@ -84,6 +123,26 @@ $(document).ready(function () {
     $(".price-total").text(getTotalPrice());
 });
 
+function getMobileOperatingSystem() {
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    // Windows Phone must come first because its UA also contains "Android"
+    if (/windows phone/i.test(userAgent)) {
+        return "Windows Phone";
+    }
+
+    if (/android/i.test(userAgent)) {
+        return "Android";
+    }
+
+    // iOS detection from: http://stackoverflow.com/a/9039885/177710
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        return "iOS";
+    }
+
+    return "unknown";
+}
+
 function nextPage(event, sender) {
     var stepid = $(event.currentTarget).parent().parent().parent().parent().parent().attr("id").slice(-1);
     $("#step" + stepid).hide();
@@ -91,6 +150,7 @@ function nextPage(event, sender) {
 }
 
 function selectDropdownItem(event, sender) {
+
     var id = event.currentTarget.className.split('-')[0];
     var index = $(event.currentTarget).val();
     var group = groups.find(function (x) { return x.id === id }).name;
@@ -98,11 +158,11 @@ function selectDropdownItem(event, sender) {
 
     if (index == -1) {
         if (group === "тип проекта") {
-            $(".projects").hide();
+            $(".projs").css("opacity", 0);
             selectItemInGroup("нужен проект", 0);
         }
         if (group === "тип участка") {
-            $(".regions").hide();
+            $(".regions").css("opacity", 0);
             selectItemInGroup("нужен участок", 0);
             $(".additional").hide();
         }
@@ -110,11 +170,11 @@ function selectDropdownItem(event, sender) {
         $("[data-group='" + group + "']").removeClass("selected");
         $('[data-index="' + index + '"][data-group="' + group + '"]').addClass("selected");
         if (group === "тип проекта") {
-            $(".projects").show();
+            $(".projs").css("opacity", 1);
             selectItemInGroup("нужен проект", 1);
         }
         if (group === "тип участка") {
-            $(".regions").show();
+            $(".regions").css("opacity", 1);
             selectItemInGroup("нужен участок", 1);
             $(".additional").show();
         }
@@ -134,13 +194,14 @@ function selectButtonInGroup(event, sender) {
     var toShow = $(event.currentTarget).attr("data-area-show");
     var target = $(event.currentTarget).attr("data-target");
 
-    $("." + toHide).hide();
-    $("." + toShow).show();
+    $("." + toHide).css("opacity", 0);
+    $("." + toShow).css("opacity", 1);
 
     if (isToggle(group)) {
-        var checked = index != null ? index === "1" : $(event.currentTarget).find("i").text() === "radio_button_unchecked";
+        var checked = index != null ? index === "1" : !$(event.currentTarget).find("input[type=checkbox]").prop("checked");
         $(event.currentTarget).find("i").text(checked ? "check_circle" : "radio_button_unchecked");
         $("button.toggle[data-group='" + group + "']").find("i").text(checked ? "check_circle" : "radio_button_unchecked");
+        $("button.toggle[data-group='" + group + "']").find("input[type=checkbox]").prop("checked", checked);
         $("button[data-group='" + group + "']").removeClass("selected");
         $("button[data-group='" + group + "'][data-index='" + (checked ? 1 : 0) + "']").addClass("selected");
     } else {
@@ -170,14 +231,6 @@ function selectButtonInGroup(event, sender) {
 }
 
 function validContacts() {
-    if ($("#contact_name").val().length == 0) {
-        return "Укажите имя";
-    };
-
-    if (!/[^@]+@[^\.@]+\.[^@]+/.test($("#contact_email").val())) {
-        return "Укажите корректный e-mail";
-    };
-
     if ($("#contact_phone").val().length == 0) {
         return "Укажите номер телефона";
     };
@@ -200,7 +253,7 @@ function selectItemInGroup(groupName, index) {
         }).selected = index != null ? !!+index : !groups.find(function (x) {
             return x.name === groupName;
         }).selected;
-        // console.log("here", groups.find(x => x.name === groupName).selected);
+        // //console.log("here", groups.find(x => x.name === groupName).selected);
     } else {
         groups.find(function (x) {
             return x.name === groupName;
@@ -227,12 +280,12 @@ function getTotalPrice() {
         return gr.indexOf(x) === i;
     });
     return convertToString(gr.reduce(function (prev, c) {
-        return prev + groups.filter(function (x) {
+        return Math.round(prev + groups.filter(function (x) {
             return x.group === c;
         }).reduce(function (prev, curr) {
-            // console.log(curr.id, (curr.values ? curr.values[curr.selectedIndex] : (curr.selected ? curr.value : 0)));
+            //console.log(curr.id, (curr.values ? curr.values[curr.selectedIndex] : (curr.selected ? curr.value : 0)));
             return prev * (curr.values ? curr.values[curr.selectedIndex] ? curr.values[curr.selectedIndex] : 0 : curr.selected ? curr.value : 0);
-        }, 1);
+        }, 1));
     }, groups.find(function (x) {
         return x.name === "тип участка";
     }).selectedIndex > -1 ? 30000 : 0));
@@ -283,8 +336,10 @@ function formatPhoneNumber(raw) {
     return raw.replace(/[^\d\+]/g, "").replace(/$8/);
 }
 function phoneInput(key, sender) {
+    $("#contact_phone").css("border", "inset 0px red");
+    $(".valid-message").hide();
     if (key.target.value.length === 0 && key.charCode === 56) return false;
-    console.log(key.target.value);
+    //console.log(key.target.value);
 }
 
 var groups = [{
@@ -314,7 +369,7 @@ var groups = [{
     "id": "project",
     "items": ["Типовой проект", "Индивидуальный проект"],
     "values": [20000, 30000],
-    "selectedIndex": 1
+    "selectedIndex": 0
 }, {
     "group": "building",
     "name": "комплектация",
@@ -327,7 +382,7 @@ var groups = [{
     "name": "площадь",
     "id": "area",
     "items": ["100-150M2", "150-200M2", "200-250M2", ">250M2"],
-    "values": [100, 150, 200, 250],
+    "values": [10, 15, 20, 25],
     "selectedIndex": 0,
     "step": 3
 }, {
@@ -335,7 +390,7 @@ var groups = [{
     "name": "этажность",
     "id": "floors",
     "items": ["1 этаж", "2 этажа", "3 этажа"],
-    "values": [1.2, 2, 3.8],
+    "values": [12, 20, 27],
     "selectedIndex": 0,
     "step": 3
 }, {
@@ -392,63 +447,65 @@ var groups = [{
 }];
 
 if (!Array.prototype.find) {
-  Object.defineProperty(Array.prototype, 'find', {
-    value: function(predicate) {
-     // 1. Let O be ? ToObject(this value).
-      if (this == null) {
-        throw new TypeError('"this" is null or not defined');
-      }
+    Object.defineProperty(Array.prototype, 'find', {
+        value: function (predicate) {
+            // 1. Let O be ? ToObject(this value).
+            if (this == null) {
+                throw new TypeError('"this" is null or not defined');
+            }
 
-      var o = Object(this);
+            var o = Object(this);
 
-      // 2. Let len be ? ToLength(? Get(O, "length")).
-      var len = o.length >>> 0;
+            // 2. Let len be ? ToLength(? Get(O, "length")).
+            var len = o.length >>> 0;
 
-      // 3. If IsCallable(predicate) is false, throw a TypeError exception.
-      if (typeof predicate !== 'function') {
-        throw new TypeError('predicate must be a function');
-      }
+            // 3. If IsCallable(predicate) is false, throw a TypeError exception.
+            if (typeof predicate !== 'function') {
+                throw new TypeError('predicate must be a function');
+            }
 
-      // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
-      var thisArg = arguments[1];
+            // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
+            var thisArg = arguments[1];
 
-      // 5. Let k be 0.
-      var k = 0;
+            // 5. Let k be 0.
+            var k = 0;
 
-      // 6. Repeat, while k < len
-      while (k < len) {
-        // a. Let Pk be ! ToString(k).
-        // b. Let kValue be ? Get(O, Pk).
-        // c. Let testResult be ToBoolean(? Call(predicate, T, « kValue, k, O »)).
-        // d. If testResult is true, return kValue.
-        var kValue = o[k];
-        if (predicate.call(thisArg, kValue, k, o)) {
-          return kValue;
-        }
-        // e. Increase k by 1.
-        k++;
-      }
+            // 6. Repeat, while k < len
+            while (k < len) {
+                // a. Let Pk be ! ToString(k).
+                // b. Let kValue be ? Get(O, Pk).
+                // c. Let testResult be ToBoolean(? Call(predicate, T, « kValue, k, O »)).
+                // d. If testResult is true, return kValue.
+                var kValue = o[k];
+                if (predicate.call(thisArg, kValue, k, o)) {
+                    return kValue;
+                }
+                // e. Increase k by 1.
+                k++;
+            }
 
-      // 7. Return undefined.
-      return undefined;
-    },
-    configurable: true,
-    writable: true
-  });
+            // 7. Return undefined.
+            return undefined;
+        },
+        configurable: true,
+        writable: true
+    });
 }
 
 
-Number.isNaN = Number.isNaN || function(value) {
-  return typeof value === 'number' && isNaN(value);
+Number.isNaN = Number.isNaN || function (value) {
+    return typeof value === 'number' && isNaN(value);
 }
 
-window.requestAnimationFrame = (function(){
-  return  window.requestAnimationFrame       || 
-          window.webkitRequestAnimationFrame || 
-          window.mozRequestAnimationFrame    || 
-          window.oRequestAnimationFrame      || 
-          window.msRequestAnimationFrame     || 
-          function(/* function */ callback, /* DOMElement */ element){
-              window.setTimeout(callback, 1000 / 60);
-          };
+window.requestAnimationFrame = (function () {
+    return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function (/* function */ callback, /* DOMElement */ element) {
+            window.setTimeout(callback, 1000 / 60);
+        };
 })();
+
+window.scrollTop = null;

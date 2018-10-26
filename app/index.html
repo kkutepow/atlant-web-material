@@ -4,19 +4,32 @@
 <head>
     <meta charset="utf-8">
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) { w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' }); var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f); })(window, document, 'script', 'dataLayer', 'GTM-WGGGGRF');</script>
+    <!-- End Google Tag Manager -->
 
-    <title>Atlant web</title>
+    <title>Строительная компания «Атлант». Строительство и подбор домов в Краснодарском крае</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.min.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/ya.metrika.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.1.62/jquery.inputmask.bundle.js"></script>
+    <script type="text/javascript"></script>
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGGGGRF" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <header>
         <div class="logo">
             <img src="images/atlant-logo.png" alt="atlant-logo">
@@ -46,7 +59,7 @@
                             </button>
                             <div class="row">
                                 <div class="input-field col s7">
-                                    <select class="region-dropdown browser-default">
+                                    <select autocapitalize="none" class="region-dropdown browser-default">
                                         <option value="-1">Участок есть</option>
                                         <option value="0" selected>Прикубанский округ</option>
                                         <option value="1">Центральный округ</option>
@@ -59,9 +72,9 @@
                                     </select>
                                 </div>
                                 <div class="col s5">
-                                    <div class="label-accent price-regions"></div>
+                                    <div class="label-accent price-regions with-add"></div>
                                     <div class="bold center-align lgreen-text additional">+ 30 000 РУБЛЕЙ
-                                        <br> юрид. сопровождение</div>
+                                        <br> юр. сопровождение</div>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +93,7 @@
                             </button>
                             <div class="row">
                                 <div class="input-field col s7">
-                                    <select class="project-dropdown browser-default">
+                                    <select autocapitalize="none" class="project-dropdown browser-default">
                                         <option value="-1">Проект есть</option>
                                         <option value="0">Типовой проект</option>
                                         <option value="1" selected>Индивидуальный проект</option>
@@ -107,7 +120,7 @@
                             </button>
                             <div class="row">
                                 <div class="input-field col s7">
-                                    <select class="building-dropdown browser-default">
+                                    <select autocapitalize="none" class="building-dropdown browser-default">
                                         <option value="0" selected>Коробка</option>
                                         <option value="1">Предчистовая отделка</option>
                                         <option value="2">Дом с ремонтом</option>
@@ -119,11 +132,11 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s7">
-                                    <select class="area-dropdown browser-default">
-                                        <option value="0" selected>100-150М2</option>
-                                        <option value="1">150-200М2</option>
-                                        <option value="2">200-250М2</option>
-                                        <option value="3">>250М2</option>
+                                    <select autocapitalize="none" class="area-dropdown browser-default">
+                                        <option value="0" selected>100-150М<sup>2</sup></option>
+                                        <option value="1">150-200М<sup>2</sup></option>
+                                        <option value="2">200-250М<sup>2</sup></option>
+                                        <option value="3">>250М<sup>2</sup></option>
                                     </select>
                                 </div>
                                 <div class="col s5">
@@ -131,7 +144,7 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s7">
-                                    <select class="floors-dropdown browser-default">
+                                    <select autocapitalize="none" class="floors-dropdown browser-default">
                                         <option value="0" selected>1 этаж</option>
                                         <option value="1">2 этажа</option>
                                         <option value="2">3 этажа</option>
@@ -144,7 +157,17 @@
                                 <div class="col s7">
                                     <button class="btn btn-accent toggle" data-group="гараж">
                                         <span>гараж</span>
-                                        <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                        <div class="switch">
+                                            <label>
+                                                <input disabled type="checkbox">
+                                                <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                        <div class="toggles" style="display: none">
+                                            <input type="checkbox" name="checkbox1" id="checkbox1" disabled class="ios-toggle" />
+                                            <label for="checkbox1" class="checkbox-label"></label>
+                                        </div>
+                                        <i style="opacity: 0" class="material-icons accent-text right">radio_button_unchecked</i>
                                     </button>
                                 </div>
                                 <div class="col s5">
@@ -155,7 +178,17 @@
                                     <button class="btn btn-accent toggle" data-group="цокольный этаж">
                                         <span>цокольный этаж
                                         </span>
-                                        <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                        <div class="switch">
+                                            <label>
+                                                <input disabled type="checkbox">
+                                                <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                        <div class="toggles" style="display: none">
+                                            <input type="checkbox" name="checkbox1" id="checkbox1" disabled class="ios-toggle" />
+                                            <label for="checkbox1" class="checkbox-label"></label>
+                                        </div>
+                                        <i style="opacity: 0" class="material-icons accent-text right">radio_button_unchecked</i>
                                     </button>
                                 </div>
                                 <div class="col s5">
@@ -165,7 +198,17 @@
                                 <div class="col s7">
                                     <button class="btn btn-accent toggle" data-group="монсарда">
                                         <span>монсарда</span>
-                                        <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                        <div class="switch">
+                                            <label>
+                                                <input disabled type="checkbox">
+                                                <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                        <div class="toggles" style="display: none">
+                                            <input type="checkbox" name="checkbox1" id="checkbox1" disabled class="ios-toggle" />
+                                            <label for="checkbox1" class="checkbox-label"></label>
+                                        </div>
+                                        <i style="opacity: 0" class="material-icons accent-text right">radio_button_unchecked</i>
                                     </button>
                                 </div>
                                 <div class="col s5">
@@ -189,11 +232,22 @@
                                 <div class="col s7">
                                     <button class="btn btn-accent toggle" data-group="разрешение на строительство">
                                         <span>Разрешение на строительство</span>
-                                        <i class="material-icons accent-text right">check_circle</i>
+                                        <div class="switch">
+                                            <label>
+                                                <input checked disabled type="checkbox">
+                                                <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                        <div class="toggles" style="display: none">
+                                            <input type="checkbox" name="checkbox1" id="checkbox1" checked disabled class="ios-toggle" />
+                                            <label for="checkbox1" class="checkbox-label"></label>
+                                        </div>
+                                        <i style="opacity: 0" class="material-icons accent-text right">check_circle</i>
                                     </button>
+                                    <div class="label-accent only-mobile price-permission" style="display: none;"></div>
                                 </div>
                                 <div class="col s5">
-                                    <div class="label-accent price-permission"></div>
+                                    <div class="label-accent only-tablet price-permission"></div>
                                 </div>
                             </div>
                             <div class="row">
@@ -201,11 +255,22 @@
                                     <button class="btn btn-accent toggle" data-group="подключение электричества">
                                         <span>Оформление электроснабжения
                                         </span>
-                                        <i class="material-icons accent-text right">check_circle</i>
+                                        <div class="switch">
+                                            <label>
+                                                <input checked disabled type="checkbox">
+                                                <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                        <div class="toggles" style="display: none">
+                                            <input type="checkbox" name="checkbox1" id="checkbox1" checked disabled class="ios-toggle" />
+                                            <label for="checkbox1" class="checkbox-label"></label>
+                                        </div>
+                                        <i style="opacity: 0" class="material-icons accent-text right">check_circle</i>
                                     </button>
+                                    <div class="label-accent only-mobile price-electro" style="display: none;"></div>
                                 </div>
                                 <div class="col s5">
-                                    <div class="label-accent price-electro"></div>
+                                    <div class="label-accent only-tablet price-electro"></div>
                                 </div>
                             </div>
                             <div class="row">
@@ -213,11 +278,22 @@
                                     <button class="btn btn-accent toggle" data-group="подключение воды">
                                         <span>Оформление водоснабжения
                                         </span>
-                                        <i class="material-icons accent-text right">check_circle</i>
+                                        <div class="switch">
+                                            <label>
+                                                <input checked disabled type="checkbox">
+                                                <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                        <div class="toggles" style="display: none">
+                                            <input type="checkbox" name="checkbox1" id="checkbox1" checked disabled class="ios-toggle" />
+                                            <label for="checkbox1" class="checkbox-label"></label>
+                                        </div>
+                                        <i style="opacity: 0" class="material-icons accent-text right">check_circle</i>
                                     </button>
+                                    <div class="label-accent only-mobile price-water" style="display: none;"></div>
                                 </div>
                                 <div class="col s5">
-                                    <div class="label-accent price-water"></div>
+                                    <div class="label-accent only-tablet price-water"></div>
                                 </div>
                             </div>
                             <div class="row">
@@ -225,22 +301,44 @@
                                     <button class="btn btn-accent toggle" data-group="подключение газа">
                                         <span>Оформление газа
                                         </span>
-                                        <i class="material-icons accent-text right">check_circle</i>
+                                        <div class="switch">
+                                            <label>
+                                                <input checked disabled type="checkbox">
+                                                <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                        <div class="toggles" style="display: none">
+                                            <input type="checkbox" name="checkbox1" id="checkbox1" checked disabled class="ios-toggle" />
+                                            <label for="checkbox1" class="checkbox-label"></label>
+                                        </div>
+                                        <i style="opacity: 0" class="material-icons accent-text right">check_circle</i>
                                     </button>
+                                    <div class="label-accent only-mobile price-gas" style="display: none;"></div>
                                 </div>
                                 <div class="col s5">
-                                    <div class="label-accent price-gas"></div>
+                                    <div class="label-accent only-tablet price-gas"></div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s7">
                                     <button class="btn btn-accent toggle" data-group="разрешение на эксплуатацию">
                                         <span>Разрешение на ввод дома в эксплуатацию</span>
-                                        <i class="material-icons accent-text right">check_circle</i>
+                                        <div class="switch">
+                                            <label>
+                                                <input checked disabled type="checkbox">
+                                                <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                        <div class="toggles" style="display: none">
+                                            <input type="checkbox" name="checkbox1" id="checkbox1" checked disabled class="ios-toggle" />
+                                            <label for="checkbox1" class="checkbox-label"></label>
+                                        </div>
+                                        <i style="opacity: 0" class="material-icons accent-text right">check_circle</i>
                                     </button>
+                                    <div class="label-accent only-mobile price-usability" style="display: none;"></div>
                                 </div>
                                 <div class="col s5">
-                                    <div class="label-accent price-usability"></div>
+                                    <div class="label-accent only-tablet price-usability"></div>
                                 </div>
                             </div>
                         </div>
@@ -285,7 +383,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="finish-wrapper lgreen valign-wrapper row">
+                    <div class="finish-wrapper accent valign-wrapper row">
                         <div class="col s8 uppercase valign-wrapper" style="max-height: 40pt">
                             <div class="left-align bold">Хотите получить примеры выполненных объектов со стоимостью реализации?</div>
                         </div>
@@ -301,7 +399,7 @@
 
 
         <div id="wizard" class="hide-on-med-and-down">
-            <div id="step1" class="step">
+            <div id="step1" class="step" data-info="Region">
                 <table>
                     <thead>
                         <tr>
@@ -360,15 +458,15 @@
                     <tbody>
                         <tr>
                             <td>
-                                <button class="btn-accent lgreen thin" data-index="0" data-group="нужен участок" data-area-hide="regions">Участок есть</button>
+                                <button class="btn-accent selected thin" data-index="0" data-group="нужен участок" data-area-hide="regions">Участок есть</button>
                             </td>
                             <td>
-                                <button class="btn-accent selected thin" data-index="1" data-group="нужен участок" data-area-show="regions">Нужен подбор</button>
+                                <button class="btn-accent lgreen thin" data-index="1" data-group="нужен участок" data-area-show="regions">Нужен подбор</button>
                             </td>
                             <td></td>
                             <td>
                                 <div class="uppercase thin regions">
-                                    Средняя стоимость 10&nbsp;соток
+                                    Средняя стоимость 1&nbsp;сотки&nbsp;земли
                                 </div>
                             </td>
                             <td>
@@ -451,7 +549,7 @@
 
 
 
-            <div id="step2" class="step">
+            <div id="step2" class="step"  data-info="Project">
                 <table>
                     <thead>
                         <tr>
@@ -515,10 +613,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <button class="btn-accent lgreen thin" data-group="нужен проект" data-target="projects" data-index="0" data-area-hide="projs">Проект есть</button>
+                                <button class="btn-accent selected thin" data-group="нужен проект" data-target="projects" data-index="0" data-area-hide="projs">Проект есть</button>
                             </td>
                             <td>
-                                <button class="btn-accent selected thin" data-group="нужен проект" data-target="projects" data-index="1" data-area-show="projs">Требуется разработка</button>
+                                <button class="btn-accent lgreen thin" data-group="нужен проект" data-target="projects" data-index="1" data-area-show="projs">Требуется разработка</button>
                             </td>
                             <td>
                             </td>
@@ -574,7 +672,7 @@
 
 
 
-            <div id="step3" class="step">
+            <div id="step3" class="step"  data-info="Building">
                 <table>
                     <thead>
                         <tr>
@@ -682,12 +780,12 @@
                         </tr>
                         <tr>
                             <td>
-                                <button class="btn-accent half selected thin" data-target="area" data-index="0" data-group="площадь">100-150М2</button>
-                                <button class="btn-accent half thin" data-target="area" data-index="1" data-group="площадь">150-200М2</button>
+                                <button class="btn-accent half selected thin" data-target="area" data-index="0" data-group="площадь">100-150М<sup>2</sup></button>
+                                <button class="btn-accent half thin" data-target="area" data-index="1" data-group="площадь">150-200М<sup>2</sup></button>
                             </td>
                             <td>
-                                <button class="btn-accent half thin" data-target="area" data-index="2" data-group="площадь">200-250М2</button>
-                                <button class="btn-accent half thin" data-target="area" data-index="3" data-group="площадь">>250М2</button>
+                                <button class="btn-accent half thin" data-target="area" data-index="2" data-group="площадь">200-250М<sup>2</sup></button>
+                                <button class="btn-accent half thin" data-target="area" data-index="3" data-group="площадь">>250М<sup>2</sup></button>
                             </td>
                         </tr>
                         <tr>
@@ -716,13 +814,33 @@
                             <td>
                                 <button class="btn btn-accent toggle" data-group="цокольный этаж">
                                     <span>цокольный этаж</span>
-                                    <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                    <div class="switch">
+                                        <label>
+                                            <input disabled type="checkbox">
+                                            <span class="lever"></span>
+                                        </label>
+                                    </div>
+                                    <div class="toggles" style="display: none">
+                                        <input type="checkbox" name="checkbox1" id="checkbox1" disabled class="ios-toggle" />
+                                        <label for="checkbox1" class="checkbox-label"></label>
+                                    </div>
+                                    <i style="opacity: 0" class="material-icons accent-text right">radio_button_unchecked</i>
                                 </button>
                             </td>
                             <td>
                                 <button class="btn btn-accent toggle" data-group="монсарда">
                                     <span>монсарда</span>
-                                    <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                    <div class="switch">
+                                        <label>
+                                            <input disabled type="checkbox">
+                                            <span class="lever"></span>
+                                        </label>
+                                    </div>
+                                    <div class="toggles" style="display: none">
+                                        <input type="checkbox" name="checkbox1" id="checkbox1" disabled class="ios-toggle" />
+                                        <label for="checkbox1" class="checkbox-label"></label>
+                                    </div>
+                                    <i style="opacity: 0" class="material-icons accent-text right">radio_button_unchecked</i>
                                 </button>
                             </td>
                         </tr>
@@ -731,7 +849,23 @@
 
                                 <button class="btn btn-accent toggle" data-group="гараж">
                                     <span>гараж</span>
-                                    <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                    <div class="switch">
+                                        <label>
+                                            <input disabled type="checkbox">
+                                            <span class="lever"></span>
+                                        </label>
+                                    </div>
+                                    <div class="toggles" style="display: none">
+                                        <input type="checkbox" name="checkbox1" id="checkbox1" disabled class="ios-toggle" />
+                                        <label for="checkbox1" class="checkbox-label"></label>
+                                    </div>
+                                    <div class="switch">
+                                        <label>
+                                            <input disabled type="checkbox">
+                                            <span class="lever"></span>
+                                        </label>
+                                    </div>
+                                    <i style="opacity: 0" class="material-icons accent-text right">radio_button_unchecked</i>
                                 </button>
                             </td>
                             <td>
@@ -752,7 +886,7 @@
 
 
 
-            <div id="step4" class="step">
+            <div id="step4" class="step"  data-info="Documents">
                 <table>
                     <thead>
                         <tr>
@@ -918,7 +1052,7 @@
 
 
 
-            <div id="step5" class="step">
+            <div id="step5" class="step"  data-info="Summary">
                 <table>
                     <thead>
                         <tr>
@@ -984,14 +1118,14 @@
                         <tr>
                             <td colspan="5">
                                 <div class="row">
-                                    <div class="col s12 m6">
+                                    <div class="col s12 m6" style="height: 154px;">
                                         <div class="grey lighten-2 section">
                                             <div class="subheader thin uppercase">
                                                 земельный участок
                                             </div>
                                             <div class="row">
                                                 <div class="input-field col s7">
-                                                    <select class="region-dropdown browser-default">
+                                                    <select autocapitalize="none" class="region-dropdown browser-default">
                                                         <option value="-1">Участок есть</option>
                                                         <option value="0" selected>Прикубанский округ</option>
                                                         <option value="1">Центральный округ</option>
@@ -1006,19 +1140,19 @@
                                                 <div class="col s5">
                                                     <div class="label-accent price-regions"></div>
                                                     <div class="bold center-align lgreen-text additional">+ 30 000 РУБЛЕЙ
-                                                        <br>юрид. сопровождение</div>
+                                                        <br>юр. сопровождение</div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col s12 m6 stretch">
+                                    <div class="col s12 m6" style="height: 154px;">
                                         <div class="grey lighten-2 section">
                                             <div class="subheader thin uppercase">
                                                 проектирование
                                             </div>
                                             <div class="row">
                                                 <div class="input-field col s7">
-                                                    <select class="project-dropdown browser-default">
+                                                    <select autocapitalize="none" class="project-dropdown browser-default">
                                                         <option value="-1">Проект есть</option>
                                                         <option value="0">Типовой проект</option>
                                                         <option value="1" selected>Индивидуальный проект</option>
@@ -1040,7 +1174,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="input-field col s7">
-                                                    <select class="building-dropdown browser-default">
+                                                    <select autocapitalize="none" class="building-dropdown browser-default">
                                                         <option value="0" selected>Коробка</option>
                                                         <option value="1">Предчистовая отделка</option>
                                                         <option value="2">Дом с ремонтом</option>
@@ -1052,11 +1186,11 @@
                                             </div>
                                             <div class="row">
                                                 <div class="input-field col s7">
-                                                    <select class="area-dropdown browser-default">
-                                                        <option value="0" selected>100-150М2</option>
-                                                        <option value="1">150-200М2</option>
-                                                        <option value="2">200-250М2</option>
-                                                        <option value="3">>250М2</option>
+                                                    <select autocapitalize="none" class="area-dropdown browser-default">
+                                                        <option value="0" selected>100-150М<sup>2</sup></option>
+                                                        <option value="1">150-200М<sup>2</sup></option>
+                                                        <option value="2">200-250М<sup>2</sup></option>
+                                                        <option value="3">>250М<sup>2</sup></option>
                                                     </select>
                                                 </div>
                                                 <div class="col s5">
@@ -1065,7 +1199,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="input-field col s7">
-                                                    <select class="floors-dropdown browser-default">
+                                                    <select autocapitalize="none" class="floors-dropdown browser-default">
                                                         <option value="0" selected>1 этаж</option>
                                                         <option value="1">2 этажа</option>
                                                         <option value="2">3 этажа</option>
@@ -1079,7 +1213,17 @@
                                                 <div class="col s7">
                                                     <button class="btn btn-accent toggle" data-group="гараж">
                                                         <span>гараж</span>
-                                                        <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                                        <div class="switch">
+                                                            <label>
+                                                                <input disabled type="checkbox">
+                                                                <span class="lever"></span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="toggles" style="display: none">
+                                                            <input type="checkbox" name="checkbox1" id="checkbox1" disabled class="ios-toggle" />
+                                                            <label for="checkbox1" class="checkbox-label"></label>
+                                                        </div>
+                                                        <i style="opacity: 0" class="material-icons accent-text right">radio_button_unchecked</i>
                                                     </button>
                                                 </div>
                                                 <div class="col s5">
@@ -1091,7 +1235,17 @@
                                                     <button class="btn btn-accent toggle" data-group="цокольный этаж">
                                                         <span>цокольный этаж
                                                         </span>
-                                                        <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                                        <div class="switch">
+                                                            <label>
+                                                                <input disabled type="checkbox">
+                                                                <span class="lever"></span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="toggles" style="display: none">
+                                                            <input type="checkbox" name="checkbox1" id="checkbox1" disabled class="ios-toggle" />
+                                                            <label for="checkbox1" class="checkbox-label"></label>
+                                                        </div>
+                                                        <i style="opacity: 0" class="material-icons accent-text right">radio_button_unchecked</i>
                                                     </button>
                                                 </div>
                                                 <div class="col s5">
@@ -1102,7 +1256,17 @@
                                                 <div class="col s7">
                                                     <button class="btn btn-accent toggle" data-group="монсарда">
                                                         <span>монсарда</span>
-                                                        <i class="material-icons accent-text right">radio_button_unchecked</i>
+                                                        <div class="switch">
+                                                            <label>
+                                                                <input disabled type="checkbox">
+                                                                <span class="lever"></span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="toggles" style="display: none">
+                                                            <input type="checkbox" name="checkbox1" id="checkbox1" disabled class="ios-toggle" />
+                                                            <label for="checkbox1" class="checkbox-label"></label>
+                                                        </div>
+                                                        <i style="opacity: 0" class="material-icons accent-text right">radio_button_unchecked</i>
                                                     </button>
                                                 </div>
                                                 <div class="col s5">
@@ -1120,7 +1284,17 @@
                                                 <div class="col s7">
                                                     <button class="btn btn-accent toggle" data-group="разрешение на строительство">
                                                         <span>Разрешение на строительство</span>
-                                                        <i class="material-icons accent-text right">check_circle</i>
+                                                        <div class="switch">
+                                                            <label>
+                                                                <input checked disabled type="checkbox">
+                                                                <span class="lever"></span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="toggles" style="display: none">
+                                                            <input type="checkbox" name="checkbox1" id="checkbox1" checked disabled class="ios-toggle" />
+                                                            <label for="checkbox1" class="checkbox-label"></label>
+                                                        </div>
+                                                        <i style="opacity: 0" class="material-icons accent-text right">check_circle</i>
                                                     </button>
                                                 </div>
                                                 <div class="col s5">
@@ -1132,7 +1306,17 @@
                                                     <button class="btn btn-accent toggle" data-group="подключение электричества">
                                                         <span>Оформление электроснабжения
                                                         </span>
-                                                        <i class="material-icons accent-text right">check_circle</i>
+                                                        <div class="switch">
+                                                            <label>
+                                                                <input checked disabled type="checkbox">
+                                                                <span class="lever"></span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="toggles" style="display: none">
+                                                            <input type="checkbox" name="checkbox1" id="checkbox1" checked disabled class="ios-toggle" />
+                                                            <label for="checkbox1" class="checkbox-label"></label>
+                                                        </div>
+                                                        <i style="opacity: 0" class="material-icons accent-text right">check_circle</i>
                                                     </button>
                                                 </div>
                                                 <div class="col s5">
@@ -1144,7 +1328,17 @@
                                                     <button class="btn btn-accent toggle" data-group="подключение воды">
                                                         <span>Оформление водоснабжения
                                                         </span>
-                                                        <i class="material-icons accent-text right">check_circle</i>
+                                                        <div class="switch">
+                                                            <label>
+                                                                <input checked disabled type="checkbox">
+                                                                <span class="lever"></span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="toggles" style="display: none">
+                                                            <input type="checkbox" name="checkbox1" id="checkbox1" checked disabled class="ios-toggle" />
+                                                            <label for="checkbox1" class="checkbox-label"></label>
+                                                        </div>
+                                                        <i style="opacity: 0" class="material-icons accent-text right">check_circle</i>
                                                     </button>
                                                 </div>
                                                 <div class="col s5">
@@ -1156,7 +1350,17 @@
                                                     <button class="btn btn-accent toggle" data-group="подключение газа">
                                                         <span>Оформление газа
                                                         </span>
-                                                        <i class="material-icons accent-text right">check_circle</i>
+                                                        <div class="switch">
+                                                            <label>
+                                                                <input checked disabled type="checkbox">
+                                                                <span class="lever"></span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="toggles" style="display: none">
+                                                            <input type="checkbox" name="checkbox1" id="checkbox1" checked disabled class="ios-toggle" />
+                                                            <label for="checkbox1" class="checkbox-label"></label>
+                                                        </div>
+                                                        <i style="opacity: 0" class="material-icons accent-text right">check_circle</i>
                                                     </button>
                                                 </div>
                                                 <div class="col s5">
@@ -1167,7 +1371,17 @@
                                                 <div class="col s7">
                                                     <button class="btn btn-accent toggle" data-group="разрешение на эксплуатацию">
                                                         <span>Разрешение на ввод дома в эксплуатацию</span>
-                                                        <i class="material-icons accent-text right">check_circle</i>
+                                                        <div class="switch">
+                                                            <label>
+                                                                <input checked disabled type="checkbox">
+                                                                <span class="lever"></span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="toggles" style="display: none">
+                                                            <input type="checkbox" name="checkbox1" id="checkbox1" checked disabled class="ios-toggle" />
+                                                            <label for="checkbox1" class="checkbox-label"></label>
+                                                        </div>
+                                                        <i style="opacity: 0" class="material-icons accent-text right">check_circle</i>
                                                     </button>
                                                 </div>
                                                 <div class="col s5">
@@ -1215,7 +1429,7 @@
         <div class="contact-form-wrapper">
             <div class="grey lighten-2 section contacts">
                 <div class="subheader centered thin uppercase">
-                    Заполните форму и получите смету на строительство
+                    Заполните форму и получите примеры выполненных работ со&nbsp;стоимостью реализации!
                 </div>
                 <div class="input-field">
                     <input type="text" id="contact_name" placeholder="Олег" />
@@ -1225,6 +1439,7 @@
                 </div>
                 <div class="input-field">
                     <input type="text" id="contact_phone" placeholder="+7 (911) 299 22 11" />
+                    <div class="accent-text valid-message center-align">Введите корректный номер</div>
                 </div>
                 <div class="input-field">
                     <button class="btn-accent primary send">Получить</button>
@@ -1235,7 +1450,7 @@
                     <p class="center-align uppercase">
                         Благодарим за проявленный интерес.
                     </p>
-                    <p class="thin center-align uppercase">
+                    <p class="thin center-align">
                         В ближайшее время вам вышлют примеры наших работ со стоимостью реализации, а пока узнайте больше о нашей компании в удобной
                         для вас социальной сети
                     </p>
