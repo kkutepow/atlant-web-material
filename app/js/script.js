@@ -1,12 +1,16 @@
 "use strict";
 
 var yaCounter47830858 = new Ya.Metrika({ id: 47830858, triggerEvent: true });
+var mobileConfirmed = false;
 
-function reach(goal, params = {}) {
+function reach(goal, params) {
+    if (!params) {
+        params = {};
+    }
     yaCounter47830858.reachGoal(goal, params, function () {
         console.log("YaCounter: the goal '" + goal + "' has been reached");
     });
-}
+};
 
 $(document).on('yacounter47830858inited', function () {
     console.log('счетчик yaCounter47830858 можно использовать');
@@ -49,20 +53,32 @@ $(document).ready(function () {
         $(event.currentTarget).closest(".step").find(".nextpage").css("opacity", 1);
     });
 
-    $("#wizard .nextpage, #wizard .confirm").click(function(event){
+    $("#wizard-mobile .toggle, #wizard-mobile .confirm").click(function (event) {
+        var goalName = $(event.currentTarget).attr("data-info") + "_Input_Changed";
+        reach(goalName);
+    });
+    $("#wizard-mobile select").change(function (event) {
+        var goalName = $(event.currentTarget).attr("data-info") + "_Input_Changed";
+        reach(goalName);
+    });
+
+    $("#wizard-mobile .confirm").click(function () {
+        mobileConfirmed = true;
+    });
+
+    $("#wizard .nextpage, #wizard .confirm").click(function (event) {
         var goalName = $(event.currentTarget).closest(".step").attr("data-info") + "_Settings_Passed";
-        reach(goalName);        
+        reach(goalName);
     });
 
     $(".send").click(function () {
-        M.Toast.dismissAll();
         var validerror = validContacts();
         if (validerror) {
             $("#contact_phone").css("border", "inset thin red");
             $(".valid-message").show();
             return;
         }
-        reach("Contacts_Passed");        
+        reach(mobileConfirmed ? "Mobile_Contacts_Passed" : "Contacts_Passed");
 
         var data = [];
         data.push("---------------------");
