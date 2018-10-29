@@ -8,12 +8,12 @@ function reach(goal, params) {
         params = {};
     }
     yaCounter47830858.reachGoal(goal, params, function () {
-        console.log("YaCounter: the goal '" + goal + "' has been reached");
+        // console.log("YaCounter: the goal '" + goal + "' has been reached");
     });
 };
 
 $(document).on('yacounter47830858inited', function () {
-    console.log('счетчик yaCounter47830858 можно использовать');
+    // console.log('счетчик yaCounter можно использовать');
 });
 
 $(document).ready(function () {
@@ -68,6 +68,11 @@ $(document).ready(function () {
 
     $("#wizard .nextpage, #wizard .confirm").click(function (event) {
         var goalName = $(event.currentTarget).closest(".step").attr("data-info") + "_Settings_Passed";
+        reach(goalName);
+    });
+
+    $(".socialweb").click(function (event) {
+        var goalName = $(event.currentTarget).attr("data-info") + "_Social_Direct";
         reach(goalName);
     });
 
