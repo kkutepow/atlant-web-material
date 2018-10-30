@@ -283,7 +283,7 @@ main .contact-form-wrapper input[type="text"], main .contact-form-wrapper .input
     width: calc(100% - 30px) !important;
 }
 
-.valid-message  {
+.valid-message {
     text-transform: none !important;
     display: none;
 }
@@ -359,6 +359,27 @@ td, th {
     padding: 10px;
     width: 20%;
 }
+
+table table {
+    margin: auto -10px;
+    width: calc(100% + 20px);
+}
+
+table table td {
+    width: 50%;
+}
+
+table table.col3 td {
+    width: calc(100%/3);
+}
+
+.anno {
+    width: 330px;
+}
+
+.anno-arrow::after {}
+
+.anno-content {}
 
 .label-accent {
     width: 100%;
@@ -806,7 +827,7 @@ svg.caret {
         display: inline-block;
         width: auto;
     }
-    .label-accent, .additional  {
+    .label-accent, .additional {
         position: absolute;
         width: auto;
         top: 6.5pt;
@@ -815,7 +836,7 @@ svg.caret {
         box-shadow: 0 0 0 white;
         margin: 0;
         height: auto;
-        font-size: xx-small ;
+        font-size: xx-small;
         pointer-events: none;
     }
     .with-add {
@@ -827,7 +848,7 @@ svg.caret {
         font-size: 6pt;
     }
     .s7 .label-accent {
-        right: 40pt;        
+        right: 40pt;
     }
     .bg-body {
         height: 230px;

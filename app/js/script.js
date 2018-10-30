@@ -43,12 +43,27 @@ $(document).ready(function () {
     $(".confirm").click(function () {
         $("#wizard, #wizard-mobile").hide();
         $(".contact-form-wrapper").show();
+        setTimeout(function () {
+            anno11.show();
+        }, anno11timing);
     });
     $(".nextpage").click(nextPage);
     $("[data-group]").click(selectButtonInGroup);
     $("select").change(selectDropdownItem);
     $("#contact_phone").keypress(phoneInput);
     $("#step1 .nextpage, #step2 .nextpage, #step3 .nextpage").css("opacity", 0);
+    $("#step1 .nextpage").click(function () {
+        anno4.show();
+    });
+    $("#step2 .nextpage").click(function () {
+        anno6.show();
+    });
+    $("#step3 .nextpage").click(function () {
+        anno7.show();
+    });
+    $("#step4 .nextpage").click(function () {
+        anno8.show();
+    });
     $(".step button").click(function (event) {
         $(event.currentTarget).closest(".step").find(".nextpage").css("opacity", 1);
     });
@@ -142,6 +157,8 @@ $(document).ready(function () {
         return $(".price-" + getGroup(g)).text(getPrice(g));
     });
     $(".price-total").text(getTotalPrice());
+
+    annoInit();
 });
 
 function getMobileOperatingSystem() {
@@ -240,8 +257,16 @@ function selectButtonInGroup(event, sender) {
         index = "-1";
         $("button[data-group='" + group + "']").removeClass("selected");
     }
+    if (group === "нужен проект" && index === "1") {
+        setTimeout(function () {
+            anno5.show();
+        }, anno5timing);
+    }
     if (group === "нужен участок" && index === "1") {
         $(".additional").show();
+        setTimeout(function () {
+            anno2.show();
+        }, anno2timing);
     }
     selectItemInGroup(group, index);
 
