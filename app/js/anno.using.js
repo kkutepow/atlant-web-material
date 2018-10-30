@@ -1,4 +1,5 @@
 var anno2timing = 400;
+var anno3timing = 400;
 var anno5timing = 400;
 var anno11timing = 400;
 
@@ -15,11 +16,11 @@ function annoShow(anno, $target, $annoElem) {
 
 var anno1 = new Anno({
     target: '#hl1',
-    content: "При строительстве дома нужно учитывать стоимость "
+    content: "При строительстве дома прежде всего нужно учитывать стоимость "
         + "земельного участка, которая зависит от расположения и "
-        + "удаленности от Краснодара<br/><br/><span class='bold'>"
-        + "Выберите подходящее условие...</span>",
-    buttons: [],
+        + "удаленности от Краснодара",
+    buttons: [{ text: 'Понятно', click: function (anno, evt) { anno.hide(); } }],
+    position: "top",
     onShow: function (anno, $target, $annoElem) {
         var handler = function () { anno.hide(); setTimeout(function () { anno2timing = 0; }, 400) }
         $target[0].addEventListener('click', handler)
@@ -27,54 +28,52 @@ var anno1 = new Anno({
     },
     onHide: function (anno, $target, $annoElem, returnFromOnShow) {
         var handler = returnFromOnShow
-        $target[0].removeEventListener('click', handler)
+        $target[0].removeEventListener('click', handler);
+        anno1 = {};
     }
 })
+
+var anno3 = new Anno([{
+    target: '#hl2',
+    content: "Здесь отображается средняя стоимость услуг",
+    buttons: [{ text: 'Далее ►' }],
+    className: "align-center",
+    position: "top"
+}, {
+    target: '#hl3_1',
+    content: "Когда определитесь с параметрами, нажмите здесь, чтобы перейти к проектированию",
+    buttons: [{ text: 'Понятно', click: function (anno, evt) { anno.hide(); } }],
+    className: "align-center",
+    position: "top",
+    onHide: function (anno, $target, $annoElem, returnFromOnShow) {
+        anno3 = {};
+    }
+}])
 
 var anno2 = new Anno({
-    target: '#hl2',
-    content: "Здесь отображается средняя стоимость подбора участка",
-    buttons: [],
-    className: "align-center",
-    position: "center-bottom",
-    onShow: function (anno, $target, $annoElem) {
-        var handler = function () { anno2.hide(); anno3.hide(); }
-        $target[0].addEventListener('click', handler)
-        return handler
-    },
-    onHide: function (anno, $target, $annoElem, returnFromOnShow) {
-        var handler = returnFromOnShow
-        $target[0].removeEventListener('click', handler);
-        setTimeout(function () {
-            anno3.show();
-        }, 400);
-    }
-})
-
-var anno3 = new Anno({
     target: '#hl3',
     content: "Выберите расположение участка",
-    buttons: [],
+    buttons: [{ text: 'Понятно', click: function (anno, evt) { anno.hide(); } }],
     className: "align-center",
-    position: "center-right",
+    position: "top",
     onShow: function (anno, $target, $annoElem) {
-        var handler = function () { anno.hide(); }
+        var handler = function () { anno.hide(); setTimeout(function () { anno3timing = 0; }, 400) }
         $target[0].addEventListener('click', handler)
         return handler
     },
     onHide: function (anno, $target, $annoElem, returnFromOnShow) {
         var handler = returnFromOnShow;
         $target[0].removeEventListener('click', handler);
+        anno2 = {};
     }
 })
 
 var anno4 = new Anno({
     target: '#hl4',
-    content: "Дом невозможно построить без проекта, а это тоже затраты и их нужно учитывать<br/><br/><span class='bold'>"
-        + "Выберите подходящее условие...</span>",
-    buttons: [],
+    content: "Дом невозможно построить без проекта, а это тоже затраты и их нужно учитывать<br/><br/>",
+    buttons: [{ text: 'Понятно', click: function (anno, evt) { anno.hide(); } }],
     className: "center-align",
-    position: "center-bottom",
+    position: "top",
     onShow: function (anno, $target, $annoElem) {
         var handler = function () { anno.hide(); setTimeout(function () { anno5timing = 0; }, 400) }
         $target[0].addEventListener('click', handler)
@@ -83,6 +82,7 @@ var anno4 = new Anno({
     onHide: function (anno, $target, $annoElem, returnFromOnShow) {
         var handler = returnFromOnShow
         $target[0].removeEventListener('click', handler)
+        anno4 = {};
     }
 })
 
@@ -92,9 +92,9 @@ var anno5 = new Anno({
         + "которой вы можете выбрать подходящий вам вариант"
         + "<br/><br/> А также отличные проетировщики, которые "
         + "воплотят в проекте любую вашу мечту",
-    buttons: [],
+    buttons: [{ text: 'Понятно', click: function (anno, evt) { anno.hide(); } }],
     className: "align-center",
-    position: "center-bottom",
+    position: "top",
     onShow: function (anno, $target, $annoElem) {
         var handler = function () { anno.hide(); }
         $target[0].addEventListener('click', handler)
@@ -103,6 +103,7 @@ var anno5 = new Anno({
     onHide: function (anno, $target, $annoElem, returnFromOnShow) {
         var handler = returnFromOnShow;
         $target[0].removeEventListener('click', handler);
+        anno5 = {};
     }
 })
 
@@ -115,11 +116,10 @@ var anno6 = new Anno({
         + "<br/>- этажность и другие факторы"
         + "<br/><br/>На данном сайте мы можем вас сориентировать "
         + "по средней стоимости строительства основанной на нашем опыте"
-        + "<br/><br/><span class='bold'>Выберите необходимые вам опции</span>"
     ,
-    buttons: [],
+    buttons: [{ text: 'Понятно', click: function (anno, evt) { anno.hide(); } }],
     className: "align-center",
-    position: "center-right",
+    position: "top",
     onShow: function (anno, $target, $annoElem) {
         var handler = function () { anno.hide(); }
         $target[0].addEventListener('click', handler)
@@ -128,6 +128,7 @@ var anno6 = new Anno({
     onHide: function (anno, $target, $annoElem, returnFromOnShow) {
         var handler = returnFromOnShow;
         $target[0].removeEventListener('click', handler);
+        anno6 = {};
     }
 })
 
@@ -136,9 +137,9 @@ var anno7 = new Anno({
     content: "Мы можем оформить всю разрешительную документацию, либо вы можете это сделать сами"
         + "<br/><br/><span class='bold'>Используйте перключатели, чтобы выбрать, какую документацию вам необходимо оформить</span>"
     ,
-    buttons: [],
+    buttons: [{ text: 'Понятно', click: function (anno, evt) { anno.hide(); } }],
     className: "align-center",
-    position: "center-right",
+    position: "top",
     onShow: function (anno, $target, $annoElem) {
         var handler = function () { anno.hide(); }
         $target[0].addEventListener('click', handler)
@@ -147,63 +148,32 @@ var anno7 = new Anno({
     onHide: function (anno, $target, $annoElem, returnFromOnShow) {
         var handler = returnFromOnShow;
         $target[0].removeEventListener('click', handler);
+        anno7 = {};
     }
 })
 
-var anno8 = new Anno({
+var anno8 = new Anno([{
     target: '#hl8',
     content: "Ваш ориентировочный расчет готов.<br/><br/>Вы можете прямо в формах"
         + " изменить значение, чтобы получить новую итоговую сумму",
-    buttons: [],
+    buttons: [{ text: 'Далее ►' }],
     className: "align-center",
-    position: "center-top",
-    onHide: function (anno, $target, $annoElem, returnFromOnShow) {
-        var handler = returnFromOnShow;
-        $target[0].removeEventListener('click', handler);
-        setTimeout(function () {
-            anno9.show();
-        }, 400);
-    }
-})
-
-var anno9 = new Anno({
+    position: "center-top"
+}, {
     target: '#hl9',
     content: "Здесь отображается итоговая стоимость по вашим параметрам",
-    buttons: [],
+    buttons: [{ text: 'Далее ►' }],
     className: "align-center",
-    position: "center-top",
-    onShow: function (anno, $target, $annoElem) {
-        var handler = function () { anno.hide(); }
-        $target[0].addEventListener('click', handler)
-        return handler
-    },
-    onHide: function (anno, $target, $annoElem, returnFromOnShow) {
-        var handler = returnFromOnShow;
-        $target[0].removeEventListener('click', handler);
-        setTimeout(function () {
-            anno10.show();
-        }, 400);
-    }
-})
-
-var anno10 = new Anno({
+    position: "center-top"
+}, {
     target: '#hl10',
     content: "<span class='bold'>После уточнения деталей утвердите свой выбор.</span>"
         + "<br/><br/>Мы предоставим вам каталог наших реализованных объектов с реальной"
         + " стоимостью, чтобы вы смогли более точно рассчитать свой бюджет",
-    buttons: [],
+    buttons: [{ text: 'Понятно', click: function (anno, evt) { anno.hide(); } }],
     className: "align-center",
-    position: "center-top",
-    onShow: function (anno, $target, $annoElem) {
-        var handler = function () { anno.hide(); setTimeout(function () { anno11timing = 0; }, 400) }
-        $target[0].addEventListener('click', handler)
-        return handler
-    },
-    onHide: function (anno, $target, $annoElem, returnFromOnShow) {
-        var handler = returnFromOnShow;
-        $target[0].removeEventListener('click', handler);
-    }
-})
+    position: "center-top"
+}])
 
 var anno11 = new Anno({
     target: '#hl11',
@@ -211,7 +181,7 @@ var anno11 = new Anno({
         + "у нас выполняется ручная проверка каждой заявки"
         + "<br/><br/>Поэтому, если вы действительно заинтересованы, "
         + "то заполните форму ниже и дождитесь звонка нашего менеджера",
-    buttons: [],
+    buttons: [{ text: 'Понятно', click: function (anno, evt) { anno.hide(); } }],
     className: "align-center",
     position: "center-top",
     onShow: function (anno, $target, $annoElem) {
@@ -222,9 +192,6 @@ var anno11 = new Anno({
     onHide: function (anno, $target, $annoElem, returnFromOnShow) {
         var handler = returnFromOnShow;
         $target[0].removeEventListener('click', handler);
+        anno11 = {};
     }
 })
-
-function annoInit() {
-    anno1.show();
-}

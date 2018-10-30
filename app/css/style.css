@@ -61,7 +61,8 @@ select option {
     text-transform: none !important;
 }
 
-.ios-toggle, .ios-toggle:active {
+.ios-toggle,
+.ios-toggle:active {
     position: absolute;
     top: -5000px;
     height: 0;
@@ -212,7 +213,8 @@ header .logo a {
     line-height: 20pt;
 }
 
-header .logo, main {
+header .logo,
+main {
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -272,7 +274,9 @@ main .contact-form-wrapper .input-field {
     margin: 10px auto;
 }
 
-main .contact-form-wrapper input[type="text"], main .contact-form-wrapper .input-field input[type="text"]:focus, main .contact-form-wrapper .input-field input[type="text"]:active {
+main .contact-form-wrapper input[type="text"],
+main .contact-form-wrapper .input-field input[type="text"]:focus,
+main .contact-form-wrapper .input-field input[type="text"]:active {
     background-color: white;
     /* font-weight: 100;  */
     padding: 2px 15px;
@@ -296,7 +300,16 @@ main .nav .table .cell {
     width: 100%;
 }
 
-.subheader, .step .legend {
+#step1 {
+    min-height: 798px;
+}
+
+#step2 {
+    min-height: 824px;
+}
+
+.subheader,
+.step .legend {
     display: inline-block;
     font-size: smaller;
     float: left;
@@ -348,14 +361,17 @@ main .nav .table .cell {
     padding-top: 10px;
 }
 
-table, tbody, tr {
+table,
+tbody,
+tr {
     border-width: 0;
     position: relative;
 }
 
-td, th {
+td,
+th {
     text-align: center;
-    vertical-align: middle;
+    vertical-align: top;
     padding: 10px;
     width: 20%;
 }
@@ -374,12 +390,33 @@ table table.col3 td {
 }
 
 .anno {
-    width: 330px;
+    width: auto !important;
+    max-width: 420px;
 }
 
-.anno-arrow::after {}
+.anno-content {
+    font-family: Lato !important;
+}
 
-.anno-content {}
+.anno-btn {
+    font-family: Lato !important;
+    font-weight: 400 !important;
+}
+
+.start-btn:hover {
+    box-shadow: 0 0 6pt 0  white;
+}
+
+.start-btn {
+    background: transparent !important;
+    color: white;
+    border: solid 1px white;
+    border-radius: 5px;
+    margin: 45pt;
+    font-weight: 900;
+    font-size: large;
+    z-index: 0;
+}
 
 .label-accent {
     width: 100%;
@@ -418,7 +455,9 @@ table table.col3 td {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
-.btn-accent:active, .btn-accent:focus, .btn-accent.selected {
+.btn-accent:active,
+.btn-accent:focus,
+.btn-accent.selected {
     color: white;
     background-color: #d6001f;
     box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.2);
@@ -467,7 +506,9 @@ table table.col3 td {
     line-height: 1em;
 }
 
-.btn-accent.toggle:focus, .btn-accent.toggle:active, .btn-accent.toggle {
+.btn-accent.toggle:focus,
+.btn-accent.toggle:active,
+.btn-accent.toggle {
     background-color: white;
     color: #1c1f2b;
 }
@@ -491,7 +532,7 @@ table table.col3 td {
     border-radius: 50%;
     margin: 0 auto;
     background-color: transparent;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2); */
 }
 
 .btn-accent.flat .btn-logo img {
@@ -514,7 +555,7 @@ table table.col3 td {
 
 .btn-accent.flat.selected .btn-logo {
     background-color: #d6001f;
-    box-shadow: 4px 4px 12px #30303060;
+    /* box-shadow: 4px 4px 12px #30303060; */
 }
 
 .btn-accent.flat.selected .btn-logo img {
@@ -560,7 +601,8 @@ th:first-child .btn-accent.flat.selected .btn-logo img {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
-select, input.select-dropdown {
+select,
+input.select-dropdown {
     /* width: calc(100% - 40px) !important; */
     width: 100% !important;
     padding: 0 25px 0 15px !important;
@@ -827,7 +869,8 @@ svg.caret {
         display: inline-block;
         width: auto;
     }
-    .label-accent, .additional {
+    .label-accent,
+    .additional {
         position: absolute;
         width: auto;
         top: 6.5pt;
@@ -923,7 +966,8 @@ svg.caret {
     .total-mobile * {
         font-size: x-small !important;
     }
-    .finish-wrapper, .total-price-wrapper {
+    .finish-wrapper,
+    .total-price-wrapper {
         position: fixed;
         z-index: 1;
         left: 0;

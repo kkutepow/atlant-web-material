@@ -35,8 +35,28 @@ $(document).ready(function () {
         }
     }
 
-    $(".regions").css("opacity", 0);
-    $(".projs").css("opacity", 0);
+
+    $(".start-btn").click(function (event) {
+        $(event.currentTarget).hide();
+        $("#subtext").removeClass("hide-on-large-only");
+        $("#wizard").show();
+        setTimeout(function () {
+            anno1.show();
+        }, 500);
+        $("body").css({
+            "overflow": "auto",
+            "max-height": "auto"
+        });
+    });
+    $("body").css({
+        "overflow": "hidden",
+        "max-height": "100%"
+    });
+
+    $("#subtext").addClass("hide-on-large-only");
+    $("#wizard").hide();
+    $(".regions").hide();
+    $(".projs").hide();
     $(".step").hide();
     $(".contact-form-wrapper").hide();
     $("#step1").show();
@@ -51,7 +71,12 @@ $(document).ready(function () {
     $("[data-group]").click(selectButtonInGroup);
     $("select").change(selectDropdownItem);
     $("#contact_phone").keypress(phoneInput);
-    $("#step1 .nextpage, #step2 .nextpage, #step3 .nextpage").css("opacity", 0);
+    $("#step1 .nextpage, #step2 .nextpage, #step3 .nextpage").hide();
+    $("#step1 #hl3 button").click(function () {
+        setTimeout(function () {
+            anno3.show();
+        }, anno3timing);
+    });
     $("#step1 .nextpage").click(function () {
         anno4.show();
     });
@@ -65,7 +90,7 @@ $(document).ready(function () {
         anno8.show();
     });
     $(".step button").click(function (event) {
-        $(event.currentTarget).closest(".step").find(".nextpage").css("opacity", 1);
+        $(event.currentTarget).closest(".step").find(".nextpage").show();
     });
 
     $("#wizard-mobile .toggle, #wizard-mobile .confirm").click(function (event) {
@@ -182,7 +207,7 @@ function getMobileOperatingSystem() {
 }
 
 function nextPage(event, sender) {
-    var stepid = $(event.currentTarget).parent().parent().parent().parent().parent().attr("id").slice(-1);
+    var stepid = $(event.currentTarget).closest(".step").attr("id").slice(-1);
     $("#step" + stepid).hide();
     $("#step" + ++stepid).show();
 }
@@ -196,11 +221,11 @@ function selectDropdownItem(event, sender) {
 
     if (index == -1) {
         if (group === "тип проекта") {
-            $(".projs").css("opacity", 0);
+            $(".projs").hide();
             selectItemInGroup("нужен проект", 0);
         }
         if (group === "тип участка") {
-            $(".regions").css("opacity", 0);
+            $(".regions").hide();
             selectItemInGroup("нужен участок", 0);
             $(".additional").hide();
         }
@@ -208,11 +233,11 @@ function selectDropdownItem(event, sender) {
         $("[data-group='" + group + "']").removeClass("selected");
         $('[data-index="' + index + '"][data-group="' + group + '"]').addClass("selected");
         if (group === "тип проекта") {
-            $(".projs").css("opacity", 1);
+            $(".projs").show();
             selectItemInGroup("нужен проект", 1);
         }
         if (group === "тип участка") {
-            $(".regions").css("opacity", 1);
+            $(".regions").show();
             selectItemInGroup("нужен участок", 1);
             $(".additional").show();
         }
@@ -232,8 +257,8 @@ function selectButtonInGroup(event, sender) {
     var toShow = $(event.currentTarget).attr("data-area-show");
     var target = $(event.currentTarget).attr("data-target");
 
-    $("." + toHide).css("opacity", 0);
-    $("." + toShow).css("opacity", 1);
+    $("." + toHide).hide();
+    $("." + toShow).show();
 
     if (isToggle(group)) {
         var checked = index != null ? index === "1" : !$(event.currentTarget).find("input[type=checkbox]").prop("checked");
