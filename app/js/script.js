@@ -38,8 +38,8 @@ $(document).ready(function () {
 
     $(".start-btn").click(function (event) {
         $(event.currentTarget).hide();
-        $("#subtext").removeClass("hide-on-large-only");
         $("#wizard").show();
+        $(".slogan.welcome").hide();
         setTimeout(function () {
             anno1.show();
         }, 500);
@@ -182,8 +182,6 @@ $(document).ready(function () {
         return $(".price-" + getGroup(g)).text(getPrice(g));
     });
     $(".price-total").text(getTotalPrice());
-
-    annoInit();
 });
 
 function getMobileOperatingSystem() {
