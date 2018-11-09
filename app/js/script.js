@@ -1,6 +1,5 @@
 "use strict";
 
-
 var yaCounter51054509 = new Ya.Metrika({ id: 51054509, triggerEvent: true });
 var mobileConfirmed = false;
 
@@ -16,7 +15,6 @@ var reach = function (goal, params) {
 $(document).ready(function () {
     initializeComponents();
 });
-
 
 var initializeComponents = function () {
     // $(".welcome").fadeOut(0);
@@ -38,17 +36,17 @@ var initializeComponents = function () {
             $(".step-form").animate({
                 left: "33.33%",
                 width: "66.66%"
-            }, 150);
+            }, 500);
             $(".subtotals").animate({
                 left: 0,
                 width: "33.33%"
-            }, 150);
+            }, 500);
             $(".control.back").animate({
                 width: "33.33%"
-            }, 150);
+            }, 500);
             $(".control.forward").animate({
                 width: "66.66%"
-            }, 150);
+            }, 500);
             $(".control.forward").removeClass("accent");
             $(".control.forward").addClass("lgreen");
             $(".step-form").addClass("valign-wrapper");
@@ -76,17 +74,17 @@ var initializeComponents = function () {
             $(".subtotals").animate({
                 left: "66.66%",
                 width: "33.33%"
-            }, 150);
+            }, 500);
             $(".step-form").animate({
                 left: 0,
                 width: "66.66%"
-            }, 150);
+            }, 500);
             $(".control.back").animate({
                 width: "66.66%"
-            }, 150);
+            }, 500);
             $(".control.forward").animate({
                 width: "33.33%"
-            }, 150);
+            }, 500);
             $(".control.forward").removeClass("lgreen");
             $(".control.forward").addClass("accent");
             $(".step-form").removeClass("valign-wrapper");
@@ -115,73 +113,63 @@ var initializeTracker = function () {
     });
 };
 
-var validContacts = function () {
-    if ($("#contact_phone").val().length == 0) {
-        return "Укажите номер телефона";
-    };
-
-    if ($("#contact_phone").val().indexOf("_") > 0) {
-        return "Укажите корректный номер телефона";
-    };
-}
-
-var collectDataFromSteps = function () {
-    var data = {};
-    steps.forEach(function (step) {
-        if (Array.isArray(step.controls)) {
-            data[step.name] = [];
-            step.controls.forEach(function (control) {
-                if (Array.isArray(control.items)) {
-                    control.items.forEach(function (item) {
-                        if (item.checked) {
-                            data[step.name].push(item.label);
-                        }
-                    })
-                }
-            })
-        }
-    });
-    return data;
-};
-
 var initializeCurrentStepForm = function () {
     var $stepform = $(".step-form");
     $stepform.empty();
-    if (selectedStep === 5) {
-        $stepform.append($('<div class="container valign"> <div class="center-align large bold dgrey-text"> Заполните форму и получите примеры выполненных работ со&nbsp;стоимостью реализации! </div> <div class="input-field"> <input type="text" id="contact_name" placeholder="Олег" /> </div> <div class="input-field"> <input type="text" id="contact_email" placeholder="OLEG@pochta.Ru" /> </div> <div class="input-field"> <input type="text" id="contact_phone" placeholder="+7 (911) 299 22 11" /> <div class="accent-text valid-message center-align">Введите корректный номер</div> </div> </div>'));
-        $("#contact_phone").keypress(function (key, sender) {
-            $("#contact_phone").css("border", "inset 0px red");
-            $(".valid-message").hide();
-            if (key.target.value.length === 0 && key.charCode === 56) return false;
-            //console.log(key.target.value);
-        });
-        var phones = [{ "mask": "+7 (8##) ###-####" }];
-        $('#contact_phone').inputmask({
-            mask: phones,
-            greedy: true,
-            prefix: "+7 ",
-            definitions: {
-                '8': { validator: "[0-7, 9]" },
-                '#': { validator: "[0-9]", cardinality: 1 }
-            }
-        });
-        return;
-    }
-    if (selectedStep === 6) {
-        return;
+    $(".control.back").show();
+    switch (selectedStep) {
+        case 5:
+            $stepform.append($('<div class="container valign"> <div class="center-align large bold dgrey-text"> Заполните форму и получите примеры выполненных работ со&nbsp;стоимостью реализации! </div> <div class="input-field"> <input type="text" id="contact_name" placeholder="Олег" /> </div> <div class="input-field"> <input type="text" id="contact_email" placeholder="OLEG@pochta.Ru" /> </div> <div class="input-field"> <input type="text" id="contact_phone" placeholder="+7 (911) 299 22 11" /> <div class="accent-text valid-message center-align">Введите корректный номер</div> </div> </div>'));
+            $("#contact_phone").keypress(function (key, sender) {
+                $("#contact_phone").css("border", "inset 0px red");
+                $(".valid-message").hide();
+                if (key.target.value.length === 0 && key.charCode === 56) return false;
+                //console.log(key.target.value);
+            });
+            var phones = [{ "mask": "+7 (8##) ###-####" }];
+            $('#contact_phone').inputmask({
+                mask: phones,
+                greedy: true,
+                prefix: "+7 ",
+                definitions: {
+                    '8': { validator: "[0-7, 9]" },
+                    '#': { validator: "[0-9]", cardinality: 1 }
+                }
+            });
+            return;
+        case 6:
+            return;
+        case 1:
+        $(".control.back").hide();
+        case 2:
+            var anyChecked = false;
+            steps[selectedStep - 1].controls.forEach(function (control) {
+                control.items.forEach(function (item) {
+                    anyChecked = anyChecked || item.checked;
+                    console.log(anyChecked);
+                })
+            })
+            $(".control.forward").prop("disabled", !anyChecked);
+            break;
+        default:
+            break;
     }
     var stepControls = steps[selectedStep - 1].controls;
     steps[selectedStep - 1].passed = true;
 
+    var $header = $("<div></div>").addClass("subheader").text(steps[selectedStep - 1].description);
+    $stepform.append($header);
+
     stepControls.forEach(function (control) {
-        var $control = $("<div></div>").addClass("group-name").text(control.groupName);
-        $stepform.append($control);
         control.items.forEach(function (item) {
             var $item = null;
             switch (item.type) {
+                case "legend":
+                    $item = $("<div></div>").addClass("group-name").text(item.value);
+                    break;
                 case "radio":
-                case "checkbox": $item =
-                    $("<label></label>")
+                case "checkbox":
+                    $item = $("<label></label>")
                         .append(
                             $("<input></input>")
                                 .addClass("filled-in with-gap")
@@ -190,8 +178,12 @@ var initializeCurrentStepForm = function () {
                                 .attr("name", item.group + (item.type === "radio" ? "" : "[]"))
                                 .attr("value", item.value)
                                 .attr("data-index", item.index)
-                        ).append($("<span></span>").text(item.label)); break;
-                case "divider": $item = $("<div></div>").addClass("divider"); break;
+                        ).append($("<span></span>").text(item.label))
+                        .append($("<span class='grey-text'></span>").text(item.additionalLabel));
+                    break;
+                case "divider":
+                    $item = $("<div></div>").addClass("divider");
+                    break;
             }
             $stepform.append($("<div></div>").append($item));
         });
@@ -201,6 +193,7 @@ var initializeCurrentStepForm = function () {
         var group = $(event.currentTarget).attr("name");
         var i = $(event.currentTarget).attr("data-index");
         var type = $(event.currentTarget).attr("type");
+        $(".control.forward").prop("disabled", false);
 
         steps.forEach(function (step) {
             if (Array.isArray(step.controls)) {
@@ -249,16 +242,52 @@ var updateSubtotals = function () {
             if (!selected) {
                 $subtotals.append($("<p></p>").addClass("accent-text").append("<span>Ничего не выбрано</span>").append("<i class='material-icons tiny left'>remove</i>"))
             }
-            $subtotals.append($("<p></p>").addClass((selectedStep - 1 === stepIndex ? "accent-text" : (step.passed ? " lgreen-text " : " grey-text")) + " bold right-align").text(convertToString(step.multiplyPrice ? mulprice : price)))
+            $subtotals.append($("<p></p>").addClass((selectedStep - 1 === stepIndex ? "accent-text" : (step.passed ? " lgreen-text " : " grey-text")) + " bold right-align").text(convertToString((step.multiplyPrice ? mulprice : price), stepIndex === 1)))
         }
     });
     $subtotals.append($("<p></p>").addClass("divider"))
     $subtotals.append($("<p></p>").addClass("lgreen-text bold large right-align").text(convertToString(totalprice)))
 };
 
-var convertToNumber = function (str) {
-    return +str.replace(/\D/g, "");
-}
+var updateTracker = function () {
+    $(".tracker .tracker-item").each(function (index, item) {
+        if (index < selectedStep && !$(item).hasClass("selected")) {
+            $(item).addClass("selected");
+        }
+        if (index >= selectedStep && $(item).hasClass("selected")) {
+            $(item).removeClass("selected");
+        }
+    });
+};
+
+var validContacts = function () {
+    if ($("#contact_phone").val().length == 0) {
+        return "Укажите номер телефона";
+    };
+
+    if ($("#contact_phone").val().indexOf("_") > 0) {
+        return "Укажите корректный номер телефона";
+    };
+};
+
+var collectDataFromSteps = function () {
+    var data = {};
+    steps.forEach(function (step) {
+        if (Array.isArray(step.controls)) {
+            data[step.name] = [];
+            step.controls.forEach(function (control) {
+                if (Array.isArray(control.items)) {
+                    control.items.forEach(function (item) {
+                        if (item.checked) {
+                            data[step.name].push(item.label);
+                        }
+                    })
+                }
+            })
+        }
+    });
+    return data;
+};
 
 var convertToString = function (num, fixed) {
     var s = "";
@@ -282,18 +311,8 @@ var convertToString = function (num, fixed) {
         s = "0";
     }
     return s !== "0" ? (fixed ? "" : "От ") + s + " рублей" : "0 рублей";
-}
-
-var updateTracker = function () {
-    $(".tracker .tracker-item").each(function (index, item) {
-        if (index < selectedStep && !$(item).hasClass("selected")) {
-            $(item).addClass("selected");
-        }
-        if (index >= selectedStep && $(item).hasClass("selected")) {
-            $(item).removeClass("selected");
-        }
-    });
 };
+
 var sendContacts = function (callback) {
     var validerror = validContacts();
     if (validerror) {
@@ -324,17 +343,20 @@ var sendContacts = function (callback) {
             }
         }
     });
-}
+};
 
 var selectedStep = 1;
 var steps = [{
     "name": "Выбор участка",
+    "description": "Выберите район, в котором хотите приобрести участок",
     "img": "images/Атлант-01.png",
     "passed": false,
     "controls": [
         {
-            "groupName": "В черте города",
             "items": [{
+                type: "legend",
+                value: "За городом"
+            }, {
                 type: "radio",
                 index: 0,
                 label: "Прикубанский округ",
@@ -362,11 +384,10 @@ var steps = [{
                 value: 1000000,
                 group: "region",
                 checked: false
-            }]
-        },
-        {
-            "groupName": "За городом",
-            "items": [{
+            }, {
+                type: "legend",
+                value: "За городом"
+            }, {
                 type: "radio",
                 index: 4,
                 label: "0-15 км",
@@ -408,11 +429,11 @@ var steps = [{
     ]
 }, {
     "name": "Проектирование",
+    "description": "Выберите тип проектирования",
     "img": "images/Атлант-02.png",
     "passed": false,
     "controls": [
         {
-            "groupName": "Тип проекта",
             "items": [{
                 type: "radio",
                 index: 0,
@@ -441,140 +462,154 @@ var steps = [{
     ]
 }, {
     "name": "Строительство",
+    "description": "Выберите конфигурацию вашего будущего дома",
     "img": "images/Атлант-03.png",
     "passed": false,
     "multiplyPrice": true,
-    "controls": [
-        {
-            "groupName": "Строительство",
-            "items": []
+    "controls": [{
+        "items": [{
+            type: "legend",
+            value: "Площадь"
         }, {
-            "groupName": "Тип конструкции",
-            "items": [{
-                type: "radio",
-                index: 0,
-                label: "Коробка",
-                value: 20000,
-                group: "building",
-                checked: true
-            }, {
-                type: "radio",
-                index: 1,
-                label: "Предчистовая отделка",
-                value: 25000,
-                group: "building",
-                checked: false
-            }, {
-                type: "radio",
-                index: 2,
-                label: "Дом с ремонтом",
-                value: 32000,
-                group: "building",
-                checked: false
-            }]
+            type: "radio",
+            index: 0,
+            label: "100-150М2",
+            value: 10,
+            group: "area",
+            checked: true
         }, {
-            "groupName": "Площадь",
-            "items": [{
-                type: "radio",
-                index: 0,
-                label: "100-150М2",
-                value: 10,
-                group: "area",
-                checked: true
-            }, {
-                type: "radio",
-                index: 1,
-                label: "150-200М2",
-                value: 15,
-                group: "area",
-                checked: false
-            }, {
-                type: "radio",
-                index: 2,
-                label: "200-250М2",
-                value: 20,
-                group: "area",
-                checked: false
-            }, {
-                type: "radio",
-                index: 3,
-                label: ">250М2",
-                value: 25,
-                group: "area",
-                checked: false
-            }]
+            type: "radio",
+            index: 1,
+            label: "150-200М2",
+            value: 15,
+            group: "area",
+            checked: false
         }, {
-            "groupName": "Этажность",
-            "items": [{
-                type: "radio",
-                index: 0,
-                label: "1 этаж",
-                value: 12,
-                group: "floors",
-                checked: true
-            }, {
-                type: "radio",
-                index: 1,
-                label: "2 этажа",
-                value: 20,
-                group: "floors",
-                checked: false
-            }, {
-                type: "radio",
-                index: 2,
-                label: "3 этажа",
-                value: 27,
-                group: "floors",
-                checked: false
-            }]
-        }
+            type: "radio",
+            index: 2,
+            label: "200-250М2",
+            value: 20,
+            group: "area",
+            checked: false
+        }, {
+            type: "radio",
+            index: 3,
+            label: ">250М2",
+            value: 25,
+            group: "area",
+            checked: false
+        }]
+    }, {
+        "items": [{
+            type: "legend",
+            value: "Этажность"
+        }, {
+            type: "radio",
+            index: 0,
+            label: "1 этаж",
+            value: 12,
+            group: "floors",
+            checked: true
+        }, {
+            type: "radio",
+            index: 1,
+            label: "2 этажа",
+            value: 20,
+            group: "floors",
+            checked: false
+        }, {
+            type: "radio",
+            index: 2,
+            label: "3 этажа",
+            value: 27,
+            group: "floors",
+            checked: false
+        }]
+    },
+    {
+        "items": [{
+            type: "legend",
+            value: "Вариант постройки"
+        }, {
+            type: "radio",
+            index: 0,
+            label: "Коробка",
+            value: 20000,
+            group: "building",
+            checked: true
+        }, {
+            type: "radio",
+            index: 1,
+            label: "Предчистовая отделка",
+            value: 25000,
+            group: "building",
+            checked: false
+        }, {
+            type: "radio",
+            index: 2,
+            label: "Дом с ремонтом",
+            value: 32000,
+            group: "building",
+            checked: false
+        }]
+    }
     ]
 }, {
     "name": "Документация",
+    "description": "Выберите вид обязательной документации, оформлением которой будут заниматься наши специалисты",
     "img": "images/Атлант-04.png",
     "passed": false,
     "controls": [
         {
-            "groupName": "Разрешительная документация",
             "items": [{
+                type: "legend",
+                value: "Разрешительная документация"
+            }, {
                 type: "checkbox",
                 index: 0,
                 label: "Разрешение на строительство",
+                additionalLabel: " (20 000 руб.)",
                 value: 20000,
                 group: "documents",
-                checked: true
+                checked: false
             }, {
                 type: "checkbox",
                 index: 1,
                 label: "Разрешение на ввод дома в эксплуатацию",
+                additionalLabel: " (20 000 руб.)",
                 value: 20000,
                 group: "documents",
-                checked: true
+                checked: false
             }]
         },
         {
-            "groupName": "Оформление подключений",
             "items": [{
+                type: "legend",
+                value: "Оформление подключений"
+            }, {
                 type: "checkbox",
                 index: 2,
                 label: "Электроснабжение",
+                additionalLabel: " (20 000 руб.)",
                 value: 20000,
                 group: "documents",
-                checked: true
+                checked: false
             }, {
                 type: "checkbox",
                 index: 3,
                 label: "Водоснабжение",
+                additionalLabel: " (от 50 000 руб.)",
                 value: 50000,
                 group: "documents",
-                checked: true
+                checked: false
             }, {
                 type: "checkbox",
                 index: 4,
                 label: "Газ",
+                additionalLabel: " (от 150 000 руб.)",
                 value: 150000,
                 group: "documents",
-                checked: true
+                checked: false
             }]
         }
     ]

@@ -23,16 +23,79 @@
     border-spacing: 0;
 }
 
-.bold { font-weight: 600 !important; } .thin { font-weight: 100 !important; } .uppercase { text-transform: uppercase !important; } .large { font-size: 1.4em; } .lgreen { background-color: #7aaa35 !important; color: white; } .lgrey { background-color: #f2f2f2; } .accent { background-color: #d6001f !important; color: white; } .lgreen-text { color: #090 !important; } .accent-text { color: #d6001f; } .step-wizard .content .subtotals { position: absolute; left: 66.66%; width: 33.33%; padding: 20pt; min-height: 460pt; box-shadow: -1px 0px 5px rgba(0, 0, 0, .3); } .step-wizard .content .subtotals p:not(.bold) { font-size: .8em; margin: .6em 0; } .step-wizard .content .subtotals p:not(.bold) span { display: inline-block; width: calc(100% - 40px); } .step-wizard .content .subtotals p.lgreen-text {}
+.bold {
+    font-weight: 600 !important;
+}
+
+.thin {
+    font-weight: 100 !important;
+}
+
+.uppercase {
+    text-transform: uppercase !important;
+}
+
+.large {
+    font-size: 1.4em;
+}
+
+.lgreen {
+    background-color: #7aaa35 !important;
+    color: white;
+}
+
+.lgrey {
+    background-color: #f2f2f2;
+}
+
+.mgrey {
+    background-color: #dfdfdf;
+}
+
+.accent {
+    background-color: #d6001f !important;
+    color: white;
+}
+
+.lgreen-text {
+    color: #090 !important;
+}
+
+.accent-text {
+    color: #d6001f;
+}
+
+.step-wizard .content .subtotals {
+    position: absolute;
+    left: 66.66%;
+    width: 33.33%;
+    padding: 20pt;
+    min-height: 460pt;
+    box-shadow: -1px 0px 5px rgba(0, 0, 0, .3);
+}
+
+.step-wizard .content .subtotals p:not(.bold) {
+    font-size: .8em;
+    margin: .6em 0;
+}
+
+.step-wizard .content .subtotals p:not(.bold) span {
+    display: inline-block;
+    width: calc(100% - 40px);
+}
+
+.step-wizard .content .subtotals p.lgreen-text {}
 
 /* GENERAL  */
 
-html, body {
+html,
+body {
     width: 100%;
     height: 100%;
 }
 
-button, a {
+button,
+a {
     cursor: pointer;
 }
 
@@ -54,9 +117,16 @@ button, a {
     transition: .25s;
 }
 
-.divider {
+.step-form .divider {
     margin: 10pt 0;
     max-width: 200pt;
+    background-color: #a8a8a8;
+}
+
+.subtotals .divider {
+    margin: 10pt 0;
+    width: 100%;
+    height: 1px;
     background-color: #a8a8a8;
 }
 
@@ -99,16 +169,10 @@ main {
 
 /* WELCOME */
 
-.welcome>p {
-    color: white;
-    font-size: 1.9em;
-    margin-bottom: 25pt;
-    text-shadow: 1px 1px 1px black;
-}
-
 .welcome .valign-wrapper {
     width: 100%;
     min-height: 460pt;
+    margin-top: 60pt;
     background-color: #f2f2f2;
     box-shadow: 0 0 25px 10px rgba(0, 0, 0, .3);
 }
@@ -118,14 +182,28 @@ main {
     line-height: 3.5em;
 }
 
+.welcome .valign-wrapper ul {
+    display: inline-flex;
+    flex-direction: column;
+}
+
 .welcome .valign-wrapper ul li {
     margin-left: 15pt;
     font-size: 1.4em;
     line-height: 1.4em;
+    white-space: nowrap;
 }
 
-.welcome .valign-wrapper p {
-    font-size: 1.8em;
+.welcome .valign-wrapper p:first-child {
+    font-size: 2.3em;
+    line-height: 1.4em;
+    margin-bottom: 25pt;
+}
+
+.welcome .valign-wrapper p:not(:first-child) {
+    font-size: 1.5em;
+    line-height: 1.2em;
+    margin-bottom: 15pt;
 }
 
 .welcome .valign-wrapper .start-button {
@@ -247,6 +325,12 @@ main {
     font-size: 1.1em;
 }
 
+.step-wizard .content .step-form .subheader {
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #d6001f;
+}
+
 /* subtotals */
 
 .step-wizard .content .subtotals {
@@ -276,7 +360,9 @@ main {
     margin: 10px auto;
 }
 
-.input-field input, .input-field input:focus, .input-field input:active {
+.input-field input,
+.input-field input:focus,
+.input-field input:active {
     background-color: white !important;
     /* font-weight: 100;  */
     padding: 2px 15px !important;
@@ -291,8 +377,6 @@ main {
     text-transform: none !important;
     display: none;
 }
-
-
 
 .thanks {
     font-size: 1.3em;
