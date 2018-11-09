@@ -1,13 +1,13 @@
 "use strict";
 
-var yaCounter51054509 = new Ya.Metrika({ id: 51054509, triggerEvent: true });
+var yaCounter47830858 = new Ya.Metrika({ id: 47830858, triggerEvent: true });
 var mobileConfirmed = false;
 
 var reach = function (goal, params) {
     if (!params) {
         params = {};
     }
-    yaCounter51054509.reachGoal(goal, params, function () {
+    yaCounter47830858.reachGoal(goal, params, function () {
         console.log("YaCounter: the goal '" + goal + "' has been reached");
     });
 };
@@ -20,6 +20,11 @@ var initializeComponents = function () {
     // $(".welcome").fadeOut(0);
     $(".step-wizard").fadeOut(0);
 
+    $(".socialweb").click(function (event) {
+        var goalName = $(event.currentTarget).attr("data-info") + "_Social_Direct";
+        reach(goalName);
+    });
+    
     $(".start-button").click(function () {
         $(".welcome").fadeOut("left");
         $(".step-wizard").fadeIn(150);
@@ -119,7 +124,11 @@ var initializeCurrentStepForm = function () {
     $(".control.back").show();
     switch (selectedStep) {
         case 5:
-            $stepform.append($('<div class="container valign"> <div class="center-align large bold dgrey-text"> Заполните форму и получите примеры выполненных работ со&nbsp;стоимостью реализации! </div> <div class="input-field"> <input type="text" id="contact_name" placeholder="Олег" /> </div> <div class="input-field"> <input type="text" id="contact_email" placeholder="OLEG@pochta.Ru" /> </div> <div class="input-field"> <input type="text" id="contact_phone" placeholder="+7 (911) 299 22 11" /> <div class="accent-text valid-message center-align">Введите корректный номер</div> </div> </div>'));
+            $stepform.append($('<div class="container contacts valign"> <div class="dgrey-text"> ' +
+
+                '<p class="large accent-text bold"> Заполните форму и получите: </p> <ul class="browser-default left-align "> <li>Каталог проектов</li> <li>Примеры реализации проектов со стоимостью и сроками</li> </ul>'
+
+                + ' </div> <div class="input-field"> <input type="text" id="contact_name" placeholder="Олег" /> </div> <div class="input-field"> <input type="text" id="contact_email" placeholder="OLEG@pochta.Ru" /> </div> <div class="input-field"> <input type="text" id="contact_phone" placeholder="+7 (911) 299 22 11" /> <div class="accent-text valid-message center-align">Введите корректный номер</div> </div> </div>'));
             $("#contact_phone").keypress(function (key, sender) {
                 $("#contact_phone").css("border", "inset 0px red");
                 $(".valid-message").hide();
@@ -140,7 +149,7 @@ var initializeCurrentStepForm = function () {
         case 6:
             return;
         case 1:
-        $(".control.back").hide();
+            $(".control.back").hide();
         case 2:
             var anyChecked = false;
             steps[selectedStep - 1].controls.forEach(function (control) {
