@@ -31,12 +31,20 @@
     font-weight: 100 !important;
 }
 
+.nowrap {
+    white-space: nowrap;
+}
+
 .uppercase {
     text-transform: uppercase !important;
 }
 
 .large {
     font-size: 1.4em;
+}
+
+.small {
+    font-size: .8em !important;
 }
 
 .lgreen {
@@ -64,27 +72,6 @@
 .accent-text {
     color: #d6001f;
 }
-
-.step-wizard .content .subtotals {
-    position: absolute;
-    left: 66.66%;
-    width: 33.33%;
-    padding: 20pt;
-    min-height: 460pt;
-    box-shadow: -1px 0px 5px rgba(0, 0, 0, .3);
-}
-
-.step-wizard .content .subtotals p:not(.bold) {
-    font-size: .8em;
-    margin: .6em 0;
-}
-
-.step-wizard .content .subtotals p:not(.bold) span {
-    display: inline-block;
-    width: calc(100% - 40px);
-}
-
-.step-wizard .content .subtotals p.lgreen-text {}
 
 /* GENERAL  */
 
@@ -157,6 +144,13 @@ header a {
 
 /* MAIN */
 
+.welcome .valign-wrapper,
+.step-wizard .content,
+.step-wizard .content .step-form,
+.step-wizard .content .subtotals {
+    min-height: 500pt;
+}
+
 main {
     padding: 80pt 0;
     width: 100%;
@@ -171,7 +165,6 @@ main {
 
 .welcome .valign-wrapper {
     width: 100%;
-    min-height: 460pt;
     margin-top: 60pt;
     background-color: #f2f2f2;
     box-shadow: 0 0 25px 10px rgba(0, 0, 0, .3);
@@ -199,6 +192,7 @@ main {
     font-size: 15pt;
     margin-bottom: 10pt;
 }
+
 .contacts p {
     margin-bottom: 10pt;
 }
@@ -290,7 +284,6 @@ main {
 /* step-wizard-content */
 
 .step-wizard .content {
-    min-height: 460pt;
     position: relative;
     width: 100%;
     background-color: #dfdfdf;
@@ -301,27 +294,12 @@ main {
     font-size: large;
     height: 40pt;
     line-height: 40pt;
-    position: absolute;
     bottom: 0;
-}
-
-.step-wizard .content button.control.back {
-    left: 0;
-    width: 66.66%;
-}
-
-.step-wizard .content button.control.forward {
-    right: 0;
-    width: 33.33%;
 }
 
 /* step-form */
 
 .step-wizard .content .step-form {
-    position: absolute;
-    left: 0;
-    width: 66.66%;
-    min-height: 460pt;
     padding: 20pt;
 }
 
@@ -343,11 +321,7 @@ main {
 /* subtotals */
 
 .step-wizard .content .subtotals {
-    position: absolute;
-    left: 66.66%;
-    width: 33.33%;
     padding: 20pt;
-    min-height: 460pt;
     box-shadow: -1px 0px 5px rgba(0, 0, 0, .3);
 }
 
@@ -418,4 +392,223 @@ main {
 .thanks p a img:hover {
     transition: .15s;
     filter: grayscale(0);
+}
+
+.right-side {
+    transition: .5s;
+    position: absolute;
+    width: 33.333%;
+    left: 66.666%;
+}
+
+.left-side {
+    transition: .5s;
+    position: absolute;
+    width: 66.666%;
+    left: 0;
+}
+
+.alt.right-side {
+    transition: .5s;
+    position: absolute;
+    width: 66.666%;
+    left: 33.333%;
+}
+
+.alt.left-side {
+    transition: .5s;
+    position: absolute;
+    width: 33.333%;
+    left: 0;
+}
+
+@media screen and (max-width: 903px) {
+    header div.container {
+        width: 100%;
+    }
+    main>div.container {
+        width: 100%;
+    }
+    .right-side {
+        width: 40%;
+        left: 60%;
+    }
+    .left-side {
+        width: 60%;
+        left: 0;
+    }
+    .alt.right-side {
+        width: 60%;
+        left: 40%;
+    }
+    .alt.left-side {
+        width: 40%;
+        left: 0;
+    }
+    .step-wizard .tracker .tracker-item img {
+        height: 40pt;
+        width: 40pt;
+        margin-bottom: -10pt;
+    }
+    .step-wizard .tracker .tracker-item p {
+        font-size: 8pt;
+    }
+    .step-wizard .tracker .tracker-item:not(:first-child)::after {
+        width: 50%;
+        height: 1pt;
+    }
+    .step-wizard .content .step-form>*:not(:last-child) {
+        margin-bottom: 5pt;
+    }
+}
+
+@media screen and (max-width: 725px) {
+    header {
+        height: 25pt;
+        padding: 2.5pt;
+    }
+    header img {
+        margin: 4pt 0;
+        height: 12pt;
+        line-height: 20pt;
+    }
+    header a {
+        font-size: 12pt;
+        line-height: 20pt;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    header {
+        height: 20pt;
+        padding: 2.5pt;
+    }
+    header img {
+        margin: 2pt 0;
+        height: 10pt;
+        line-height: 14pt;
+    }
+    header a {
+        font-size: 9pt;
+        line-height: 15pt;
+    }
+    main {
+        padding: 40pt 0 0 0;
+        min-height: 150pt;
+        background-size: auto 150pt;
+    }
+    .right-side,
+    .alt.right-side {
+        position: relative;
+        width: 100%;
+        left: 0;
+    }
+    .left-side,
+    .alt.left-side {
+        position: relative;
+        width: 100%;
+        left: 0;
+    }
+    .step-wizard .content button.control.back {
+        display: none !important;
+    }
+    .step-wizard {
+        overflow: hidden;
+    }
+    .step-wizard .tracker {
+        position: relative;
+        width: 500%;
+        right: 0%;
+    }
+    .step-wizard .tracker .tracker-item {
+        display: none;
+    }
+    .step-wizard .tracker .tracker-item.current {
+        display: inline-block;
+    }
+    .step-wizard .tracker .tracker-item img {
+        height: 80pt;
+        width: 80pt;
+        margin-bottom: -20pt;
+    }
+    .step-wizard .tracker .tracker-item p {
+        font-size: 14pt;
+    }
+    .step-wizard .tracker .tracker-item:not(:first-child)::after {
+        height: 0;
+    }
+    .step-wizard .content,
+    .step-wizard .content .subtotals {
+        min-height: 0;
+    }
+    .step-wizard .content .step-form,
+    .welcome .valign-wrapper {
+        min-height: 350pt;
+    }
+    .welcome .valign-wrapper * {
+        line-height: 1.2em;
+    }
+    .welcome .valign-wrapper ul {
+        margin-left: 10pt;
+        text-align: left;
+    }
+    .welcome .valign-wrapper ul li {
+        margin-left: 10pt;
+        font-size: .8em;
+        line-height: 1.2em;
+        margin-bottom: 8pt;
+        white-space: normal;
+    }
+    .welcome .valign-wrapper p:first-child {
+        font-size: 1.2em;
+        line-height: 1.4em;
+        margin-bottom: 15pt;
+    }
+    .welcome .valign-wrapper p:not(:first-child) {
+        font-size: .9em;
+        line-height: 1.2em;
+        margin-bottom: 14pt;
+    }
+    .welcome .valign-wrapper .start-button {
+        height: 25pt;
+        font-size: .8em;
+        white-space: nowrap;
+        line-height: 25pt;
+        padding: 0 15pt;
+        margin-top: 20pt;
+    }
+    /* step-form */
+    .step-wizard .content .step-form {
+        padding: 10pt;
+    }
+    .step-wizard .content .step-form>*:not(:last-child) {
+        margin-bottom: 5pt;
+    }
+    .step-wizard .content .step-form .group-name {
+        font-size: 1em;
+    }
+    .step-wizard .content .step-form .subheader {
+        font-size: 1.2em;
+    }
+    /* subtotals */
+    .step-wizard .content .subtotals {
+        padding: 10pt;
+    }
+    .step-wizard .content .subtotals *:not(.currentStep) {
+        display: none;
+    }
+    .step-wizard .content .subtotals p.currentStep:not(:last-child) {
+        display: inline-block;
+        width: 50%;
+        margin-bottom: 5pt;
+    }
+    .step-wizard .content .subtotals p:last-child::before {
+        content: "ИТОГО: ";
+        font-size: .8em;
+        position: absolute;
+        left: 10pt;
+    }
+    label>span:last-child {
+        float: right;
+    }
 }

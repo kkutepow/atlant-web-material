@@ -8,7 +8,7 @@ var reach = function (goal, params) {
         params = {};
     }
     yaCounter47830858.reachGoal(goal, params, function () {
-        console.log("YaCounter: the goal '" + goal + "' has been reached");
+        //console.log("YaCounter: the goal '" + goal + "' has been reached");
     });
 };
 
@@ -24,7 +24,7 @@ var initializeComponents = function () {
         var goalName = $(event.currentTarget).attr("data-info") + "_Social_Direct";
         reach(goalName);
     });
-    
+
     $(".start-button").click(function () {
         $(".welcome").fadeOut("left");
         $(".step-wizard").fadeIn(150);
@@ -38,20 +38,13 @@ var initializeComponents = function () {
     $(".control.forward").click(function () {
         selectedStep = Math.min(6, ++selectedStep);
         if (selectedStep === 5) {
-            $(".step-form").animate({
-                left: "33.33%",
-                width: "66.66%"
-            }, 500);
-            $(".subtotals").animate({
-                left: 0,
-                width: "33.33%"
-            }, 500);
-            $(".control.back").animate({
-                width: "33.33%"
-            }, 500);
-            $(".control.forward").animate({
-                width: "66.66%"
-            }, 500);
+            $(".subtotals").addClass("alt left-side");
+            $(".subtotals").removeClass("right-side");
+            $(".step-form").addClass("alt right-side");
+            $(".step-form").removeClass("left-side");
+            $(".control.back").addClass("alt");
+            $(".control.forward").addClass("alt");
+
             $(".control.forward").removeClass("accent");
             $(".control.forward").addClass("lgreen");
             $(".step-form").addClass("valign-wrapper");
@@ -76,20 +69,13 @@ var initializeComponents = function () {
     $(".control.back").click(function () {
         selectedStep = Math.max(1, --selectedStep);
         if (selectedStep === 4) {
-            $(".subtotals").animate({
-                left: "66.66%",
-                width: "33.33%"
-            }, 500);
-            $(".step-form").animate({
-                left: 0,
-                width: "66.66%"
-            }, 500);
-            $(".control.back").animate({
-                width: "66.66%"
-            }, 500);
-            $(".control.forward").animate({
-                width: "33.33%"
-            }, 500);
+            $(".subtotals").removeClass("alt left-side");
+            $(".subtotals").addClass("right-side");
+            $(".step-form").removeClass("alt right-side");
+            $(".step-form").addClass("left-side");
+            $(".control.back").removeClass("alt");
+            $(".control.forward").removeClass("alt");
+
             $(".control.forward").removeClass("lgreen");
             $(".control.forward").addClass("accent");
             $(".step-form").removeClass("valign-wrapper");
@@ -116,6 +102,7 @@ var initializeTracker = function () {
         }
         $(".tracker").append($item);
     });
+    $($(".tracker .tracker-item.selected")[selectedStep - 1]).addClass("current");
 };
 
 var initializeCurrentStepForm = function () {
@@ -124,16 +111,12 @@ var initializeCurrentStepForm = function () {
     $(".control.back").show();
     switch (selectedStep) {
         case 5:
-            $stepform.append($('<div class="container contacts valign"> <div class="dgrey-text"> ' +
-
-                '<p class="large accent-text bold"> Заполните форму и получите: </p> <ul class="browser-default left-align "> <li>Каталог проектов</li> <li>Примеры реализации проектов со стоимостью и сроками</li> </ul>'
-
-                + ' </div> <div class="input-field"> <input type="text" id="contact_name" placeholder="Олег" /> </div> <div class="input-field"> <input type="text" id="contact_email" placeholder="OLEG@pochta.Ru" /> </div> <div class="input-field"> <input type="text" id="contact_phone" placeholder="+7 (911) 299 22 11" /> <div class="accent-text valid-message center-align">Введите корректный номер</div> </div> </div>'));
+            $stepform.append($('<div class="container contacts valign"> <div class="dgrey-text"> ' + '<p class="large accent-text bold"> Заполните форму и получите: </p> <ul class="browser-default left-align "> <li>Каталог проектов</li> <li>Примеры реализации проектов со стоимостью и сроками</li> </ul>' + ' </div> <div class="input-field"> <input type="text" id="contact_name" placeholder="Олег" /> </div> <div class="input-field"> <input type="text" id="contact_email" placeholder="OLEG@pochta.Ru" /> </div> <div class="input-field"> <input type="text" id="contact_phone" placeholder="+7 (911) 299 22 11" /> <div class="accent-text valid-message center-align">Введите корректный номер</div> </div> </div>'));
             $("#contact_phone").keypress(function (key, sender) {
                 $("#contact_phone").css("border", "inset 0px red");
                 $(".valid-message").hide();
                 if (key.target.value.length === 0 && key.charCode === 56) return false;
-                //console.log(key.target.value);
+                ////console.log(key.target.value);
             });
             var phones = [{ "mask": "+7 (8##) ###-####" }];
             $('#contact_phone').inputmask({
@@ -155,7 +138,7 @@ var initializeCurrentStepForm = function () {
             steps[selectedStep - 1].controls.forEach(function (control) {
                 control.items.forEach(function (item) {
                     anyChecked = anyChecked || item.checked;
-                    console.log(anyChecked);
+                    //console.log(anyChecked);
                 })
             })
             $(".control.forward").prop("disabled", !anyChecked);
@@ -169,11 +152,19 @@ var initializeCurrentStepForm = function () {
     var $header = $("<div></div>").addClass("subheader").text(steps[selectedStep - 1].description);
     $stepform.append($header);
 
+    if (steps[selectedStep - 1].subdescription) {
+        var $subheader = $("<div></div>").addClass("subheader thin small").text("* " + steps[selectedStep - 1].subdescription);
+        $stepform.append($subheader);
+    }
+
     stepControls.forEach(function (control) {
         control.items.forEach(function (item) {
             var $item = null;
             switch (item.type) {
                 case "legend":
+                    $item = $("<div></div>").addClass("group-name").text(item.value);
+                    break;
+                case "number":
                     $item = $("<div></div>").addClass("group-name").text(item.value);
                     break;
                 case "radio":
@@ -230,7 +221,7 @@ var updateSubtotals = function () {
     $subtotals.empty();
     steps.forEach(function (step, stepIndex) {
         if (stepIndex > 3) return;
-        $subtotals.append($("<p></p>").addClass("bold " + (selectedStep - 1 === stepIndex ? "accent-text" : (step.passed ? " lgreen-text " : " grey-text"))).text(step.name))
+        $subtotals.append($("<p></p>").addClass(selectedStep - 1 === stepIndex ? "currentStep" : "").addClass("bold " + (selectedStep - 1 === stepIndex ? "accent-text" : (step.passed ? " lgreen-text " : " grey-text"))).text(step.name))
         if (Array.isArray(step.controls)) {
             var mulprice = step.passed ? 1 : 0;
             var price = 0;
@@ -251,14 +242,15 @@ var updateSubtotals = function () {
             if (!selected) {
                 $subtotals.append($("<p></p>").addClass("accent-text").append("<span>Ничего не выбрано</span>").append("<i class='material-icons tiny left'>remove</i>"))
             }
-            $subtotals.append($("<p></p>").addClass((selectedStep - 1 === stepIndex ? "accent-text" : (step.passed ? " lgreen-text " : " grey-text")) + " bold right-align").text(convertToString((step.multiplyPrice ? mulprice : price), stepIndex === 1)))
+            $subtotals.append($("<p></p>").addClass(selectedStep - 1 === stepIndex ? "currentStep" : "").addClass("nowrap " + (selectedStep - 1 === stepIndex ? "accent-text" : (step.passed ? " lgreen-text " : " grey-text")) + " bold right-align").text(convertToString((step.multiplyPrice ? mulprice : price), stepIndex === 1)))
         }
     });
     $subtotals.append($("<p></p>").addClass("divider"))
-    $subtotals.append($("<p></p>").addClass("lgreen-text bold large right-align").text(convertToString(totalprice)))
+    $subtotals.append($("<p></p>").addClass("lgreen-text currentStep nowrap bold large right-align").text(convertToString(totalprice)))
 };
 
 var updateTracker = function () {
+    $(".current").removeClass("current");
     $(".tracker .tracker-item").each(function (index, item) {
         if (index < selectedStep && !$(item).hasClass("selected")) {
             $(item).addClass("selected");
@@ -267,6 +259,8 @@ var updateTracker = function () {
             $(item).removeClass("selected");
         }
     });
+    $($(".tracker .tracker-item.selected")[selectedStep - 1]).addClass("current");
+
 };
 
 var validContacts = function () {
@@ -280,21 +274,30 @@ var validContacts = function () {
 };
 
 var collectDataFromSteps = function () {
-    var data = {};
-    steps.forEach(function (step) {
+    var data = "";
+    var totalprice = 0;
+    steps.forEach(function (step, stepIndex) {
         if (Array.isArray(step.controls)) {
-            data[step.name] = [];
+            data += '"' + step.name + '": ';
+            var mulprice = step.passed ? 1 : 0;
+            var price = 0;
+            var items = [];
             step.controls.forEach(function (control) {
                 if (Array.isArray(control.items)) {
                     control.items.forEach(function (item) {
                         if (item.checked) {
-                            data[step.name].push(item.label);
+                            price += item.value;
+                            mulprice *= item.value;
+                            items.push(item.label);
                         }
                     })
                 }
-            })
+            });
+            totalprice += (step.multiplyPrice ? mulprice : price);
+            data += (items.length > 0 ? items.join(", ") : "ничего не выбрано") + " - " + convertToString(step.multiplyPrice ? mulprice : price, stepIndex === 1) + "\r\n";
         }
     });
+    data += "\r\nИтого: " + convertToString(totalprice);
     return data;
 };
 
@@ -323,6 +326,14 @@ var convertToString = function (num, fixed) {
 };
 
 var sendContacts = function (callback) {
+
+    var dataHtml = $("#contact_phone").val() + "\r\n"
+        + $("#contact_email").val() + "\r\n"
+        + $("#contact_name").val() + "\r\n\r\n"
+        + collectDataFromSteps();
+
+    //console.log(dataHtml);
+
     var validerror = validContacts();
     if (validerror) {
         $("#contact_phone").css("border", "inset thin red");
@@ -330,11 +341,6 @@ var sendContacts = function (callback) {
         return;
     }
     reach("Lead_Confirmed");
-
-    var dataHtml = $("#contact_phone").val() + "\r\n"
-        + $("#contact_email").val() + "\r\n"
-        + $("#contact_name").val() + "\r\n"
-        + JSON.stringify(collectDataFromSteps(), null, 3);
 
     $.ajax({
         method: "post",
@@ -344,7 +350,7 @@ var sendContacts = function (callback) {
             M.toast({
                 html: 'Произошли технические неполадки. Попробуйте еще раз'
             });
-            //console.log("Failed", res);
+            ////console.log("Failed", res);
         },
         success: function success(res) {
             if (callback) {
@@ -358,6 +364,7 @@ var selectedStep = 1;
 var steps = [{
     "name": "Выбор участка",
     "description": "Выберите район, в котором хотите приобрести участок",
+    "subdescription": "Стоимость указана за 4 сотки земли",
     "img": "images/Атлант-01.png",
     "passed": false,
     "controls": [
@@ -369,28 +376,28 @@ var steps = [{
                 type: "radio",
                 index: 0,
                 label: "Прикубанский округ",
-                value: 300000,
+                value: 1200000,
                 group: "region",
                 checked: false
             }, {
                 type: "radio",
                 index: 1,
                 label: "Центральный округ",
-                value: 2000000,
+                value: 800000,
                 group: "region",
                 checked: false
             }, {
                 type: "radio",
                 index: 2,
                 label: "Западный округ",
-                value: 2000000,
+                value: 8000000,
                 group: "region",
                 checked: false
             }, {
                 type: "radio",
                 index: 3,
                 label: "Карасунский округ",
-                value: 1000000,
+                value: 4000000,
                 group: "region",
                 checked: false
             }, {
@@ -400,28 +407,28 @@ var steps = [{
                 type: "radio",
                 index: 4,
                 label: "0-15 км",
-                value: 200000,
+                value: 800000,
                 group: "region",
                 checked: false
             }, {
                 type: "radio",
                 index: 5,
                 label: "15-35 км",
-                value: 100000,
+                value: 400000,
                 group: "region",
                 checked: false
             }, {
                 type: "radio",
                 index: 6,
                 label: "35-100 км",
-                value: 50000,
+                value: 200000,
                 group: "region",
                 checked: false
             }, {
                 type: "radio",
                 index: 7,
                 label: "Побережье Черного моря",
-                value: 300000,
+                value: 1200000,
                 group: "region",
                 checked: false
             }, {
