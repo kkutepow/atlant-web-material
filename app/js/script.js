@@ -2,6 +2,7 @@
 
 var yaCounter47830858 = new Ya.Metrika({ id: 47830858, triggerEvent: true });
 var mobileConfirmed = false;
+var step3passed = false; 
 
 var reach = function (goal, params) {
     if (!params) {
@@ -32,6 +33,7 @@ var initializeComponents = function () {
 
         initializeTracker();
         initializeCurrentStepForm();
+        updateTracker();
         updateSubtotals();
     });
 
@@ -64,6 +66,9 @@ var initializeComponents = function () {
         initializeCurrentStepForm();
         updateTracker();
         updateSubtotals();
+        $("body, html").animate({
+            scrollTop: 0
+        }, 250);
     });
 
     $(".control.back").click(function () {
@@ -143,6 +148,9 @@ var initializeCurrentStepForm = function () {
             })
             $(".control.forward").prop("disabled", !anyChecked);
             break;
+        case 3:
+            $(".control.forward").prop("disabled", !step3passed);
+            break;
         default:
             break;
     }
@@ -194,7 +202,9 @@ var initializeCurrentStepForm = function () {
         var i = $(event.currentTarget).attr("data-index");
         var type = $(event.currentTarget).attr("type");
         $(".control.forward").prop("disabled", false);
-
+        if (selectedStep === 3) {
+            step3passed = true;
+        }
         steps.forEach(function (step) {
             if (Array.isArray(step.controls)) {
                 step.controls.forEach(function (control) {
@@ -364,14 +374,14 @@ var selectedStep = 1;
 var steps = [{
     "name": "Выбор участка",
     "description": "Выберите район, в котором хотите приобрести участок",
-    "subdescription": "Стоимость указана за 4 сотки земли",
+    "subdescription": "Указана средняя стоимость 4 соток земли",
     "img": "images/Атлант-01.png",
     "passed": false,
     "controls": [
         {
             "items": [{
                 type: "legend",
-                value: "За городом"
+                value: "В черте города"
             }, {
                 type: "radio",
                 index: 0,
@@ -383,7 +393,7 @@ var steps = [{
                 type: "radio",
                 index: 1,
                 label: "Центральный округ",
-                value: 800000,
+                value: 8000000,
                 group: "region",
                 checked: false
             }, {

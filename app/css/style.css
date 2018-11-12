@@ -75,14 +75,12 @@
 
 /* GENERAL  */
 
-html,
-body {
+html, body {
     width: 100%;
     height: 100%;
 }
 
-button,
-a {
+button, a {
     cursor: pointer;
 }
 
@@ -144,10 +142,7 @@ header a {
 
 /* MAIN */
 
-.welcome .valign-wrapper,
-.step-wizard .content,
-.step-wizard .content .step-form,
-.step-wizard .content .subtotals {
+.welcome .valign-wrapper, .step-wizard .content, .step-wizard .content .step-form, .step-wizard .content .subtotals {
     min-height: 500pt;
 }
 
@@ -343,9 +338,7 @@ main {
     margin: 10px auto;
 }
 
-.input-field input,
-.input-field input:focus,
-.input-field input:active {
+.input-field input, .input-field input:focus, .input-field input:active {
     background-color: white !important;
     /* font-weight: 100;  */
     padding: 2px 15px !important;
@@ -497,20 +490,25 @@ main {
         min-height: 150pt;
         background-size: auto 150pt;
     }
-    .right-side,
-    .alt.right-side {
+    body {
+        background-color: #f2f2f2;
+    }
+    .left-side, .alt.right-side {
         position: relative;
         width: 100%;
         left: 0;
     }
-    .left-side,
-    .alt.left-side {
-        position: relative;
+    .step-wizard .content button.control.forward, .right-side, .alt.left-side {
+        position: fixed;
         width: 100%;
         left: 0;
+        bottom: 0;
     }
     .step-wizard .content button.control.back {
         display: none !important;
+    }
+    .step-wizard .content button.control.forward {
+        box-shadow: -1px 0px 5px rgba(0, 0, 0, .3);
     }
     .step-wizard {
         overflow: hidden;
@@ -537,12 +535,11 @@ main {
     .step-wizard .tracker .tracker-item:not(:first-child)::after {
         height: 0;
     }
-    .step-wizard .content,
-    .step-wizard .content .subtotals {
+    .step-wizard .content, .step-wizard .content .subtotals {
         min-height: 0;
     }
-    .step-wizard .content .step-form,
-    .welcome .valign-wrapper {
+    .step-wizard .content .step-form, .welcome .valign-wrapper {
+        box-shadow: 0 0 0 rgba(0, 0, 0, .3);
         min-height: 350pt;
     }
     .welcome .valign-wrapper * {
@@ -579,7 +576,7 @@ main {
     }
     /* step-form */
     .step-wizard .content .step-form {
-        padding: 10pt;
+        padding: 10pt 10pt 110pt 10pt;
     }
     .step-wizard .content .step-form>*:not(:last-child) {
         margin-bottom: 5pt;
@@ -592,7 +589,7 @@ main {
     }
     /* subtotals */
     .step-wizard .content .subtotals {
-        padding: 10pt;
+        padding: 10pt 10pt 45pt 10pt;
     }
     .step-wizard .content .subtotals *:not(.currentStep) {
         display: none;
