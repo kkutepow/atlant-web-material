@@ -9,7 +9,7 @@ var reach = function (goal, params) {
         params = {};
     }
     yaCounter47830858.reachGoal(goal, params, function () {
-        //console.log("YaCounter: the goal '" + goal + "' has been reached");
+        console.log("YaCounter: the goal '" + goal + "' has been reached");
     });
 };
 
