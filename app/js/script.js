@@ -438,6 +438,8 @@ var steps = [{
                 group: "region",
                 checked: false
             }, {
+                type: "divider"
+            },{
                 type: "legend",
                 value: "Тип поселения"
             }, {
@@ -462,7 +464,7 @@ var steps = [{
         }
     ]
 }, {
-    "name": "Строительство",
+    "name": "Жилье",
     "groups": 5,
     "description": "Выберите конфигурацию вашего будущего дома",
     "img": "images/Атлант-03.png",
@@ -587,7 +589,7 @@ var steps = [{
     }
     ]
 }, {
-    "name": "Документация",
+    "name": "Инфраструктура",
     "description": "Выберите объекты инфраструктуры, которые для вас важны",
     "img": "images/Атлант-04.png",
     "passed": false,
