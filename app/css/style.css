@@ -525,7 +525,7 @@ main {
     }
     .step-wizard .tracker {
         position: relative;
-        width: 500%;
+        width: 400%;
         right: 0%;
     }
     .step-wizard .tracker .tracker-item {
@@ -600,6 +600,7 @@ main {
     /* subtotals */
     .step-wizard .content .subtotals {
         padding: 10pt 10pt 45pt 10pt;
+        display:none;
     }
     .step-wizard .content .subtotals *:not(.currentStep) {
         display: none;
