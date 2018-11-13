@@ -2,14 +2,15 @@
 
 var yaCounter47830858 = new Ya.Metrika({ id: 47830858, triggerEvent: true });
 var mobileConfirmed = false;
-var step3passed = false; 
+var step3passed = false;
 
 var reach = function (goal, params) {
     if (!params) {
         params = {};
     }
+    goal = "Sales_" + goal;
     yaCounter47830858.reachGoal(goal, params, function () {
-        console.log("YaCounter: the goal '" + goal + "' has been reached");
+        // console.log("YaCounter: the goal '" + goal + "' has been reached");
     });
 };
 
@@ -27,8 +28,8 @@ var initializeComponents = function () {
     });
 
     $(".start-button").click(function () {
-        $(".welcome").fadeOut("left");
-        $(".step-wizard").fadeIn(150);
+        $(".welcome").slideUp();
+        $(".step-wizard").show("slow");
         reach("Wizard_Opened");
 
         initializeTracker();
@@ -38,8 +39,8 @@ var initializeComponents = function () {
     });
 
     $(".control.forward").click(function () {
-        selectedStep = Math.min(6, ++selectedStep);
-        if (selectedStep === 5) {
+        selectedStep = Math.min(5, ++selectedStep);
+        if (selectedStep === 4) {
             $(".subtotals").addClass("alt left-side");
             $(".subtotals").removeClass("right-side");
             $(".step-form").addClass("alt right-side");
@@ -51,13 +52,13 @@ var initializeComponents = function () {
             $(".control.forward").addClass("lgreen");
             $(".step-form").addClass("valign-wrapper");
             $(".step-wizard .col.m8").addClass("right");
-            reach("Step4_Passed");
-        } else if (selectedStep === 6) {
+            reach("Step3_Passed");
+        } else if (selectedStep === 5) {
             sendContacts(function () {
                 $(".step-wizard .tracker").animate({ opacity: 0 }, 150);
                 $(".step-wizard .content").empty();
                 $(".step-wizard .content").addClass("lgrey valign-wrapper");
-                $(".step-wizard .content").append(' <div class="valign thanks container"> <p class="center-align large uppercase"> Благодарим за проявленный интерес </p> <p class="thin center-align"> В ближайшее время вам вышлют примеры наших работ со стоимостью реализации, а пока узнайте больше о нашей компании в удобной для вас социальной сети </p> <p class="thin center-align"> <a class="socialweb" data-info="VK" href="https://vk.com/atlant_23"> <img src="images/social/if_vk_3780548.png" alt=""> </a> <a class="socialweb" data-info="OK" href="https://ok.ru/atlantdevelopment"> <img src="images/social/if_ok_3780540.png" alt=""> </a> <a class="socialweb" data-info="FB" href="https://www.facebook.com/domvkrasnodare/"> <img src="images/social/if_facebook_3780531.png" alt=""> </a> <a class="socialweb" data-info="IG" href="https://www.instagram.com/atlantkrd/"> <img src="images/social/if_instagram-round-flat_1620009.png" alt=""> </a> <a class="socialweb" data-info="YT" href="https://www.youtube.com/channel/UCVeIvsGzDhIuz77N6OuKlKw"> <img src="images/social/if_youtube_3780555.png" alt=""> </a> </p> </div> ');
+                $(".step-wizard .content").append(' <div class="valign thanks container"> <p class="center-align large uppercase"> Благодарим за проявленный интерес </p> <p class="thin center-align"> В ближайшее время вам вышлют базу недвижимости на продажу, а пока узнайте больше о нашей компании в удобной для вас социальной сети </p> <p class="thin center-align"> <a class="socialweb" data-info="VK" href="https://vk.com/atlant_23"> <img src="images/social/if_vk_3780548.png" alt=""> </a> <a class="socialweb" data-info="OK" href="https://ok.ru/atlantdevelopment"> <img src="images/social/if_ok_3780540.png" alt=""> </a> <a class="socialweb" data-info="FB" href="https://www.facebook.com/domvkrasnodare/"> <img src="images/social/if_facebook_3780531.png" alt=""> </a> <a class="socialweb" data-info="IG" href="https://www.instagram.com/atlantkrd/"> <img src="images/social/if_instagram-round-flat_1620009.png" alt=""> </a> <a class="socialweb" data-info="YT" href="https://www.youtube.com/channel/UCVeIvsGzDhIuz77N6OuKlKw"> <img src="images/social/if_youtube_3780555.png" alt=""> </a> </p> </div> ');
             });
             return;
         } else {
@@ -73,7 +74,7 @@ var initializeComponents = function () {
 
     $(".control.back").click(function () {
         selectedStep = Math.max(1, --selectedStep);
-        if (selectedStep === 4) {
+        if (selectedStep === 3) {
             $(".subtotals").removeClass("alt left-side");
             $(".subtotals").addClass("right-side");
             $(".step-form").removeClass("alt right-side");
@@ -110,13 +111,15 @@ var initializeTracker = function () {
     $($(".tracker .tracker-item.selected")[selectedStep - 1]).addClass("current");
 };
 
+var objectsCount = 3;
+
 var initializeCurrentStepForm = function () {
     var $stepform = $(".step-form");
     $stepform.empty();
     $(".control.back").show();
     switch (selectedStep) {
-        case 5:
-            $stepform.append($('<div class="container contacts valign"> <div class="dgrey-text"> ' + '<p class="large accent-text bold"> Заполните форму и получите: </p> <ul class="browser-default left-align "> <li>Каталог проектов</li> <li>Примеры реализации проектов со стоимостью и сроками</li> </ul>' + ' </div> <div class="input-field"> <input type="text" id="contact_name" placeholder="Олег" /> </div> <div class="input-field"> <input type="text" id="contact_email" placeholder="OLEG@pochta.Ru" /> </div> <div class="input-field"> <input type="text" id="contact_phone" placeholder="+7 (911) 299 22 11" /> <div class="accent-text valid-message center-align">Введите корректный номер</div> </div> </div>'));
+        case 4:
+            $stepform.append($('<div class="container contacts valign"> <div class="dgrey-text center"> <p class="large accent-text bold"> По вашим параметрам подобрано </p> <p class="large lgreen-text bold"> <span class="large">' + objectsCount + '</span> объекта </p> <p class="large bold"> Заполните форму ниже, чтобы получить доступ к базе объектов </p> <p class="small accent-text italic"> * Базу высылаем только на реальные данные</p> <br/> </div> <div class="input-field"> <input type="text" id="contact_name" placeholder="Олег" /> </div> <div class="input-field"> <input type="text" id="contact_email" placeholder="OLEG@pochta.Ru" /> </div> <div class="input-field"> <input type="text" id="contact_phone" placeholder="+7 (911) 299 22 11" /> <div class="accent-text valid-message center-align">Введите корректный номер</div> </div> </div>'));
             $("#contact_phone").keypress(function (key, sender) {
                 $("#contact_phone").css("border", "inset 0px red");
                 $(".valid-message").hide();
@@ -134,95 +137,93 @@ var initializeCurrentStepForm = function () {
                 }
             });
             return;
-        case 6:
+        case 5:
             return;
         case 1:
             $(".control.back").hide();
         case 2:
-            var anyChecked = false;
-            steps[selectedStep - 1].controls.forEach(function (control) {
-                control.items.forEach(function (item) {
-                    anyChecked = anyChecked || item.checked;
-                    //console.log(anyChecked);
-                })
-            })
-            $(".control.forward").prop("disabled", !anyChecked);
-            break;
         case 3:
-            $(".control.forward").prop("disabled", !step3passed);
+            var stepControls = steps[selectedStep - 1].controls;
+            steps[selectedStep - 1].passed = true;
+
+            var $header = $("<div></div>").addClass("subheader").text(steps[selectedStep - 1].description);
+            $stepform.append($header);
+
+            if (steps[selectedStep - 1].subdescription) {
+                var $subheader = $("<div></div>").addClass("subheader thin small").text("* " + steps[selectedStep - 1].subdescription);
+                $stepform.append($subheader);
+            }
+
+            stepControls.forEach(function (control) {
+                control.items.forEach(function (item) {
+                    var $item = null;
+                    switch (item.type) {
+                        case "legend":
+                            $item = $("<div></div>").addClass("group-name").text(item.value);
+                            break;
+                        case "number":
+                            $item = $("<div></div>").addClass("group-name").text(item.value);
+                            break;
+                        case "radio":
+                        case "checkbox":
+                            $item = $("<label></label>")
+                                .append(
+                                    $("<input></input>")
+                                        .addClass("filled-in with-gap")
+                                        .attr("type", item.type)
+                                        .prop("checked", item.checked)
+                                        .attr("name", item.group + (item.type === "radio" ? "" : "[]"))
+                                        .attr("value", item.value)
+                                        .attr("data-index", item.index)
+                                ).append($("<span></span>").text(item.label))
+                                .append($("<span class='grey-text'></span>").text(item.additionalLabel));
+                            break;
+                        case "divider":
+                            $item = $("<div></div>").addClass("divider");
+                            break;
+                    }
+                    $stepform.append($("<div></div>").append($item));
+                });
+            });
+
+            $("[type='radio'],[type='checkbox']").change(function (event, sender) {
+                var group = $(event.currentTarget).attr("name");
+                var i = $(event.currentTarget).attr("data-index");
+                var type = $(event.currentTarget).attr("type");
+                var allChecked = !steps[selectedStep - 1].groups ||
+                    steps[selectedStep - 1].groups - 1 === $("form").serialize().replace(/[^&]/g, "").length;
+                $(".control.forward").prop("disabled", !allChecked);
+                objectsCount = 3 + Math.round(Math.random());
+                if (selectedStep === 3) {
+                    step3passed = true;
+                }
+                steps.forEach(function (step) {
+                    if (Array.isArray(step.controls)) {
+                        step.controls.forEach(function (control) {
+                            if (Array.isArray(control.items)) {
+                                control.items.forEach(function (item) {
+                                    if ("radio" === type && "radio" === item.type && group === item.group) {
+                                        item.checked = (i == item.index);
+                                    }
+                                    if ("checkbox" === type && "checkbox" === item.type && i == item.index) {
+                                        item.checked = !item.checked;
+                                    }
+                                })
+                            }
+                        })
+                    }
+                });
+                updateSubtotals();
+            });
+
+            var allChecked = !steps[selectedStep - 1].groups ||
+                steps[selectedStep - 1].groups - 1 === $("form").serialize().replace(/[^&]/g, "").length;
+
+            $(".control.forward").prop("disabled", !allChecked);
             break;
         default:
             break;
     }
-    var stepControls = steps[selectedStep - 1].controls;
-    steps[selectedStep - 1].passed = true;
-
-    var $header = $("<div></div>").addClass("subheader").text(steps[selectedStep - 1].description);
-    $stepform.append($header);
-
-    if (steps[selectedStep - 1].subdescription) {
-        var $subheader = $("<div></div>").addClass("subheader thin small").text("* " + steps[selectedStep - 1].subdescription);
-        $stepform.append($subheader);
-    }
-
-    stepControls.forEach(function (control) {
-        control.items.forEach(function (item) {
-            var $item = null;
-            switch (item.type) {
-                case "legend":
-                    $item = $("<div></div>").addClass("group-name").text(item.value);
-                    break;
-                case "number":
-                    $item = $("<div></div>").addClass("group-name").text(item.value);
-                    break;
-                case "radio":
-                case "checkbox":
-                    $item = $("<label></label>")
-                        .append(
-                            $("<input></input>")
-                                .addClass("filled-in with-gap")
-                                .attr("type", item.type)
-                                .prop("checked", item.checked)
-                                .attr("name", item.group + (item.type === "radio" ? "" : "[]"))
-                                .attr("value", item.value)
-                                .attr("data-index", item.index)
-                        ).append($("<span></span>").text(item.label))
-                        .append($("<span class='grey-text'></span>").text(item.additionalLabel));
-                    break;
-                case "divider":
-                    $item = $("<div></div>").addClass("divider");
-                    break;
-            }
-            $stepform.append($("<div></div>").append($item));
-        });
-    });
-
-    $("[type='radio'],[type='checkbox']").change(function (event, sender) {
-        var group = $(event.currentTarget).attr("name");
-        var i = $(event.currentTarget).attr("data-index");
-        var type = $(event.currentTarget).attr("type");
-        $(".control.forward").prop("disabled", false);
-        if (selectedStep === 3) {
-            step3passed = true;
-        }
-        steps.forEach(function (step) {
-            if (Array.isArray(step.controls)) {
-                step.controls.forEach(function (control) {
-                    if (Array.isArray(control.items)) {
-                        control.items.forEach(function (item) {
-                            if ("radio" === type && "radio" === item.type && group === item.group) {
-                                item.checked = (i == item.index);
-                            }
-                            if ("checkbox" === type && "checkbox" === item.type && i == item.index) {
-                                item.checked = !item.checked;
-                            }
-                        })
-                    }
-                })
-            }
-        });
-        updateSubtotals();
-    });
 };
 
 var updateSubtotals = function () {
@@ -252,11 +253,11 @@ var updateSubtotals = function () {
             if (!selected) {
                 $subtotals.append($("<p></p>").addClass("accent-text").append("<span>Ничего не выбрано</span>").append("<i class='material-icons tiny left'>remove</i>"))
             }
-            $subtotals.append($("<p></p>").addClass(selectedStep - 1 === stepIndex ? "currentStep" : "").addClass("nowrap " + (selectedStep - 1 === stepIndex ? "accent-text" : (step.passed ? " lgreen-text " : " grey-text")) + " bold right-align").text(convertToString((step.multiplyPrice ? mulprice : price), stepIndex === 1)))
+            // $subtotals.append($("<p></p>").addClass(selectedStep - 1 === stepIndex ? "currentStep" : "").addClass("nowrap " + (selectedStep - 1 === stepIndex ? "accent-text" : (step.passed ? " lgreen-text " : " grey-text")) + " bold right-align").text(convertToString((step.multiplyPrice ? mulprice : price), stepIndex === 1)))
         }
     });
-    $subtotals.append($("<p></p>").addClass("divider"))
-    $subtotals.append($("<p></p>").addClass("lgreen-text currentStep nowrap bold large right-align").text(convertToString(totalprice)))
+    // $subtotals.append($("<p></p>").addClass("divider"))
+    // $subtotals.append($("<p></p>").addClass("lgreen-text currentStep nowrap bold large right-align").text(convertToString(totalprice)))
 };
 
 var updateTracker = function () {
@@ -289,25 +290,26 @@ var collectDataFromSteps = function () {
     steps.forEach(function (step, stepIndex) {
         if (Array.isArray(step.controls)) {
             data += '"' + step.name + '": ';
-            var mulprice = step.passed ? 1 : 0;
-            var price = 0;
+            // var mulprice = step.passed ? 1 : 0;
+            // var price = 0;
             var items = [];
             step.controls.forEach(function (control) {
                 if (Array.isArray(control.items)) {
                     control.items.forEach(function (item) {
                         if (item.checked) {
-                            price += item.value;
-                            mulprice *= item.value;
+                            // price += item.value;
+                            // mulprice *= item.value;
                             items.push(item.label);
                         }
                     })
                 }
             });
-            totalprice += (step.multiplyPrice ? mulprice : price);
-            data += (items.length > 0 ? items.join(", ") : "ничего не выбрано") + " - " + convertToString(step.multiplyPrice ? mulprice : price, stepIndex === 1) + "\r\n";
+            // totalprice += (step.multiplyPrice ? mulprice : price);
+            data += (items.length > 0 ? items.join(", ") : "ничего не выбрано");
+            // + " - " + convertToString(step.multiplyPrice ? mulprice : price, stepIndex === 1) + "\r\n";
         }
     });
-    data += "\r\nИтого: " + convertToString(totalprice);
+    //data += "\r\nИтого: " + convertToString(totalprice);
     return data;
 };
 
@@ -337,12 +339,13 @@ var convertToString = function (num, fixed) {
 
 var sendContacts = function (callback) {
 
-    var dataHtml = $("#contact_phone").val() + "\r\n"
+    var dataHtml = "Заявка (продажи)  \r\n" +
+        $("#contact_phone").val() + "\r\n"
         + $("#contact_email").val() + "\r\n"
         + $("#contact_name").val() + "\r\n\r\n"
         + collectDataFromSteps();
 
-    //console.log(dataHtml);
+    // console.log(dataHtml);
 
     var validerror = validContacts();
     if (validerror) {
@@ -351,7 +354,8 @@ var sendContacts = function (callback) {
         return;
     }
     reach("Lead_Confirmed");
-
+    callback();
+    return;
     $.ajax({
         method: "post",
         url: "send.php",
@@ -373,8 +377,8 @@ var sendContacts = function (callback) {
 var selectedStep = 1;
 var steps = [{
     "name": "Выбор участка",
-    "description": "Выберите район, в котором хотите приобрести участок",
-    "subdescription": "Указана средняя стоимость 4 соток земли",
+    "groups": 2,
+    "description": "Выберите район, в котором хотите приобести жилье",
     "img": "images/Атлант-01.png",
     "passed": false,
     "controls": [
@@ -386,28 +390,24 @@ var steps = [{
                 type: "radio",
                 index: 0,
                 label: "Прикубанский округ",
-                value: 1200000,
                 group: "region",
                 checked: false
             }, {
                 type: "radio",
                 index: 1,
                 label: "Центральный округ",
-                value: 8000000,
                 group: "region",
                 checked: false
             }, {
                 type: "radio",
                 index: 2,
                 label: "Западный округ",
-                value: 8000000,
                 group: "region",
                 checked: false
             }, {
                 type: "radio",
                 index: 3,
                 label: "Карасунский округ",
-                value: 4000000,
                 group: "region",
                 checked: false
             }, {
@@ -417,77 +417,53 @@ var steps = [{
                 type: "radio",
                 index: 4,
                 label: "0-15 км",
-                value: 800000,
                 group: "region",
                 checked: false
             }, {
                 type: "radio",
                 index: 5,
                 label: "15-35 км",
-                value: 400000,
                 group: "region",
                 checked: false
             }, {
                 type: "radio",
                 index: 6,
                 label: "35-100 км",
-                value: 200000,
                 group: "region",
                 checked: false
             }, {
                 type: "radio",
                 index: 7,
                 label: "Побережье Черного моря",
-                value: 1200000,
                 group: "region",
                 checked: false
             }, {
-                type: "divider"
+                type: "legend",
+                value: "Тип поселения"
             }, {
-                type: "radio",
-                index: 9,
-                label: "Участок есть",
-                value: 0,
-                group: "region",
-                checked: false
-            }]
-        }
-    ]
-}, {
-    "name": "Проектирование",
-    "description": "Выберите тип проектирования",
-    "img": "images/Атлант-02.png",
-    "passed": false,
-    "controls": [
-        {
-            "items": [{
                 type: "radio",
                 index: 0,
-                label: "Типовой проект",
-                value: 20000,
-                group: "projects",
+                label: "Новый коттеджный поселок до 2х лет",
+                group: "locality",
                 checked: false
             }, {
                 type: "radio",
                 index: 1,
-                label: "Индивидуальный проект",
-                value: 30000,
-                group: "projects",
+                label: "Развитый коттеджный поселок от 2х лет",
+                group: "locality",
                 checked: false
-            }, {
-                type: "divider"
             }, {
                 type: "radio",
                 index: 2,
-                label: "Проект есть",
-                value: 0,
-                group: "projects",
+                label: "Частный сектор от 5ти лет",
+                group: "locality",
                 checked: false
             }]
         }
     ]
 }, {
     "name": "Строительство",
+    "groups": 5,
     "description": "Выберите конфигурацию вашего будущего дома",
     "img": "images/Атлант-03.png",
     "passed": false,
@@ -500,28 +476,28 @@ var steps = [{
             type: "radio",
             index: 0,
             label: "100-150М2",
-            value: 10,
+
             group: "area",
-            checked: true
+            checked: false
         }, {
             type: "radio",
             index: 1,
             label: "150-200М2",
-            value: 15,
+
             group: "area",
             checked: false
         }, {
             type: "radio",
             index: 2,
             label: "200-250М2",
-            value: 20,
+
             group: "area",
             checked: false
         }, {
             type: "radio",
             index: 3,
             label: ">250М2",
-            value: 25,
+
             group: "area",
             checked: false
         }]
@@ -533,107 +509,133 @@ var steps = [{
             type: "radio",
             index: 0,
             label: "1 этаж",
-            value: 12,
+
             group: "floors",
-            checked: true
+            checked: false
         }, {
             type: "radio",
             index: 1,
             label: "2 этажа",
-            value: 20,
+
             group: "floors",
             checked: false
         }, {
             type: "radio",
             index: 2,
             label: "3 этажа",
-            value: 27,
+
             group: "floors",
             checked: false
-        }]
-    },
-    {
-        "items": [{
+        }, {
             type: "legend",
-            value: "Вариант постройки"
+            value: "Коммуникации"
         }, {
             type: "radio",
             index: 0,
-            label: "Коробка",
-            value: 20000,
-            group: "building",
-            checked: true
+            label: "Газ",
+
+            group: "communication",
+            checked: false
         }, {
             type: "radio",
             index: 1,
-            label: "Предчистовая отделка",
-            value: 25000,
-            group: "building",
+            label: "Электричество",
+
+            group: "communication",
             checked: false
         }, {
             type: "radio",
             index: 2,
-            label: "Дом с ремонтом",
-            value: 32000,
-            group: "building",
+            label: "Электричество + газ",
+
+            group: "communication",
+            checked: false
+        }, {
+            type: "legend",
+            value: "Требования"
+        }, {
+            type: "radio",
+            index: 0,
+            label: "С ремонтом",
+
+            group: "design",
+            checked: false
+        }, {
+            type: "radio",
+            index: 1,
+            label: "Без ремонта",
+
+            group: "design",
+            checked: false
+        }, {
+            type: "divider"
+        }, {
+            type: "radio",
+            index: 0,
+            label: "С мебелью",
+
+            group: "furniture",
+            checked: false
+        }, {
+            type: "radio",
+            index: 1,
+            label: "Без мебели",
+
+            group: "furniture",
             checked: false
         }]
     }
     ]
 }, {
     "name": "Документация",
-    "description": "Выберите вид обязательной документации, оформлением которой будут заниматься наши специалисты",
+    "description": "Выберите объекты инфраструктуры, которые для вас важны",
     "img": "images/Атлант-04.png",
     "passed": false,
     "controls": [
         {
             "items": [{
                 type: "legend",
-                value: "Разрешительная документация"
+                value: "Объекты"
             }, {
                 type: "checkbox",
                 index: 0,
-                label: "Разрешение на строительство",
-                additionalLabel: " (20 000 руб.)",
-                value: 20000,
+                label: "Поликлиника",
+
                 group: "documents",
                 checked: false
             }, {
                 type: "checkbox",
                 index: 1,
-                label: "Разрешение на ввод дома в эксплуатацию",
-                additionalLabel: " (20 000 руб.)",
-                value: 20000,
+                label: "Детский сад",
+
                 group: "documents",
                 checked: false
-            }]
-        },
-        {
-            "items": [{
-                type: "legend",
-                value: "Оформление подключений"
             }, {
                 type: "checkbox",
                 index: 2,
-                label: "Электроснабжение",
-                additionalLabel: " (20 000 руб.)",
-                value: 20000,
+                label: "Школа",
+
                 group: "documents",
                 checked: false
             }, {
                 type: "checkbox",
                 index: 3,
-                label: "Водоснабжение",
-                additionalLabel: " (от 50 000 руб.)",
-                value: 50000,
+                label: "Торговый центр",
+
                 group: "documents",
                 checked: false
             }, {
                 type: "checkbox",
                 index: 4,
-                label: "Газ",
-                additionalLabel: " (от 150 000 руб.)",
-                value: 150000,
+                label: "Парковая зона",
+
+                group: "documents",
+                checked: false
+            }, {
+                type: "checkbox",
+                index: 5,
+                label: "Река",
+
                 group: "documents",
                 checked: false
             }]
